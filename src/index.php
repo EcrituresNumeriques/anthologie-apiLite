@@ -3,6 +3,11 @@ include('config.ini.php');
 //prepare the JSON data
 header('Content-Type: application/json');
 $data = array();
+
+if(!empty($_GET['page']) && $_GET['page'] == "404"){
+  errorJSON("Page not found",404);
+}
+
 // Check if the page got loaded with GET no need to check credential
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
