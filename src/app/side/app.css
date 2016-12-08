@@ -1,8 +1,12 @@
+/* Global */
+
 .flexSpacer{
   flex:1 1 auto;
 }
+
+/* Top Nav */
 header#topNav{
-  background-color: blue;
+  background-color: #366870;
   color:white;
   display:flex;
   flex-direction: row;
@@ -11,4 +15,15 @@ header#topNav{
 header#topNav > p {
   flex:0 0 auto;
   padding:1em;
+}
+
+/* main structure*/
+main {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height:calc(100vh - 50px);
+}
+main > section{
+  flex:0 0 25%;
 }
