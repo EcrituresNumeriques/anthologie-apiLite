@@ -36,6 +36,7 @@ main > section > header > h1{
   padding:1em;
   font-weight: bold;
   text-align: center;
+  color:white;
   background-color: #558187;
   border-bottom: 1px solid #558187;
   border-right: 1px solid #558187;
@@ -54,6 +55,7 @@ main > section > nav > article > input {
   display:block;
   text-align: left;
   padding: 1em;
+  width:100%;
   border: 0;
   border-bottom: 1px solid #558187;
   border-right: 1px solid #558187;
