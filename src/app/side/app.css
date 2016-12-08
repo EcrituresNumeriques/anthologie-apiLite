@@ -30,16 +30,39 @@ main > section{
 main > section#action{
   flex: 0 0 50%;
 }
+
+/* header section */
 main > section > header > h1{
   padding:1em;
   font-weight: bold;
   text-align: center;
-  border-bottom: 1px solid #c0c0c0;
-  border-right: 1px solid #c0c0c0;
+  background-color: #558187;
+  border-bottom: 1px solid #558187;
+  border-right: 1px solid #558187;
 }
+
+/* Nav section */
+main > section > nav > article > p {
+  text-align: center;
+  background-color: #81A1A6;
+  padding: 1em;
+  color:white;
+  border-bottom: 1px solid #558187;
+  border-right: 1px solid #558187;
+}
+main > section > nav > article > input {
+  display:block;
+  text-align: left;
+  padding: 1em;
+  border: 0;
+  border-bottom: 1px solid #558187;
+  border-right: 1px solid #558187;
+}
+
+
 main > section > section > article{
     padding:1em;
     text-align: left;
-    border-right: 1px solid #c0c0c0;
-    border-bottom: 1px solid #c0c0c0;
+    border-right: 1px solid #558187;
+    border-bottom: 1px solid #558187;
 }
