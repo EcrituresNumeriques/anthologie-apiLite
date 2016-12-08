@@ -27,3 +27,12 @@ main {
 main > section{
   flex:0 0 25%;
 }
+main > section > header > h1{
+  padding:1em;
+  font-weight: bold;
+  text-align: center;
+}
+main > section > section > article{
+    padding:1em;
+    text-align: left;
+}

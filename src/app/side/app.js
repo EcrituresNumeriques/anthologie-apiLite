@@ -5,6 +5,8 @@ $(document).ready(function(){
     for(i=0;i<data.entities.length;i++){
       $entity = $("<article/>");
       $entity.attr("id","entity"+data.entities[i].id);
+      $entity.append('<p/>');
+      $entity.children("p").html(data.entities[i].title);
       $("#entities > section").append($entity);
     }
   });
