@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  //get entities
+  //feed left column
   $.get("/v1/entities").done(displayEntities);
 
 
@@ -7,6 +7,8 @@ $(document).ready(function(){
 
 
 //functions
+
+//feed left column
   function displayEntities(data){
     $("#entities > section").html();
     for(i=0;i<data.entities.length;i++){
