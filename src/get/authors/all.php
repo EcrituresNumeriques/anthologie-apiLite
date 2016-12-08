@@ -23,7 +23,7 @@ foreach ($intermediaire as $author) {
   }
   $authors[$author['id']]['name'][] = array(
     "name"=>$author['name'],
-    "lang"=>$author['fr'],
+    "lang"=>$author['lang'],
     "family"=>$author['family']
   );
 }
