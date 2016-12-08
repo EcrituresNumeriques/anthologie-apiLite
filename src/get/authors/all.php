@@ -19,20 +19,13 @@ foreach ($intermediaire as $author) {
       "died" => $author['died'],
       "born_range" => $author['born_range'],
       "died_range" => $author['died_range'],
-      "name" => array(
-        "name"=>$author['name'],
-        "lang"=>$author['fr'],
-        "family"=>$author['family']
-      )
     );
   }
-  else{
-    $authors[$author['id']]['name'][] = array(
-      "name"=>$author['name'],
-      "lang"=>$author['fr'],
-      "family"=>$author['family']
-    );
-  }
+  $authors[$author['id']]['name'][] = array(
+    "name"=>$author['name'],
+    "lang"=>$author['fr'],
+    "family"=>$author['family']
+  );
 }
 
 //put in $data : Vue
