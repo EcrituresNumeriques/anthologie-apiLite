@@ -1,6 +1,13 @@
 $(document).ready(function(){
   //get entities
-  $.get("/v1/entities").done(function(data){
+  $.get("/v1/entities").done(displayEntities);
+
+
+
+
+
+//functions
+  function displayEntities(data){
     $("#entities > section").html();
     for(i=0;i<data.entities.length;i++){
       $entity = $("<article/>");
@@ -12,14 +19,7 @@ $(document).ready(function(){
     $(".entity").on("click",function(){
 
     });
-  });
-
-
-
-
-
-//functions
-
+  }
 
 
 
