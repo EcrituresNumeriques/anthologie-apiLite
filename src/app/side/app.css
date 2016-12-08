@@ -31,8 +31,12 @@ main > section > header > h1{
   padding:1em;
   font-weight: bold;
   text-align: center;
+  border-bottom: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
 }
 main > section > section > article{
     padding:1em;
     text-align: left;
+    border-right: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
 }
