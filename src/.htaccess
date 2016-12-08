@@ -1,0 +1,4 @@
+Options -Indexes
+RewriteEngine On
+
+RewriteRule ^/v1/entities$ index.php?page=entities [L,QSA]

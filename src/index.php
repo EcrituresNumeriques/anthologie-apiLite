@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
   //filter out empty request
   if(empty($_GET['page'])){
-    errorBadRequest("No page selected");
+    errorJSON("No page selected",400);
   }
 
   //list all entities
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
   //not in the list
   else{
-    errorBadRequest("Unknown request");
+    errorJSON("Unknown request",400);
   }
 }
 
