@@ -1,7 +1,7 @@
 <?php
 
 //Check if user can add new content
-function checkCredential($user, $password){
+function checkCredential($token){
 
 }
 

@@ -1,19 +1,23 @@
 <?php
+//include keys.ini
+require_once('config.keys.ini.php');
+
 //connect database
-try
-{
-    $bdd = new PDO("mysql:host=".$dbCredential['host'].";dbname=".$dbCredential['base'], $dbCredential['user'], $dbCredential['pass']);
+try{
+    $db = new PDO("mysql:host=".$dbCredential['host'].";dbname=".$dbCredential['base'], $dbCredential['user'], $dbCredential['pass']);
+    $unset($dbCredential);
 }
-catch (Exception $e)
-{
+catch (Exception $e){
     die('Erreur : ' . $e->getMessage());
 }
-$unset($dbCredential);
-$bdd->query("SET NAMES UTF8");
+
+//set UTF by default
+$db->query("SET NAMES UTF8");
 
 
 //include function
 include('function.php');
+
 //manage token
 
 ?>
