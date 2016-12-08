@@ -27,7 +27,7 @@ main {
 main > section{
   flex:0 0 25%;
 }
-main > section#action{
+main > section#entities{
   max-width: 250px;
 }
 main > section#action{
