@@ -12,7 +12,27 @@ catch(Exception $e){
 $intermediaire = $getAuthors->fetchAll(PDO::FETCH_ASSOC);
 $authors = array();
 foreach ($intermediaire as $author) {
-  $authors[$author['id']] = $author;
+  if(empty($authors[$author['id']])){
+    $authors[$author['id']] = array(
+      "id" => $author['id'],
+      "born" => $author['born'],
+      "died" => $author['died'],
+      "born_range" => $author['born_range'],
+      "died_range" => $author['died_range'],
+      "name" => array(
+        "name"=>$author['name'],
+        "lang"=>$author['fr'],
+        "family"=>$author['family']
+      )
+    )
+  }
+  else{
+    $authors[$author['id']]['name'][] = array(
+      "name"=>$author['name'],
+      "lang"=>$author['fr'],
+      "family"=>$author['family']
+    )
+  }
 }
 
 //put in $data : Vue
