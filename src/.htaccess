@@ -6,4 +6,5 @@ ErrorDocument 404 /index.php?page=404
     RewriteEngine On
     RewriteRule ^/?v1/entities$ index.php?page=entities [L,QSA]
     RewriteRule ^/?v1/entities/([0-9]+)$ index.php?page=entity&entity=$1 [L,QSA]
+    RewriteRule ^.*$ index.php?page=404 [L]
 </IfModule>
