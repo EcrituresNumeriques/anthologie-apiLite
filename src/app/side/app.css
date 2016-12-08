@@ -54,6 +54,7 @@ main > section > nav > article > p {
 main > section > nav > article > input {
   display:block;
   text-align: left;
+  background-color: #c9dbde;
   padding: 1em;
   width:100%;
   border: 0;

@@ -21,7 +21,7 @@ $(document).ready(function(){
       $entity.children("p").html(data.entities[i].title);
       $("#entities > section").append($entity);
     }
-    $("#findEntityInput").on("change",function(){
+    $("#findEntityInput").on("input",function(){
       $("#entities > section > article").addClass("hidden");
       $("#entities > section > article > p:contains("+$(this).val()+")").parent("article").removeClass("hidden");
     });
