@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 //functions
 
-//feed left column
+//feed left column + actions
   function displayEntities(data){
     $("#entities > section").html('');
     for(i=0;i<data.entities.length;i++){
@@ -22,12 +22,13 @@ $(document).ready(function(){
       $("#entities > section > article").addClass("hidden");
       $("#entities > section > article > p:contains("+$(this).val()+")").parent("article").removeClass("hidden");
     });
-    $(".entity").on("click",function(){
-
-    });
+    $(".entity").on("click",loadEntity);
   }
 
-
+//load entity in the second row
+  function loadEntity(){
+    $(this).css("background-color","red");
+  }
 
 
 });
