@@ -2,7 +2,7 @@
 
 //select info in database : Model
 try{
-$getAuthors = $db->prepare("SELECT a.*,at.name,l.name,l.family FROM authors a JOIN author_translations at ON a.id = at.author_id JOIN languages l ON at.language_id = l.id");
+$getAuthors = $db->prepare("SELECT a.*,at.name,l.name as lang,l.family FROM authors a JOIN author_translations at ON a.id = at.author_id JOIN languages l ON at.language_id = l.id");
 $getAuthors->execute();
 }
 catch(Exception $e){
