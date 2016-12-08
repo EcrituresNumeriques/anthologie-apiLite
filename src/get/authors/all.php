@@ -2,8 +2,8 @@
 
 //select info in database : Model
 try{
-$getEntities = $db->prepare("SELECT * FROM entities");
-$getEntities->execute();
+$getAuthors = $db->prepare("SELECT * FROM authors");
+$getAuthors->execute();
 }
 catch(Exception $e){
   errorJSON('SQL error : ' . $e->getMessage(),500);
@@ -12,5 +12,5 @@ catch(Exception $e){
 
 
 //put in $data : Vue
-$data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
+$data['authors'] = $getAuthors->fetchAll(PDO::FETCH_ASSOC);
 ?>
