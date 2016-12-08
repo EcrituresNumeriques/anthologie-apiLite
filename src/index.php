@@ -17,26 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 
   //list all entities
-  if($_GET['page'] == "entities"){
+  if($_GET['page'] == "entities" || $_GET['page'] == "export"){
     include('get/entities/all.php');
   }
 
   //list all info on one entity
-  elseif($_GET['page'] == "entity" && is_numeric($_GET['entity'])){
+  if($_GET['page'] == "entity" && is_numeric($_GET['entity'])){
     include('get/entities/one.php');
   }
 
   //list all authors
-  elseif($_GET['page'] == "authors"){
-  include('get/authors/all.php');
+  if($_GET['page'] == "authors" || $_GET['page'] == "export"){
+    include('get/authors/all.php');
   }
 
   //list all info on translations
-  elseif($_GET['page'] == "translations"){
-  include('get/translations/entity.php');
+  if($_GET['page'] == "translations"){
+    include('get/translations/entity.php');
   }
   //not in the list
-  else{
+  if(empty($data)){
     errorJSON("Unknown request",400);
   }
 }
