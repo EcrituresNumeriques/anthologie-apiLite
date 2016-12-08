@@ -53,6 +53,7 @@ main > section > nav > article > p {
   color:white;
   border-bottom: 1px solid #558187;
   border-right: 1px solid #558187;
+  cursor: pointer;
 }
 main > section > nav > article > input {
   display:block;
@@ -63,6 +64,7 @@ main > section > nav > article > input {
   border: 0;
   border-bottom: 1px solid #558187;
   border-right: 1px solid #558187;
+  cursor: pointer;
 }
 
 
@@ -71,6 +73,7 @@ main > section > section > article{
     text-align: left;
     border-right: 1px solid #558187;
     border-bottom: 1px solid #558187;
+    cursor: pointer;
 }
 
 
