@@ -38,7 +38,7 @@ function displayEntity(data){
     $entity.attr("id","entity"+data.entities[i].id).data("id",data.entities[i].id).addClass("entity");
     $entity.append('<p/>');
     $entity.children("p").html(data.entities[i].title);
-    $("#entities > section").append($entity);
+    $("#entity > section").append($entity);
   }
 }
 
