@@ -24,14 +24,14 @@ foreach ($intermediaire as $author) {
         "lang"=>$author['fr'],
         "family"=>$author['family']
       )
-    )
+    );
   }
   else{
     $authors[$author['id']]['name'][] = array(
       "name"=>$author['name'],
       "lang"=>$author['fr'],
       "family"=>$author['family']
-    )
+    );
   }
 }
 
