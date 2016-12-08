@@ -8,5 +8,8 @@ ErrorDocument 404 /index.php?page=404
     RewriteRule ^/?v1/entities/([0-9]+)$ index.php?page=entity&entity=$1 [L,QSA]
     RewriteRule ^/?v1/authors$ index.php?page=authors [L,QSA]
     RewriteRule ^/?v1/export$ index.php?page=export [L,QSA]
-    rewriteRule ^/?$ app.html [L]
+    rewriteRule ^/?$ app/app.html [L]
+    rewriteRule ^/app.css?$ app/side/app.css [L]
+    rewriteRule ^/reset.css?$ app/side/reset.css [L]
+    rewriteRule ^/app.js?$ app/side/app.js [L]
 </IfModule>
