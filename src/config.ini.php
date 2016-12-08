@@ -5,7 +5,7 @@ require_once('config.keys.ini.php');
 //connect database
 try{
     $db = new PDO("mysql:host=".$dbCredential['host'].";dbname=".$dbCredential['base'], $dbCredential['user'], $dbCredential['pass']);
-    $unset($dbCredential);
+    unset($dbCredential);
 }
 catch (Exception $e){
     die('Erreur : ' . $e->getMessage());

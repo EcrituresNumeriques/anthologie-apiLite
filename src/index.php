@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
   //list all entities
   if($_GET['page'] == "entities"){
-  include('get/entities/all.php');
+    include('get/entities/all.php');
   }
 
   //list all info on one entity
-  elseif($_GET['page'] == "entity"){
-  include('get/entities/one.php');
+  elseif($_GET['page'] == "entity" && is_numeric($_GET['entity'])){
+    include('get/entities/one.php');
   }
 
   //list all authors
