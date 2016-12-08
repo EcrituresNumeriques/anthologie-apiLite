@@ -68,3 +68,9 @@ main > section > section > article{
     border-right: 1px solid #558187;
     border-bottom: 1px solid #558187;
 }
+
+
+/* entities quick select */
+#entities > section > article.hidden{
+  display:none;
+}
