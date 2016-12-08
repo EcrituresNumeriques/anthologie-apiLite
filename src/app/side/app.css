@@ -1,0 +1,14 @@
+.flexSpacer{
+  flex:1 1 auto;
+}
+header#topNav{
+  background-color: blue;
+  color:white;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+header#topNav > p {
+  flex:0 0 auto;
+  padding:1em;
+}
