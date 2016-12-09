@@ -1,12 +1,28 @@
 $(document).ready(function(){
+  //default mode
+
   //feed left column
   $.get("/v1/entities").done(displayEntities);
 
+  //login user
+  $("#logMeIn").on("click",logMeIn;
 
 
 
 
 //functions
+function logMeIn(){
+  //check if $this has a child nav, if yes, remove it, else show it
+  if($(this).children("nav").length > 0){
+    $(this).children("nav").remove();
+  }
+  else{
+    $menuLogin = $('<nav/>');
+    $menuLogin.append('<p>hello world</p>');
+    $(this).append($menuLogin);
+  }
+}
+
 
 //feed left column + actions
 function displayEntities(data){

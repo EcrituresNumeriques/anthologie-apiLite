@@ -17,7 +17,7 @@ header#topNav{
   flex-direction: row;
   flex-wrap: nowrap;
 }
-header#topNav > p {
+header#topNav > p,header#topNav > div:not(.flexSpacer) {
   flex:0 0 auto;
   padding:1em;
 }
