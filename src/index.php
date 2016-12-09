@@ -53,7 +53,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('post/user/login.php');
   }
   else{
-    $user = checkCredential($_POST['token'],$_POST['id'],$_POST['time'],$db);
+    $user = checkCredential($_POST['token'],$_POST['user'],$_POST['time'],$db);
     if(empty($user)){
       errorJSON("Token invalide",400);
     }
