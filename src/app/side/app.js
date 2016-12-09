@@ -67,6 +67,7 @@ function loadEntity(){
 //display Entity in the second column
 function displayEntity(data){
   $("#entity > section").html('');
+  $("#action > section").html("");
   for(i=0;i<data.entities.length;i++){
     $entity = $("<article/>");
     $entity.attr("id","entity"+data.entities[i].id_entity).data("id",data.entities[i].id_entity).addClass("entity");
