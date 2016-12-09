@@ -23,6 +23,6 @@ catch(Exception $e){
 
 //put in $data : Vue
 $data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
-$data['entities']['authors'] = $getAuthors->fetchAll(PDO::FETCH_ASSOC);
-$data['entities']['titleTranslation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
+$data['entities'][0]['authors'] = $getAuthors->fetchAll(PDO::FETCH_ASSOC);
+$data['entities'][0]['titleTranslation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
 ?>
