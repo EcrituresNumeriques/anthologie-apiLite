@@ -36,7 +36,8 @@ if($encodedPassword == $user['password']){
   $data['token']['time'] = time();
   $data['token']['user'] = $user['id'];
   $encodedTime = hash('sha512', $salt.$data['token']['time'], true);
-  $data['token']['test'] = hash('sha512', $encodedPassword.$encodedTime, true);
+  $data['token']['token'] = "harambe";
+  //$data['token']['test'] = hash('sha512', $encodedPassword.$encodedTime, true);
 }
 else{
     errorJSON('Password mismatch',500);
