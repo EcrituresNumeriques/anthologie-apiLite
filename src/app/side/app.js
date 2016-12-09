@@ -56,6 +56,7 @@ function displayEntities(data){
     $("#entities > section > article > p:contains("+$(this).val()+")").parent("article").removeClass("hidden");
   });
   $(".entity").on("click",loadEntity);
+  eventHandler()
 }
 
 //load entity in the second row
@@ -114,6 +115,31 @@ function displayEntity(data){
     //display all translation + add new one
 
   }
+  eventHandler();
 }
+
+//create new entity
+function newEntity(){
+  $("#entity > section").html("");
+  $("#entity > section").append('<article class="shade"><h2>NIew entity</h2></article>');
+}
+
+//add new title to an entity
+function newEntityTitle(){
+
+}
+
+
+  function eventHandler(){
+    //add new entity
+    $("#newEntity").off("click").on("click",function(){});
+
+    //add new title
+    $(".newTitle").off("click").on("click"),newEntityTitle);
+
+    //add new author
+
+    //add new translation
+  }
 
 });
