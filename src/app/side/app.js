@@ -5,7 +5,7 @@ $(document).ready(function(){
   $.get("/v1/entities").done(displayEntities);
 
   //login user
-  $("#logMeIn").on("click",logMeIn);
+  $("#logMeInP").on("click",logMeIn);
 
 
 
@@ -13,15 +13,15 @@ $(document).ready(function(){
 //functions
 function logMeIn(){
   //check if $this has a child nav, if yes, remove it, else show it
-  if($(this).children("nav").length > 0){
-    $(this).children("nav").remove();
+  if($(this).parent("div").children("nav").length > 0){
+    $(this).parent("div").children("nav").remove();
   }
   else{
     $menuLogin = $('<nav/>');
     $menuLogin.append('<input type="text" id="loginInput" value="" placeholder="Login">');
     $menuLogin.append('<input type="password" id="passwordInput" value="" placeholder="password">');
     $menuLogin.append('<input type="button" id="goLogIn" value="Go">');
-    $(this).append($menuLogin);
+    $(this).parent("div").append($menuLogin);
     $("#goLogIn").on("click",function(){
       if($("#loginInput").val() != "" && $("#passwordInput").val() != ""){
         $.post("/v1/user/login",{login:$("#loginInput").val(),password:$("#passwordInput").val()})
