@@ -35,7 +35,7 @@ if($encodedPassword == $user['password']){
   //generate TOKEN here : tableless token v1
   $data['token']['time'] = time();
   $data['token']['user'] = $user['id'];
-  $data['token']['token'] = hash('sha512', $encodedPassword.hash('sha512', $salt.$data['token']['time'], true), true);
+  //$data['token']['token'] = hash('sha512', $encodedPassword.hash('sha512', $salt.$data['token']['time'], true), true);
 }
 else{
     errorJSON('Password mismatch',500);
