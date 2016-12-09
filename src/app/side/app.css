@@ -32,11 +32,14 @@ header#topNav > p,header#topNav > div:not(.flexSpacer) {
   color:black;
   top:100%;
   right:0;
-  height:180px;
-  width:250px;
   background-color: #e3ebec;
+  text-align: right;
+  padding:1em;
 }
-
+#logMeIn > nav > input {
+  display: block;
+  padding: 1em;
+}
 
 /* main structure*/
 main {
