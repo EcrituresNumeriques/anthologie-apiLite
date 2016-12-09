@@ -24,7 +24,7 @@ function logMeIn(){
     $(this).parent("div").append($menuLogin);
     $("#goLogIn").on("click",function(){
       if($("#loginInput").val() != "" && $("#passwordInput").val() != ""){
-        $.post("/v1/user/login",{login:$("#loginInput").val(),password:$("#passwordInput").val()})
+        $.post("/v1/user/login",{username:$("#loginInput").val(),password:$("#passwordInput").val()})
         .done(function(data){
           if(data.success != "1"){
             alert('something went wrong');
