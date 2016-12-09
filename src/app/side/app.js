@@ -51,7 +51,10 @@ function displayEntity(data){
     //display all authors + add new one
     for(j=0;j<data.entities[i].authors.length;j++){
       $author = $("<article/>");
-      $author.append('<p class="date"><span class="born">'+data.entities[i].authors[j].born+' (± '+data.entities[i].authors[j].born_range+')</span><span class="died">'+data.entities[i].authors[j].died+' (± '+data.entities[i].authors[j].died_range+')</span></p>')
+      $author.append('<p class="date"><span class="born">'+data.entities[i].authors[j].born+' (± '+data.entities[i].authors[j].born_range+')</span><span class="died">'+data.entities[i].authors[j].died+' (± '+data.entities[i].authors[j].died_range+')</span></p>');
+      for(k=0;k<data.entities[i].authors[j].name.length;k++){
+        $author.append('<p><span class="lang">'+data.entities[i].authors[j].name[k].lang+'<span><span class="translation">'+data.entities[i].authors[j].name[k].name+'</span></p>');
+      }
       $("#entity > section").append($author);
     }
 
