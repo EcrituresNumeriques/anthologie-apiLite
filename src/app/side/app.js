@@ -72,14 +72,23 @@ function displayEntity(data){
     $entity.append('<h1/>');
     $entity.children("h1").html(data.entities[i].title);
 
-    //display translated title
-    for(j=0;j<data.entities[i].titleTranslation.length;j++){
-      $titleTranslation = $("<p/>");
-      $titleTranslation.append('<span class="lang">['+data.entities[i].titleTranslation[j].lang+']</span>');
-      $titleTranslation.append('<span class="translation">'+data.entities[i].titleTranslation[j].text_translated+'</span>');
-      $entity.append($titleTranslation);
-    }
+
     $("#entity > section").append($entity);
+
+    //header Alternate Title
+    $("#entity > section").append('<article class="shade"><h2>Alternate title(s)</h2></article>');
+    $addNewTitle = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add title</p></article>').addClass("newTitle clickMe").data("entity",data.entities[i].id_entity);
+    $("#entity > section").append($addNewTitle);
+
+    //display translated titles
+    for(j=0;j<data.entities[i].titleTranslation.length;j++){
+      $titleTranslation = $("<article/>");
+      $titleTranslation.append("<p/>");
+      $titleTranslation.children("p").append('<span class="lang">['+data.entities[i].titleTranslation[j].lang+']</span>');
+      $titleTranslation.children("p").append('<span class="translation">'+data.entities[i].titleTranslation[j].text_translated+'</span>');
+      $("#entity > section").append($titleTranslation);
+    }
+
 
     //header Authors
     $("#entity > section").append('<article class="shade"><h2>Author(s)</h2></article>');
