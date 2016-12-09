@@ -29,6 +29,7 @@ header#topNav > p,header#topNav > div:not(.flexSpacer) {
 #logMeIn > nav {
   display:block;
   position: absolute;
+  color:black;
   top:100%;
   right:0;
   height:180px;
