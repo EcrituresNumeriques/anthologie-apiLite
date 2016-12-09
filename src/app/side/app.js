@@ -124,7 +124,7 @@ function newEntity(){
   $("#entity > section").append('<article class="shade"><h2>New entity</h2></article>');
   $("#entity > section").append('<article><input class="block full" type="text" value="" autocompletion="off" placeholder="Generic title"><input id="goNewEntity" type="button" class="block full right" value="Add"></article>');
   $("#goNewEntity").on("click",function(){
-    $.post("v1/entity/new",token);
+    $.post("v1/entities/new",token);
   });
 }
 
