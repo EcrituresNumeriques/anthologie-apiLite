@@ -27,9 +27,15 @@ foreach ($intermediaire as $author) {
     "family"=>$author['family']
   );
 }
+//remove indexes
+$unorderedAuthors = array();
+foreach ($authors as $key => $value) {
+  array_push($unorderedAuthors,$value);
+}
+unset($authors);
 
 //put in $data : Vue
-$data['authors'] = $authors
+$data['authors'] = $unorderedAuthors;
 
 
 
