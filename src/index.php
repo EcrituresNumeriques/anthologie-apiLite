@@ -53,7 +53,8 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('post/user/login.php');
   }
   else{
-    if(empty(checkCredential($_POST['token'],$_POST['id'],$_POST['time'],$db))){
+    $user = checkCredential($_POST['token'],$_POST['id'],$_POST['time'],$db);
+    if(empty($user)){
       errorJSON("Token invalide",400);
     }
     else{
@@ -61,6 +62,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //add new entitie
+    if($_GET['page'] == "newEntity"){
+      include('post/entities/new.php');
+    }
 
     //add new author
 

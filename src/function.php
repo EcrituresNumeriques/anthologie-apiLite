@@ -19,6 +19,7 @@ function checkCredential($token,$id,$time,$db){
       $encodedToken = hash('sha512', $user['password'].$encodedTime);
       if(base64_encode($encodedToken) == $token){
         $data['auth']['success'] = 1;
+        $data['user']['id'] = $user['id'];
         unset($user);
       }
       else{
