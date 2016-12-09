@@ -53,7 +53,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   else{
     if(empty(checkCredential($_POST['token'],$_POST['id'],$_POST['time'],$db))){
-      errorJSON("Token invalide",500);
+      errorJSON("Token invalide",400);
     }
     else{
       $data['auth']['success'] = 1;

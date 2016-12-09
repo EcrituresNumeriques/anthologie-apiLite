@@ -22,15 +22,15 @@ function checkCredential($token,$id,$time,$db){
         unset($user);
       }
       else{
-        errorJSON('token failurex4',500);
+        errorJSON('token failurex4',400);
       }
     }
     else{
-      errorJSON('token failurex2',500);
+      errorJSON('token failurex2',400);
     }
   }
   else{
-    errorJSON('token failure',500);
+    errorJSON('token failure',400);
   }
  return $data;
 }
