@@ -5,7 +5,7 @@ $(document).ready(function(){
   $.get("/v1/entities").done(displayEntities);
 
   //login user
-  $("#logMeIn").on("click",logMeIn;
+  $("#logMeIn").on("click",logMeIn);
 
 
 

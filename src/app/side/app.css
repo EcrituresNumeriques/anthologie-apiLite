@@ -22,6 +22,21 @@ header#topNav > p,header#topNav > div:not(.flexSpacer) {
   padding:1em;
 }
 
+/* Login menu */
+#logMeIn{
+  position:relative;
+}
+#logMeIn > nav {
+  display:block;
+  position: absolute;
+  top:100%;
+  right:0;
+  height:180px;
+  width:250px;
+  background-color: #e3ebec;
+}
+
+
 /* main structure*/
 main {
   display:flex;
