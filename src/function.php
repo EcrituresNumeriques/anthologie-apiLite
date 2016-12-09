@@ -2,7 +2,7 @@
 
 //Check if user can add new content
 function checkCredential($token,$id,$time,$db){
-  $data = ();
+  $data = array();
   if($time < time()+7*24*60*60){
     try{
     $checkUser = $db->prepare("SELECT id,username, salt, password FROM fos_users WHERE id = :id");
