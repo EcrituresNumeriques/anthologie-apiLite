@@ -16,14 +16,13 @@ if($checkUser->rowCount() < 1){
 $user = $checkUser->fetch(PDO::FETCH_ASSOC);
 
 //Generate hashed password from user
-$intermed['password'] = $_POST['password'];
-$intermed['salted'] = $intermed['password'].'{'.$user['salt'].'}';
-$intermed['digest'] = hash('sha512', $intermed['salted'], true);
+$intermed['salted'] = $_POST['password'].'{'.$user['salt'].'}';
+$digest = hash('sha512', $intermed['salted'], true);
 
 for ($i=1; $i<5000; $i++) {
-    $intermed['digest'] = hash('sha512', $intermed['digest'].$intermed['salted'], true);
+    $digest = hash('sha512', $digest.$intermed['salted'], true);
 }
-$encodedPassword = base64_encode($intermed['digest']);
+$encodedPassword = base64_encode($digest);
 
 //cleanup intermeds
 unset($intermed);
