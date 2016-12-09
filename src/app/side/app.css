@@ -8,7 +8,7 @@
   cursor: pointer;
 }
 
-input.block.full{
+input.block.full,textarea.block.full{
   display: block;
   padding: 1em;
   width: 100%;
