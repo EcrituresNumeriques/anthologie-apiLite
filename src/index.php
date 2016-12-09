@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
   //not in the list
   if(empty($data)){
-    errorJSON("Unknown request",400);
+    errorJSON("Unknown get request",400);
   }
 }
 
@@ -51,6 +51,15 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if($_GET['page'] == "login"){
     include('post/user/login.php');
   }
+  else{
+    if(empty(checkCredential($_POST['token'],$_POST['id'],$_POST['time'],$db)){
+      errorJSON("Token invalide",500);
+    }
+    else{
+      $data['auth']['success'] = 1;
+    }
+
+
 //check login
 
 //check token
@@ -70,11 +79,12 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //add new keyword
 
 //add new city
+}
 
 
   //not in the list
   if(empty($data)){
-    errorJSON("Unknown request",400);
+    errorJSON("Unknown post request",400);
   }
 }
 echo json_encode($data);
