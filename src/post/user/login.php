@@ -3,7 +3,7 @@
 try{
 $checkUser = $db->prepare("SELECT id,username, salt, password FROM fos_users WHERE username = :username");
 $checkUser->bindParam(":username",$_POST['username']);
-$checkUser->execute()
+$checkUser->execute();
 }
 catch(Exception $e){
   errorJSON('SQL error : ' . $e->getMessage(),500);
