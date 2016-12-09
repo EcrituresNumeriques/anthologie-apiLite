@@ -11,7 +11,7 @@ try{
   $getAuthors->bindParam(":id",$_GET['id']);
   $getAuthors->execute();
 
-  $getTitleTranslation = $db->prepare("SELECT et.id,et.text_translated,l.name as lang,l.family FROM entities_translations et JOIN languages l ON et.language_id = l.id WHERE entity_id = :id");
+  $getTitleTranslation = $db->prepare("SELECT et.id,et.text_translated,l.name as lang,l.family FROM entities_translations et JOIN languages l ON et.language_id = l.id WHERE et.entity_id = :id");
   $getTitleTranslation->bindParam(":id",$_GET['id']);
   $getTitleTranslation->execute();
 }
