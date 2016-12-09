@@ -132,10 +132,10 @@ function newEntityTitle(){
 
   function eventHandler(){
     //add new entity
-    $("#newEntity").off("click").on("click",function(){});
+    $("#newEntity").off("click").on("click",newEntity);
 
     //add new title
-    $(".newTitle").off("click").on("click"),newEntityTitle);
+    $(".newTitle").off("click").on("click",newEntityTitle);
 
     //add new author
 
