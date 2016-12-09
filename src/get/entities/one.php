@@ -39,6 +39,10 @@ foreach ($intermediaire as $author) {
     "family"=>$author['family']
   );
 }
+foreach ($authors as $key => $value) {
+  array_push($authors,$value);
+  unset($authors[$key]);
+}
 
 
 

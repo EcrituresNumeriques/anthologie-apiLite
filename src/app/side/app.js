@@ -36,8 +36,14 @@ function displayEntity(data){
   for(i=0;i<data.entities.length;i++){
     $entity = $("<article/>");
     $entity.attr("id","entity"+data.entities[i].id_entity).data("id",data.entities[i].id_entity).addClass("entity");
-    $entity.append('<p/>');
-    $entity.children("p").html(data.entities[i].title);
+    $entity.append('<h1/>');
+    $entity.children("h1").html(data.entities[i].title);
+    for(j=0;i<data.entities[i].titleTranslation.length;j++){
+      $titleTranslation = $("<p/>");
+      $titleTranslation.append('<span class="lang">['+data.entities[i].titleTranslation[j].lang+']</span>');
+      $titleTranslation.append('<span class="translation">'+data.entities[i].titleTranslation[j].text_translated+'</span>');
+      $entity.append($titleTranslation);
+    }
     $("#entity > section").append($entity);
   }
 }
