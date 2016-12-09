@@ -52,7 +52,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('post/user/login.php');
   }
   else{
-    if(empty(checkCredential($_POST['token'],$_POST['id'],$_POST['time'],$db)){
+    if(empty(checkCredential($_POST['token'],$_POST['id'],$_POST['time'],$db))){
       errorJSON("Token invalide",500);
     }
     else{
