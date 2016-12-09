@@ -16,16 +16,15 @@ if($checkUser->rowCount() < 1){
 $user = $checkUser->fetch(PDO::FETCH_ASSOC);
 
 //Generate hashed password from user
-$intermed['salted'] = $_POST['password'].'{'.$user['salt'].'}';
-$digest = hash('sha512', $intermed['salted'], true);
+$password = $_POST['password'];
+$salt = $user['salt'];
+$salted = $password.'{'.$salt.'}';
+$digest = hash('sha512', $salted, true);
 
 for ($i=1; $i<5000; $i++) {
-    $digest = hash('sha512', $digest.$intermed['salted'], true);
+    $digest = hash('sha512', $digest.$salted, true);
 }
 $encodedPassword = base64_encode($digest);
-
-//cleanup intermeds
-unset($intermed);
 
 //Compare with password in database
 if($encodedPassword == $user['password']){
@@ -36,7 +35,7 @@ if($encodedPassword == $user['password']){
   //generate TOKEN here : tableless token v1
   $data['token']['time'] = time();
   $data['token']['user'] = $user['id'];
-  $data['token']['token'] = hash('sha512', $encodedPassword.hash('sha512', $user['salt'].$data['token']['time'], true), true);
+  $data['token']['token'] = hash('sha512', $encodedPassword.hash('sha512', $salt.$data['token']['time'], true), true);
 }
 else{
     errorJSON('Password mismatch',500);
