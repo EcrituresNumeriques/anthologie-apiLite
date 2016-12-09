@@ -142,8 +142,8 @@ function newEntityTitle(){
 }
 
 function addNewTranslation(){
-  $("#entity > section").html("");
-  $("#entity > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
+  $("#action > section").html("");
+  $("#action > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
 }
 
 
