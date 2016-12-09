@@ -48,6 +48,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     errorJSON("No page selected",400);
   }
 
+  //check login
   if($_GET['page'] == "login"){
     include('post/user/login.php');
   }
@@ -59,27 +60,22 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $data['auth']['success'] = 1;
     }
 
+    //add new entitie
 
-//check login
+    //add new author
 
-//check token
+    //add new translation of a text
 
-//add new entitie
+    //add new align
 
-//add new author
+    //add new language
 
-//add new translation of a text
+    //add new image
 
-//add new align
+    //add new keyword
 
-//add new language
-
-//add new image
-
-//add new keyword
-
-//add new city
-}
+    //add new city
+  }
 
 
   //not in the list
