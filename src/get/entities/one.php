@@ -39,15 +39,16 @@ foreach ($intermediaire as $author) {
     "family"=>$author['family']
   );
 }
+//remove indexes
+$unorderedAuthors = array();
 foreach ($authors as $key => $value) {
-  array_push($authors,$value);
-  unset($authors[$key]);
+  array_push($unorderedAuthors,$value);
 }
-
+unset($authors);
 
 
 //put in $data : Vue
 $data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
-$data['entities'][0]['authors'] = $authors;
+$data['entities'][0]['authors'] = $unorderedAuthors;
 $data['entities'][0]['titleTranslation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
 ?>
