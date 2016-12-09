@@ -13,7 +13,7 @@ function displayEntities(data){
   $("#entities > section").html('');
   for(i=0;i<data.entities.length;i++){
     $entity = $("<article/>");
-    $entity.attr("id","entity"+data.entities[i].id).data("id",data.entities[i].id).addClass("entity");
+    $entity.attr("id","entity"+data.entities[i].id_entity).data("id",data.entities[i].id_entity).addClass("entity");
     $entity.append('<p/>');
     $entity.children("p").html(data.entities[i].title);
     $("#entities > section").append($entity);
@@ -35,7 +35,7 @@ function displayEntity(data){
   $("#entity > section").html('');
   for(i=0;i<data.entities.length;i++){
     $entity = $("<article/>");
-    $entity.attr("id","entity"+data.entities[i].id).data("id",data.entities[i].id).addClass("entity");
+    $entity.attr("id","entity"+data.entities[i].id_entity).data("id",data.entities[i].id_entity).addClass("entity");
     $entity.append('<p/>');
     $entity.children("p").html(data.entities[i].title);
     $("#entity > section").append($entity);
