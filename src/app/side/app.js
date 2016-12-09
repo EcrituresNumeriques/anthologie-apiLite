@@ -1,6 +1,6 @@
 $(document).ready(function(){
   //default mode
-
+  var token = {};
   //feed left column
   $.get("/v1/entities").done(displayEntities);
 
@@ -31,7 +31,8 @@ function logMeIn(){
           }
           else{
             $("#logMeIn").children("nav").remove();
-            $("#logMeIn").html('<p><i class="fa fa-user" aria-hidden="true"></i> '+data.username+'</p>')
+            $("#logMeIn").html('<p><i class="fa fa-user" aria-hidden="true"></i> '+data.username+'</p>');
+            token = data.token;
           }
         });
       }
