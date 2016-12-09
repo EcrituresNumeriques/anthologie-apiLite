@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <meta charset="utf-8">
+        <title>traduction alignée</title>
+    </head>
+    <script>
+        //p is the ponctuation, t is the word, h is the highlights
+        json = '[{"type":"poem","titre":"Ὀδύσσεια","auteur":"Ὅμηρος","text":[[[{"t":"ἄνδρα","h":[[1],[8,9]]},{"t":"μοι","h":[[2],[2]]},{"t":"ἔννεπε","h":[[3],[1,7]]},{"p":","},{"t":"μοῦσα","h":[[5],[4,5]]},{"p":","},{"t":"πολύτροπον","h":[[7],[10,11,12]]},{"p":","},{"t":"ὃς","h":[[9],[14]]},{"t":"μάλα","h":[[10],[16]]},{"t":"πολλὰ","h":[[11],[17]]}],[{"t":"πλάγχθη","h":[[12],[15]]},{"p":","},{"t":"ἐπεὶ","h":[[14],[19]]},{"t":"Τροίης","h":[[15],[26,27]]},{"t":"ἱερὸν","h":[[16],[24]]},{"t":"πτολίεθρον","h":[[17],[23,24]]},{"t":"ἔπερσεν","h":[[18],[22]]},{"p":":"}],[{"t":"πολλῶν","h":[[20],[29]]},{"t":"δ᾽","h":[[21],[]]},{"t":"ἀνθρώπων","h":[[22],[31,32]]},{"t":"ἴδεν","h":[[23],[35,36]]},{"t":"ἄστεα","h":[[24],[34]]},{"t":"καὶ","h":[[25],[37]]},{"t":"νόον","h":[[26],[39]]},{"t":"ἔγνω","h":[[27],[40,41]]},{"p":","}],[{"t":"πολλὰ","h":[[29],[46]]},{"t":"δ᾽","h":[[30],[45]]},{"t":"ὅ","h":[[31],[]]},{"t":"γ᾽","h":[[32],[]]},{"t":"ἐν","h":[[33],[54]]},{"t":"πόντῳ","h":[[34],[55,56]]},{"t":"πάθεν","h":[[35],[49,50]]},{"t":"ἄλγεα","h":[[36],[47,48]]},{"t":"ὃν","h":[[37],[]]},{"t":"κατὰ","h":[[38],[51]]},{"t":"θυμόν","h":[[39],[52,53]]},{"p":","}],[{"t":"ἀρνύμενος","h":[[41],[58,59,60]]},{"t":"ἥν","h":[[42],[61,62]]},{"t":"τε","h":[[43],[]]},{"t":"ψυχὴν","h":[[44],[63]]},{"t":"καὶ","h":[[45],[64]]},{"t":"νόστον","h":[[46],[65,66]]},{"t":"ἑταίρων","h":[[47],[67,68,69]]},{"p":"."}],[{"t":"ἀλλ᾽","h":[[49],[71]]},{"t":"οὐδ᾽","h":[[50],[76]]},{"t":"ὣς","h":[[51],[73]]},{"t":"ἑτάρους","h":[[52],[77,78]]},{"t":"ἐρρύσατο","h":[[53],[74,75]]},{"p":","},{"t":"ἱέμενός","h":[[55],[81,82,83]]},{"t":"περ","h":[[56],[84]]},{"p":":"}],[{"t":"αὐτῶν","h":[[58],[88,89]]},{"t":"γὰρ","h":[[59],[86]]},{"t":"σφετέρῃσιν","h":[[60],[88,89]]},{"t":"ἀτασθαλίῃσιν","h":[[61],[87,90,91]]},{"t":"ὄλοντο","h":[[62],[92,93]]},{"p":","}],[{"t":"νήπιοι","h":[[64],[95]]},{"p":","},{"t":"οἳ","h":[[66],[97]]},{"t":"κατὰ","h":[[67],[98]]},{"t":"βοῦς","h":[[68],[99,100]]},{"t":"Ὑπερίονος","h":[[69],[101,103]]},{"t":"Ἠελίοιο","h":[[70],[102]]}],[{"t":"ἤσθιον","h":[[71],[98]]},{"p":":"},{"t":"αὐτὰρ","h":[[73],[105]]},{"t":"ὁ","h":[[74],[106]]},{"t":"τοῖσιν","h":[[75],[108,109]]},{"t":"ἀφείλετο","h":[[76],[107]]},{"t":"νόστιμον","h":[[77],[112,113,114]]},{"t":"ἦμαρ","h":[[78],[110,111]]},{"p":"."}]]]},{"type":"prose","titre":"Odyssey","auteur":"Éditeur","text":[[[{"t":"Tell","h":[[],[1]]},{"t":"me","h":[[],[2]]},{"p":","},{"t":"O","h":[[],[4]]},{"t":"Muse","h":[[],[5]]},{"p":","},{"t":"of","h":[[],[7]]},{"t":"the","h":[[],[8]]},{"t":"man","h":[[],[9]]},{"t":"of","h":[[],[10]]},{"t":"many","h":[[],[11]]},{"t":"devices","h":[[],[12]]},{"p":","},{"t":"who","h":[[],[14]]},{"t":"wandered","h":[[],[15]]},{"t":"full","h":[[],[16]]},{"t":"many","h":[[],[17]]},{"t":"ways","h":[[],[18]]},{"t":"after","h":[[],[19]]},{"t":"he","h":[[],[20]]},{"t":"had","h":[[],[21]]},{"t":"sacked","h":[[],[22]]},{"t":"the","h":[[],[23]]},{"t":"sacred","h":[[],[24]]},{"t":"citadel","h":[[],[25]]},{"t":"of","h":[[],[26]]},{"t":"Troy","h":[[],[27]]},{"p":"."},{"t":"Many","h":[[],[29]]},{"t":"were","h":[[],[30]]},{"t":"the","h":[[],[31]]},{"t":"men","h":[[],[32]]},{"t":"whose","h":[[],[33]]},{"t":"cities","h":[[],[34]]},{"t":"he","h":[[],[35]]},{"t":"saw","h":[[],[36]]},{"t":"and","h":[[],[37]]},{"t":"whose","h":[[],[38]]},{"t":"mind","h":[[],[39]]},{"t":"he","h":[[],[40]]},{"t":"learned","h":[[],[41]]},{"p":","},{"t":"aye","h":[[],[43]]},{"p":","},{"t":"and","h":[[],[45]]},{"t":"many","h":[[],[46]]},{"t":"the","h":[[],[47]]},{"t":"woes","h":[[],[48]]},{"t":"he","h":[[],[49]]},{"t":"suffered","h":[[],[50]]},{"t":"in","h":[[],[51]]},{"t":"his","h":[[],[52]]},{"t":"heart","h":[[],[53]]},{"t":"upon","h":[[],[54]]},{"t":"the","h":[[],[55]]},{"t":"sea","h":[[],[56]]},{"p":","},{"t":"seeking","h":[[],[58]]},{"t":"to","h":[[],[59]]},{"t":"win","h":[[],[60]]},{"t":"his","h":[[],[61]]},{"t":"own","h":[[],[62]]},{"t":"life","h":[[],[63]]},{"t":"and","h":[[],[64]]},{"t":"the","h":[[],[65]]},{"t":"return","h":[[],[66]]},{"t":"of","h":[[],[67]]},{"t":"his","h":[[],[68]]},{"t":"comrades","h":[[],[69]]},{"p":"."},{"t":"Yet","h":[[],[71]]},{"t":"even","h":[[],[72]]},{"t":"so","h":[[],[73]]},{"t":"he","h":[[],[74]]},{"t":"saved","h":[[],[75]]},{"t":"not","h":[[],[76]]},{"t":"his","h":[[],[77]]},{"t":"comrades","h":[[],[78]]},{"p":","},{"t":"though","h":[[],[80]]},{"t":"he","h":[[],[81]]},{"t":"desired","h":[[],[82]]},{"t":"it","h":[[],[83]]},{"t":"sore","h":[[],[84]]},{"p":","},{"t":"for","h":[[],[86]]},{"t":"through","h":[[],[87]]},{"t":"their","h":[[],[88]]},{"t":"own","h":[[],[89]]},{"t":"blind","h":[[],[90]]},{"t":"folly","h":[[],[91]]},{"t":"they","h":[[],[92]]},{"t":"perished","h":[[],[93]]},{"p":"—"},{"t":"fools","h":[[],[95]]},{"p":","},{"t":"who","h":[[],[97]]},{"t":"devoured","h":[[],[98]]},{"t":"the","h":[[],[99]]},{"t":"kine","h":[[],[100]]},{"t":"of","h":[[],[101]]},{"t":"Helios","h":[[],[102]]},{"t":"Hyperion","h":[[],[103]]},{"p":";"},{"t":"but","h":[[],[105]]},{"t":"he","h":[[],[106]]},{"t":"took","h":[[],[107]]},{"t":"from","h":[[],[108]]},{"t":"them","h":[[],[109]]},{"t":"the","h":[[],[110]]},{"t":"day","h":[[],[111]]},{"t":"of","h":[[],[112]]},{"t":"their","h":[[],[113]]},{"t":"returning","h":[[],[114]]},{"p":"."}]]]}]';
+    </script>
+    <style>
+        body {
+            background: #FFF;
+            color: #111;
+            font: 14px Baskerville, "Palatino Linotype", "Times New Roman", Times, serif;
+            text-align: center;
+        }
+
+        div, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+        .poem {
+            margin:0 auto;
+            padding: 0;
+            text-align: left;
+            width: 430px;
+        }
+        .prose {
+            margin:0 auto;
+            padding: 0;
+            text-align: justify;
+            width: 430px;
+
+        }
+        h1, h2 {
+            font-weight: normal;
+            text-align: center;
+        }
+        h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #666;
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        p {
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        h2:before {
+            content: '— ';
+        }
+
+        h2:after {
+            content: ' —';
+        }
+        .poem h2 + p:first-letter,.prose h2 + p:first-letter {
+            font-size: 30px;
+            line-height: 1;
+            font-weight: bold;
+            font-variant: small-caps;
+        }
+        .poem p:first-line {
+        /*    font-variant: small-caps; */
+        /*    letter-spacing: 1px; */
+        }
+        .poem p:last-child {
+            margin-bottom: 30px;
+        }
+        #translation {
+        display:flex;
+        display:-webkit-flex;
+        }
+
+        .highlight:hover{
+            cursor:pointer;
+        }
+        .highlight.highlighted{
+            background-color:#F4FA58;
+        }
+    </style>
+    <body>
+    <div id="translation"></div>
+    </body>
+    <script>
+        $(document).ready(function(){
+            console.log('Page loaded');
+            data = JSON.parse(json);
+            var t=0;
+            while(t<data.length){
+                var wordid = 0;
+                var highlight = "";
+
+                if(data[t].type == "poem"){
+                $("#translation").append("<div id=\"text"+t+"\" class=\"poem\"></div>");}
+                else if(data[t].type == "prose"){
+                $("#translation").append("<div id=\"text"+t+"\" class=\"prose\"></div>");}
+                else{
+                    $("#translation").append("<div id=\"text"+t+"\"></div>");}
+                $("#text"+t).append("<h1 id=\"titre"+t+"\">"+data[t].titre+"</h1>");
+                $("#text"+t).append("<h2 id=\"auteur"+t+"\">"+data[t].auteur+"</h2>");
+
+
+
+                var s = 0;
+                while(s<data[t].text.length){
+                    $("#text"+t).append("<p class=\"strophe"+s+"\"></p>");
+                    var v = 0;
+                    while(v<data[t].text[s].length){
+                        var w = 0;
+                        while(w<data[t].text[s][v].length){
+                            wordid++;
+                            if(typeof(data[t].text[s][v][w].t) !== "undefined" && data[t].text[s][v][w].t != "")  {
+                                console.log("word"+t);
+                                highlight = "";
+                                for(o=0;o<data[t].text[s][v][w].h.length;o++){
+                                    for(m=0;m<data[t].text[s][v][w].h[o].length;m++){
+                                        highlight = highlight+";"+o+"-"+data[t].text[s][v][w].h[o][m];
+                                    }
+                                }
+
+                                $("div#text"+t+" p.strophe"+s).append("<span id=\""+t+"-"+wordid+"\" class=\"highlight\" data-highlight=\""+highlight+"\" >"+data[t].text[s][v][w].t+"</span> ");
+                            }
+                            else if(data[t].text[s][v].t != ""){
+                                console.log("ponctuation"+t);
+                                $("div#text"+t+" p.strophe"+s).append(data[t].text[s][v][w].p+" ");
+
+                            }
+                            w++;
+                        }
+                        $("div#text"+t+" p.strophe"+s).append("<br>");
+                        console.log("line"+t);
+                        v++;
+                    }
+                    s++;
+                }
+                t++;
+            }
+
+            var stropheHeight = 0;
+            var nStrophe = 0;
+            while(nStrophe<s){
+                var stropheHeight = 0;
+                $(".strophe"+nStrophe).each(function(){
+                    if($(this).innerHeight() > stropheHeight){
+                        stropheHeight = $(this).innerHeight();
+                    }
+                    $(".strophe"+nStrophe).css("height",stropheHeight);
+                });
+                nStrophe++;
+            }
+
+            console.log(s);
+
+
+            $(".highlight").on("mouseenter",function(){
+                var toHighlight = $(this).data("highlight");
+                var hl = toHighlight.split(";");
+                var i = 1;
+                    $(".highlighted").removeClass("highlighted");
+                while(i<hl.length){
+                    $("#"+hl[i]).addClass("highlighted");
+                i++;
+                }
+
+            });
+            $(".highlight").on("mouseleave",function(){
+                    $(".highlighted").removeClass("highlighted");
+            });
+            $(".highlight").on("click",function(){
+                var toHighlight = $(this).data("highlight");
+                var hl = toHighlight.split(";");
+                var i = 1;
+                while(i<hl.length){
+                    $("#"+hl[i]).toggleClass("Hardhighlighted");
+                i++;
+                }
+
+            });
+
+
+        });
+    </script>
+</html>
