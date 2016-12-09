@@ -47,7 +47,12 @@ function displayEntity(data){
       $entity.append($titleTranslation);
     }
     $("#entity > section").append($entity);
+
+    //header Authors
     $("#entity > section").append('<article class="shade"><h2>Author(s)</h2></article>');
+    $addNewAuthor = $('<article class="newAuthor" class="clickMe"><p><i class="fa fa-plus-circle" aria-hidden="true"></i> New Author</p></article>').data("entity",data.entities[i].id_entity);
+    $("#entity > section").append($addNewAuthor);
+
     //display all authors + add new one
     for(j=0;j<data.entities[i].authors.length;j++){
       $author = $("<article/>");
