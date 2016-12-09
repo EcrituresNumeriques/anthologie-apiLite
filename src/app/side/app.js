@@ -50,7 +50,7 @@ function displayEntity(data){
 
     //header Authors
     $("#entity > section").append('<article class="shade"><h2>Author(s)</h2></article>');
-    $addNewAuthor = $('<article class="newAuthor" class="clickMe"><p><i class="fa fa-plus-circle" aria-hidden="true"></i> New Author</p></article>').data("entity",data.entities[i].id_entity);
+    $addNewAuthor = $('<article class="newAuthor" class="clickMe"><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Author</p></article>').data("entity",data.entities[i].id_entity);
     $("#entity > section").append($addNewAuthor);
 
     //display all authors + add new one
@@ -63,6 +63,11 @@ function displayEntity(data){
       }
       $("#entity > section").append($author);
     }
+
+    //translations header
+    $("#entity > section").append('<article class="shade"><h2>Translation(s)</h2></article>');
+    $addNewTranslation = $('<article class="newtranslation" class="clickMe"><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add translation</p></article>').data("entity",data.entities[i].id_entity);
+    $("#entity > section").append($addNewTranslation);
 
     //display all translation + add new one
 
