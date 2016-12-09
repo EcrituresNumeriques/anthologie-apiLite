@@ -109,8 +109,9 @@ function displayEntity(data){
 
     //translations header
     $("#entity > section").append('<article class="shade"><h2>Translation(s)</h2></article>');
-    $addNewTranslation = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add translation</p></article>').addClass("clickMe newtranslation").data("entity",data.entities[i].id_entity);
+    $addNewTranslation = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add translation</p></article>').addClass("clickMe newTranslation").data("entity",data.entities[i].id_entity);
     $("#entity > section").append($addNewTranslation);
+
 
     //display all translation + add new one
 
@@ -140,6 +141,11 @@ function newEntityTitle(){
 
 }
 
+function addNewTranslation(){
+  $("#entity > section").html("");
+  $("#entity > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
+}
+
 
   function eventHandler(){
     //add new entity
@@ -151,6 +157,7 @@ function newEntityTitle(){
     //add new author
 
     //add new translation
+    $(".newTranslation").on("click",addNewTranslation);
   }
 
 });

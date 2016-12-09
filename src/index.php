@@ -35,6 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if($_GET['page'] == "translations"){
     include('get/translations/entity.php');
   }
+
+  //list all languages
+  if($_GET['page'] == "languages"){
+    include('get/languages/all.php');
+  }
+
+
   //not in the list
   if(empty($data)){
     errorJSON("Unknown get request",400);
@@ -69,6 +76,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //add new author
 
     //add new translation of a text
+    if($_GET['page'] == "newtranslation"){
+      include('post/translations/new');
+    }
 
     //add new align
 
