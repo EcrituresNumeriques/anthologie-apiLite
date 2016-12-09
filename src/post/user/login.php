@@ -10,5 +10,5 @@ for ($i=1; $i<5000; $i++) {
 }
 
 $encodedPassword = base64_encode($digest);
-echo($encodedPassword);
+$data['password'] = $encodedPassword;
 ?>

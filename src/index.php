@@ -43,7 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 // if request is a POST, check credential and insert new stuff
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  //filter out empty request
+  if(empty($_GET['page'])){
+    errorJSON("No page selected",400);
+  }
 
+  if($_GET['page'] == "login"){
+    include('post/login.php');
+  }
 //check login
 
 //check token
@@ -64,6 +71,11 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 //add new city
 
+
+  //not in the list
+  if(empty($data)){
+    errorJSON("Unknown request",400);
+  }
 }
 echo json_encode($data);
 ?>
