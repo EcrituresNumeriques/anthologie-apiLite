@@ -43,7 +43,7 @@ function loadEntities(){
 
 function loadLangs(){
 //generate first column
-  $header = $('<header />')..append('<h1>Langs</h1>');
+  $header = $('<header />').append('<h1>Langs</h1>');
   $newEntity = $('<article id="newEntity" class="clickMe"/>').children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New entity');
   $searchEntity = $('<article/>').append('<input type="text" name="entity" value="" id="findEntityInput" placeholder="find entity" class="clickMe" autocomplete="off">');
   $nav = $('<nav/>').append($newEntity).append($searchEntity);
@@ -77,7 +77,7 @@ function loadAuthors(){
 
 function loadKeywords(){
 //generate first column
-  $header = $('<header />')..append('<h1>Keywords</h1>');
+  $header = $('<header />').append('<h1>Keywords</h1>');
   $newEntity = $('<article id="newEntity" class="clickMe"/>').children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New entity');
   $searchEntity = $('<article/>').append('<input type="text" name="entity" value="" id="findEntityInput" placeholder="find entity" class="clickMe" autocomplete="off">');
   $nav = $('<nav/>').append($newEntity).append($searchEntity);
