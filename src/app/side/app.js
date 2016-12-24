@@ -55,7 +55,7 @@ function loadLangs(){
 //display column
   $("body > main").html('').append($sectionEntities).append($sectionEntity).append($sectionAction);
 //feed first column
-  $.get("/v1/entities").done(displayEntities);
+  //$.get("/v1/entities").done(displayEntities);
 }
 
 function loadAuthors(){
@@ -72,7 +72,7 @@ function loadAuthors(){
 //display column
   $("body > main").html('').append($sectionEntities).append($sectionEntity).append($sectionAction);
 //feed first column
-  $.get("/v1/entities").done(displayEntities);
+  //$.get("/v1/entities").done(displayEntities);
 }
 
 function loadKeywords(){
@@ -89,7 +89,7 @@ function loadKeywords(){
 //display column
   $("body > main").html('').append($sectionEntities).append($sectionEntity).append($sectionAction);
 //feed first column
-  $.get("/v1/entities").done(displayEntities);
+  //$.get("/v1/entities").done(displayEntities);
 }
 
 
