@@ -20,7 +20,6 @@ function init(callback){
   $("#loadKeywords").on("click",loadKeywords);
   //login user
   $("#logMeInP").on("click",logMeIn);
-  console.log("load"+callback);
   callback();
 }
 
@@ -165,15 +164,6 @@ function displayEntity(data){
     $addNewTitle = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add title</p></article>').addClass("newTitle clickMe").data("entity",data.entities[i].id_entity);
     $("#entity > section").append($addNewTitle);
 
-    //display translated titles
-    for(j=0;j<data.entities[i].titleTranslation.length;j++){
-      $titleTranslation = $("<article/>");
-      $titleTranslation.append("<p/>");
-      $titleTranslation.children("p").append('<span class="lang">['+data.entities[i].titleTranslation[j].lang+']</span>');
-      $titleTranslation.children("p").append('<span class="translation">'+data.entities[i].titleTranslation[j].text_translated+'</span>');
-      $("#entity > section").append($titleTranslation);
-    }
-
 
     //header Authors
     $("#entity > section").append('<article class="shade"><h2>Author(s)</h2></article>');
@@ -196,7 +186,14 @@ function displayEntity(data){
     $addNewTranslation = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add translation</p></article>').addClass("clickMe newTranslation").data("entity",data.entities[i].id_entity);
     $("#entity > section").append($addNewTranslation);
 
-
+    //display translation
+    for(j=0;j<data.entities[i].translation.length;j++){
+      $titleTranslation = $("<article/>");
+      $titleTranslation.append("<p/>");
+      $titleTranslation.children("p").append('<span class="lang">['+data.entities[i].translation[j].lang+']</span>');
+      $titleTranslation.children("p").append('<span class="translation">'+data.entities[i].translation[j].text_translated+'</span>');
+      $("#entity > section").append($titleTranslation);
+    }
     //display all translation + add new one
 
   }
