@@ -14,10 +14,10 @@ $(document).ready(function(){
 //Init script
 function init(callback){
   //event handler for each sections
-  $("loadEntities").on("click",loadEntities);
-  $("loadLangs").on("click",loadLangs);
-  $("loadAuthors").on("click",loadAuthors);
-  $("loadKeywords").on("click",loadKeywords);
+  $("#loadEntities").on("click",loadEntities);
+  $("#loadLangs").on("click",loadLangs);
+  $("#loadAuthors").on("click",loadAuthors);
+  $("#loadKeywords").on("click",loadKeywords);
   //login user
   $("#logMeInP").on("click",logMeIn);
   console.log("load"+callback);
