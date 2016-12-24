@@ -15,10 +15,12 @@ $(document).ready(function(){
 function init(callback){
   //event handler for each sections
   $("loadEntities").on("click",loadEntities);
+  $("loadLangs").on("click",loadLangs);
   $("loadAuthors").on("click",loadAuthors);
   $("loadKeywords").on("click",loadKeywords);
   //login user
   $("#logMeInP").on("click",logMeIn);
+  console.log("load"+callback);
   callback();
 }
 
@@ -31,6 +33,23 @@ function loadEntities(){
   $sectionEntities = $('<section id="entities"/>').append($header).append($nav).append('<section/>');
 //second column
   $sectionEntity = $('<section id="entity"/>').append("<header><h1>Entity</h1></header>").append("<section/>");
+//third column
+  $sectionAction = $('<section id="action"/>').append("<header><h1>Action</h1></header>").append("<section/>");
+//display column
+  $("body > main").html('').append($sectionEntities).append($sectionEntity).append($sectionAction);
+//feed first column
+  $.get("/v1/entities").done(displayEntities);
+}
+
+function loadLangs(){
+//generate first column
+  $header = $('<header />').append('<h1/>').children('h1').html("Authors");
+  $newEntity = $('<article id="newEntity" class="clickMe"/>').children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New entity');
+  $searchEntity = $('<article/>').append('<input type="text" name="entity" value="" id="findEntityInput" placeholder="find entity" class="clickMe" autocomplete="off">');
+  $nav = $('<nav/>').append($newEntity).append($searchEntity);
+  $sectionEntities = $('<section id="entities"/>').append($header).append($nav).append('<section/>');
+//second column
+  $sectionEntity = $('<section id="entity"/>').append("<header><h1>Author</h1></header>").append("<section/>");
 //third column
   $sectionAction = $('<section id="action"/>').append("<header><h1>Action</h1></header>").append("<section/>");
 //display column
