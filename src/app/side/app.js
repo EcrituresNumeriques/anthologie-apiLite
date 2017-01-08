@@ -236,7 +236,7 @@ function displayFamilies(data){
     $entity.attr("id","entity"+data.lang_families[i].family).data("id",data.lang_families[i].family).addClass("entity").addClass("clickMe");
     $entity.append('<p/>');
     $entity.children("p").html(data.lang_families[i].family);
-    $("#entities > section").append($entity);
+    $("#families > section").append($entity);
   }
   $("#findFamilyInput").on("input",function(){
     $("#families > section > article").addClass("hidden");
