@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 
   //list all language families
-  if($_GET['page'] == "languagesFamilies" || $_GET['page'] == "export")){
+  if($_GET['page'] == "languagesFamilies" || $_GET['page'] == "export"){
     include('get/languages/families.php');
   }
 
