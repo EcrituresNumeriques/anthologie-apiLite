@@ -138,7 +138,7 @@ function displayEntities(data){
     $("#entities > section > article > p:contains("+$(this).val()+")").parent("article").removeClass("hidden");
   });
   $(".entity").on("click",loadEntity);
-  eventHandler()
+  eventHandler();
 }
 
 //load entity in the second row
@@ -190,7 +190,7 @@ function displayEntity(data){
     for(j=0;j<data.entities[i].translation.length;j++){
       $titleTranslation = $("<article/>");
       $titleTranslation.append("<p/>");
-      $titleTranslation.children("p").append('<span class="lang">['+data.entities[i].translation[j].lang+']</span>');
+      $titleTranslation.children("p").append('<span class="lang">['+data.entities[i].translation[j].lang+'] </span>');
       $titleTranslation.children("p").append('<span class="translation">'+data.entities[i].translation[j].text_translated+'</span>');
       $("#entity > section").append($titleTranslation);
     }
@@ -225,7 +225,8 @@ function newEntityTitle(){
 function addNewTranslation(){
   $("#action > section").html("");
   $("#action > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
-  $("#action > section").append('<article><input name="language" placeholder="language" class="block full"><textarea name="translation" placeholder="type in your translation" class="block full"></textarea><input type="button" class="block right" value="submit"></article>');
+  $("#action > section").append('<article><select name="language" placeholder="language"></select><textarea name="translation" placeholder="type in your translation" class="block full"></textarea><input type="button" class="block right" value="submit"></article>');
+  $.get("/languages/all",addLanguages);
 }
 
 

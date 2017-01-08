@@ -41,6 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     include('get/languages/all.php');
   }
 
+  //list all language families
+  if($_GET['page'] == "languagesFamilies" || $_GET['page'] == "export")){
+    include('get/languages/families.php');
+  }
+
+  //list all language families
+  if($_GET['page'] == "languagesFamily" && !empty($_GET['name'])){
+    include('get/languages/family.php');
+  }
+
 
   //not in the list
   if(empty($data)){
