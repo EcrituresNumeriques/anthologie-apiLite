@@ -233,9 +233,9 @@ function displayFamilies(data){
   $("#families > section").html('');
   for(i=0;i<data.lang_families.length;i++){
     $entity = $("<article/>");
-    $entity.attr("id","entity"+data.lang_families[i].family).data("id",data.entities[i].family).addClass("entity").addClass("clickMe");
+    $entity.attr("id","entity"+data.lang_families[i].family).data("id",data.lang_families[i].family).addClass("entity").addClass("clickMe");
     $entity.append('<p/>');
-    $entity.children("p").html(data.entities[i].family);
+    $entity.children("p").html(data.lang_families[i].family);
     $("#entities > section").append($entity);
   }
   $("#findFamilyInput").on("input",function(){
