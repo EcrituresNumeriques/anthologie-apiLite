@@ -10,7 +10,7 @@ ErrorDocument 404 /index.php?page=404
     RewriteRule ^/?v1/authors$ index.php?page=authors [L,QSA]
     RewriteRule ^/?v1/translations/new$ index.php?page=newTranslation [L,QSA]
     RewriteRule ^/?v1/languages$ index.php?page=languages [L,QSA]
-    RewriteRule ^/?v1/languages/([a-zA-Zα-ωΑ-Ω]+)$ index.php?page=language&name=$1 [L,QSA]
+    RewriteRule ^/?v1/languages/([0-9]+)$ index.php?page=language&name=$1 [L,QSA]
     RewriteRule ^/?v1/languages/families$ index.php?page=languagesFamilies [L,QSA]
     RewriteRule ^/?v1/languages/families/([a-zA-Zα-ωΑ-Ω]+)$ index.php?page=languagesFamily&name=$1 [L,QSA]
     RewriteRule ^/?v1/languages/new$ index.php?page=newLanguage [L,QSA]
