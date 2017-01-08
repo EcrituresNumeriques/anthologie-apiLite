@@ -50,7 +50,7 @@ function loadLangs(){
 //second column
   $sectionEntity = $('<section id="languages"/>').append("<header><h1>Languages</h1></header>").append("<section/>");
 //third column
-  $sectionAction = $('<section id="action"/>').append("<header><h1>Langauge</h1></header>").append("<section/>");
+  $sectionAction = $('<section id="action"/>').append("<header><h1>Language</h1></header>").append("<section/>");
 //display column
   $("body > main").html('').append($sectionEntities).append($sectionEntity).append($sectionAction);
 //feed first column
@@ -227,6 +227,23 @@ function addNewTranslation(){
   $("#action > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
   $("#action > section").append('<article><select name="language" placeholder="language"></select><textarea name="translation" placeholder="type in your translation" class="block full"></textarea><input type="button" class="block right" value="submit"></article>');
   $.get("/languages/all",addLanguages);
+}
+
+function displayFamilies(data){
+  $("#families > section").html('');
+  for(i=0;i<data.lang_families.length;i++){
+    $entity = $("<article/>");
+    $entity.attr("id","entity"+data.lang_families[i].family).data("id",data.entities[i].family).addClass("entity").addClass("clickMe");
+    $entity.append('<p/>');
+    $entity.children("p").html(data.entities[i].family);
+    $("#entities > section").append($entity);
+  }
+  $("#findFamilyInput").on("input",function(){
+    $("#families > section > article").addClass("hidden");
+    $("#families > section > article > p:contains("+$(this).val()+")").parent("article").removeClass("hidden");
+  });
+  $(".entity").on("click",loadEntity);
+  eventHandler();
 }
 
 
