@@ -54,7 +54,7 @@ function loadLangs(){
 //display column
   $("body > main").html('').append($sectionEntities).append($sectionEntity).append($sectionAction);
 //feed first column
-  $.get("/v1/families").done(displayFamilies);
+  $.get("/v1/languages/families").done(displayFamilies);
 }
 
 function loadAuthors(){
