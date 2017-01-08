@@ -43,18 +43,18 @@ function loadEntities(){
 function loadLangs(){
 //generate first column
   $header = $('<header />').append('<h1>Langs</h1>');
-  $newEntity = $('<article id="newEntity" class="clickMe"/>').children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New entity');
-  $searchEntity = $('<article/>').append('<input type="text" name="entity" value="" id="findEntityInput" placeholder="find entity" class="clickMe" autocomplete="off">');
+  $newEntity = $('<article id="newLang" class="clickMe"/>').children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New lang');
+  $searchEntity = $('<article/>').append('<input type="text" name="family" value="" id="findFamilyInput" placeholder="find family" class="clickMe" autocomplete="off">');
   $nav = $('<nav/>').append($newEntity).append($searchEntity);
-  $sectionEntities = $('<section id="entities"/>').append($header).append($nav).append('<section/>');
+  $sectionEntities = $('<section id="families"/>').append($header).append($nav).append('<section/>');
 //second column
-  $sectionEntity = $('<section id="entity"/>').append("<header><h1>Author</h1></header>").append("<section/>");
+  $sectionEntity = $('<section id="languages"/>').append("<header><h1>Languages</h1></header>").append("<section/>");
 //third column
-  $sectionAction = $('<section id="action"/>').append("<header><h1>Action</h1></header>").append("<section/>");
+  $sectionAction = $('<section id="action"/>').append("<header><h1>Langauge</h1></header>").append("<section/>");
 //display column
   $("body > main").html('').append($sectionEntities).append($sectionEntity).append($sectionAction);
 //feed first column
-  //$.get("/v1/entities").done(displayEntities);
+  $.get("/v1/families").done(displayFamilies);
 }
 
 function loadAuthors(){
