@@ -253,10 +253,10 @@ function displayFamily(data){
   $("#languages > section").html('');
   $("#action > section").html("");
   //add header
-  $("#languages > section").append('<h1/>').children('h1').html(data.langs[0].name);
+  $("#languages > section").append('<article/>').children('article').append('<h1/>').children('h1').html(data.langs[0].family);
 
   //add new language
-  $("#languages > section").append('<article/>').addClass("clickMe newLang").children('article').data("family",data.langs[0].family).append('<p/>').children('p').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add language');
+  $("#languages > section").append('<article/>').children('article').addClass("clickMe newLang").data("family",data.langs[0].family).append('<p/>').children('p').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add language');
 
 
   //display languages
@@ -264,7 +264,6 @@ function displayFamily(data){
     $language = $("<article/>");
     $language.append('<p/>').children('p').html(data.langs[i].name);
     $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity");
-    $language.append('<h1/>').children('h1').html(data.langs[i].name);
     $("#languages > section").append($language);
   }
 
