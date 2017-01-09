@@ -43,7 +43,7 @@ function loadEntities(){
 function loadLangs(){
 //generate first column
   $header = $('<header />').append('<h1>Families</h1>');
-  $newEntity = $('<article id="newLang" class="clickMe"/>').append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New lang');
+  $newEntity = $('<article id="newLang" class="clickMe"/>').append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New lang').parent();
   $searchEntity = $('<article/>').append('<input type="text" name="family" value="" id="findFamilyInput" placeholder="find family" class="clickMe" autocomplete="off">');
   $nav = $('<nav/>').append($newEntity).append($searchEntity);
   $firstColumn = $('<section id="families"/>').append($header).append($nav).append('<section/>');
@@ -246,6 +246,10 @@ function displayFamilies(data){
   eventHandler();
 }
 
+  function addNewLanguage(){
+    console.log("adding new languages");
+  }
+
 
   function eventHandler(){
     //add new entity
@@ -258,6 +262,9 @@ function displayFamilies(data){
 
     //add new translation
     $(".newTranslation").on("click",addNewTranslation);
+
+    //add new Language
+    $("#newLang").on("click",addNewLanguage);
   }
 
 });
