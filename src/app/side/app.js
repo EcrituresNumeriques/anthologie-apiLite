@@ -232,7 +232,7 @@ function addNewTranslation(){
 function sendNewTranslation(){
   $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
   .done(function(data){
-    $.get("/v1/entity/"+$("#entityId").val()).done(displayEntity);
+    $.get("/v1/entities/"+$("#entityId").val()).done(displayEntity);
   })
   .fail(function(data){
     alert('something went wrong, are you loged in and provided a family/name for the new language?');
