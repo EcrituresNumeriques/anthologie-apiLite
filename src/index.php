@@ -90,7 +90,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //add new author
 
     //add new translation of a text
-    elseif($_GET['page'] == "newtranslation"){
+    elseif($_GET['page'] == "newTranslation" && is_numeric($_POST['entity']) && is_numeric($_POST['language']) && !empty($_POST['text'])){
       include('post/translations/new.php');
     }
 

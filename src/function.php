@@ -20,6 +20,10 @@ function checkCredential($token,$id,$time,$db){
       if(base64_encode($encodedToken) == $token){
         $data['auth']['success'] = 1;
         $data['user']['id'] = $user['id'];
+        $getUserGroups = $db->prepare("SELECT group_id FROM fos_users_groups WHERE user_id = :user");
+        $getUserGroups->bindParam(":user",$user['id']);
+        $getUserGroups->execute();
+        $data['user']['groups'] = $getUserGroups->fetchAll(PDO::FETCH_ASSOC);
         unset($user);
       }
       else{

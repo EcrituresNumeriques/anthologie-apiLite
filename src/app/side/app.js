@@ -230,7 +230,7 @@ function addNewTranslation(){
   $("#action > section > article > input[type=button]").off("click").on("click",sendNewTranslation);
 }
 function sendNewTranslation(){
-  $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,languageId:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
+  $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
   .done(function(data){
     $.get("/v1/entity/"+$("#entityId").val()).done(displayEntity);
   })
