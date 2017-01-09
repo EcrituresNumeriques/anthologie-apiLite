@@ -26,7 +26,7 @@ function init(callback){
 function loadEntities(){
 //generate first column
   $header = $('<header />').append('<h1>Entities</h1>');
-  $newEntity = $('<article id="newEntity" class="clickMe"/>').children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New entity');
+  $newEntity = $('<article/>').attr("id","newEntity").addClass("clickMe").children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New entity');
   $searchEntity = $('<article/>').append('<input type="text" name="entity" value="" id="findEntityInput" placeholder="find entity" class="clickMe" autocomplete="off">');
   $nav = $('<nav/>').append($newEntity).append($searchEntity);
   $sectionEntities = $('<section id="entities"/>').append($header).append($nav).append('<section/>');
@@ -44,7 +44,6 @@ function loadLangs(){
 //generate first column
   $header = $('<header />').append('<h1>Families</h1>');
   $newEntity = $('<article id="newLang" class="clickMe"/>').children("article").append('<p/>').children("p").html('  <i class="fa fa-plus-circle" aria-hidden="true"></i> New lang');
-  console.log($newEntity);
   $searchEntity = $('<article/>').append('<input type="text" name="family" value="" id="findFamilyInput" placeholder="find family" class="clickMe" autocomplete="off">');
   $nav = $('<nav/>').append($newEntity).append($searchEntity);
   $firstColumn = $('<section id="families"/>').append($header).append($nav).append('<section/>');
