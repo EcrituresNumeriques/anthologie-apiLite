@@ -256,7 +256,7 @@ function displayFamily(data){
   $("#languages > section").append('<article/>').children('article').append('<h1/>').children('h1').html(data.langs[0].family);
 
   //add new language
-  $("#languages > section").append('<article/>').children('article').addClass("clickMe newLang").data("family",data.langs[0].family).append('<p/>').children('p').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add language');
+  $("#languages > section").append('<article/>').children('article').last().addClass("clickMe newLang").data("family",data.langs[0].family).append('<p/>').children('p').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add language');
 
 
   //display languages
@@ -266,21 +266,12 @@ function displayFamily(data){
     $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity");
     $("#languages > section").append($language);
   }
-
-  //display translation
-  for(j=0;j<data.entities[i].translation.length;j++){
-    $titleTranslation = $("<article/>");
-    $titleTranslation.append("<p/>");
-    $titleTranslation.children("p").append('<span class="lang">['+data.entities[i].translation[j].lang+'] </span>');
-    $titleTranslation.children("p").append('<span class="translation">'+data.entities[i].translation[j].text_translated+'</span>');
-    $("#entity > section").append($titleTranslation);
-  }
-
-
-
 }
   function addNewLanguage(){
     console.log("adding new languages");
+  }
+  function addNewLanguageByFamily(){
+    console.log("adding new languages"+this.data("family"));
   }
 
 
@@ -294,10 +285,11 @@ function displayFamily(data){
     //add new author
 
     //add new translation
-    $(".newTranslation").on("click",addNewTranslation);
+    $(".newTranslation").off("click").on("click",addNewTranslation);
 
     //add new Language
-    $("#newLang").on("click",addNewLanguage);
+    $("#newLang").off("click").on("click",addNewLanguage);
+    $(".newLang").off("click").on("click",addNewLanguageByFamily);
   }
 
 });
