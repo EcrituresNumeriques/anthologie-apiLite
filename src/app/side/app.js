@@ -233,7 +233,7 @@ function displayFamilies(data){
   $("#families > section").html('');
   for(i=0;i<data.lang_families.length;i++){
     $entity = $("<article/>");
-    $entity.attr("id","entity"+data.lang_families[i].family).data("id",data.lang_families[i].family).addClass("entity").addClass("clickMe");
+    $entity.attr("id","entity"+data.lang_families[i].family).data("name",data.lang_families[i].family).addClass("entity").addClass("clickMe");
     $entity.append('<p/>');
     $entity.children("p").html(data.lang_families[i].family);
     $("#families > section").append($entity);
@@ -242,10 +242,22 @@ function displayFamilies(data){
     $("#families > section > article").addClass("hidden");
     $("#families > section > article > p:contains("+$(this).val()+")").parent("article").removeClass("hidden");
   });
-  $(".entity").on("click",loadEntity);
+  $(".entity").on("click",loadFamily);
   eventHandler();
 }
-
+//load family in the second row
+function loadFamily(){
+  $.get("/v1/languages/families/"+$(this).data("name")).done(displayFamily);
+}
+function displayFamily(){
+  $("#languages > section").html('');
+  $("#action > section").html("");
+  for(i=0;i<data.langs.length;i++){
+    $language = $("<article/>");
+    $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity");
+    $language.append('<h1/>').children('h1').html(data.langs[i].name);
+  }
+}
   function addNewLanguage(){
     console.log("adding new languages");
   }
