@@ -87,14 +87,14 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //add new translation of a text
     elseif($_GET['page'] == "newtranslation"){
-      include('post/translations/new');
+      include('post/translations/new.php');
     }
 
     //add new align
 
     //add new language
     elseif ($_GET['page'] == "newLanguage") {
-      include('post/languages/new');
+      include('post/languages/new.php');
     }
     //add new image
 
