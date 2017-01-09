@@ -160,10 +160,15 @@ function displayEntity(data){
     $("#entity > section").append($entity);
 
     //header Alternate Title
-    $("#entity > section").append('<article class="shade"><h2>Alternate title(s)</h2></article>');
-    $addNewTitle = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add title</p></article>').addClass("newTitle clickMe").data("entity",data.entities[i].id_entity);
+    $("#entity > section").append('<article class="shade"><h2>URI(s)</h2></article>');
+    $addNewTitle = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add URI</p></article>').addClass("newTitle clickMe").data("entity",data.entities[i].id_entity);
     $("#entity > section").append($addNewTitle);
-
+    for(j=0;j<data.entities[i].URI.length;j++){
+      $URI = $("<article/>");
+      $URI.addClass("clickMe");
+      $URI.append('<p><a href="'+data.entities[i].URI[j].value+'" target="_blank"><span class="name">['+data.entities[i].URI[j].name+']<span> <span class="translation">'+data.entities[i].URI[j].URN+'</span></a></p>');
+      $("#entity > section").append($author);
+    }
 
     //header Authors
     $("#entity > section").append('<article class="shade"><h2>Author(s)</h2></article>');
