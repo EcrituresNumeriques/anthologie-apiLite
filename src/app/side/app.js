@@ -241,7 +241,7 @@ function sendNewTranslation(){
 
 function selectLanguages(data){
   for (var i = 0; i < data.langs.length; i++) {
-    $("#selectLanguages").append('<option value="'+data.langs[i].id+'">'+data.langs[i].name+'</option>');
+    $("#selectLanguages").append('<option value="'+data.langs[i].id_lang+'">'+data.langs[i].name+'</option>');
   }
 }
 
