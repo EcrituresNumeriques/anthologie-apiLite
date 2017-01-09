@@ -272,7 +272,7 @@ function displayFamily(data){
     console.log("adding new languages");
   }
   function addNewLanguageByFamily(){
-    console.log("adding new languages"+this.data("family"));
+    console.log("adding new languages"+$(this).data("family"));
   }
 
 
