@@ -281,7 +281,7 @@ function displayFamily(data){
       $.post("v1/languages/new",{time:token.time,user:token.user,token:token.token,family:$("#newLanguageFamily").val(),name:$("#newLanguageName").val()})
       .done(function(data){
         $.get("/v1/languages/families").done(displayFamilies);
-        $.get("/v1/languages/family/"+$("#newLanguageFamily").val()).done(displayFamily);
+        $.get("/v1/languages/families/"+decodeURIComponent($("#newLanguageFamily").val())).done(displayFamily);
         $.get("/v1/languages/"+data.newLanguageId).done(displayLanguage);
       })
       .fail(function(data){
