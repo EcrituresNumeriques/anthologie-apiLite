@@ -233,7 +233,7 @@ function displayFamilies(data){
   $("#families > section").html('');
   for(i=0;i<data.lang_families.length;i++){
     $entity = $("<article/>");
-    $entity.attr("id","entity"+data.lang_families[i].family).data("name",data.lang_families[i].family).addClass("entity").addClass("clickMe");
+    $entity.attr("id","entity"+data.lang_families[i].family).data("family",data.lang_families[i].family).addClass("entity").addClass("clickMe");
     $entity.append('<p/>');
     $entity.children("p").html(data.lang_families[i].family);
     $("#families > section").append($entity);
@@ -270,6 +270,13 @@ function displayFamily(data){
 }
   function addNewLanguage(){
     console.log("adding new languages");
+    $("#languages > section").html('');
+    $("#languages > section").append('<article class="shade"><h2>Add a new Language</h2></article>');
+    $("#languages > section").append('<datalist id="languageFamilies"/>');
+    $("#families > section > article").each(function(){
+      $("#languages > section > datalist").append('<option value="'+$(this).data("family")+'"/>');
+    });
+    $("#languages > section").append('<article><input type="text" name="family" list="languageFamilies" value="" placeholder="family"><input type="text" name="lang" value="" placeholder="name"><input type="button" class="block right" value="submit"></article>');
   }
   function addNewLanguageByFamily(){
     console.log("adding new languages"+$(this).data("family"));
