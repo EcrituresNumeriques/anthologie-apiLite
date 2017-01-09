@@ -40,6 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if($_GET['page'] == "languages"){
     include('get/languages/all.php');
   }
+  //list all info on one language
+  if($_GET['page'] == "language" && is_numeric($_GET['languageId'])){
+    include('get/languages/language.php');
+  }
 
   //list all language families
   if($_GET['page'] == "languagesFamilies" || $_GET['page'] == "export"){

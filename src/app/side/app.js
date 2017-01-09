@@ -292,6 +292,13 @@ function displayFamily(data){
   function addNewLanguageByFamily(){
     console.log("adding new languages"+$(this).data("family"));
   }
+  function displayLanguage(data){
+    for (var i = 0; i < data.langs.length; i++) {
+      $("#action > section").append("<article><h1>"+data.langs[i].name+"</h1></article>");
+      $("#action > section").append("<article><p>created at : "+data.langs[i].created_at+"</p></article>");
+      $("#action > section").append("<article><p>updated at : "+data.langs[i].updated_at+"</p></article>");
+    }
+  }
 
 
   function eventHandler(){
