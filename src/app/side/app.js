@@ -263,10 +263,10 @@ function displayFamily(data){
   for(i=0;i<data.langs.length;i++){
     $language = $("<article/>");
     $language.append('<p/>').children('p').html(data.langs[i].name);
-    $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity clickMe");
+    $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity lang clickMe");
     $("#languages > section").append($language);
   }
-  $(".entity").off("click").on("click",function(){
+  $(".lang").off("click").on("click",function(){
     $.get("/v1/languages/"+$(this).data("id")).done(displayLanguage);
   });
   eventHandler();
