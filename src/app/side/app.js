@@ -284,6 +284,14 @@ function displayFamily(data){
   }
   function addNewLanguageByFamily(){
     console.log("adding new languages"+$(this).data("family"));
+    $("#languages > section").html('');
+    $("#languages > section").append('<article class="shade"><h2>Add a new Language</h2></article>');
+    $("#languages > section").append('<datalist id="languageFamilies"/>');
+    $("#families > section > article").each(function(){
+      $("#languages > section > datalist").append('<option value="'+$(this).data("family")+'"/>');
+    });
+    $("#languages > section").append('<article><input id="newLanguageFamily" type="text" name="family" list="languageFamilies" value="'+$(this).data("family")+'" placeholder="family"><input id="newLanguageName" type="text" name="lang" value="" placeholder="name"><input type="button" class="block right" value="submit"></article>');
+    $("#languages > section > article > input[type=button]").off("click").on("click",sendNewLanguage);
   }
   function sendNewLanguage(){
     $.post("v1/languages/new",{time:token.time,user:token.user,token:token.token,family:$("#newLanguageFamily").val(),name:$("#newLanguageName").val()})
