@@ -225,8 +225,14 @@ function newEntityTitle(){
 function addNewTranslation(){
   $("#action > section").html("");
   $("#action > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
-  $("#action > section").append('<article><select name="language" placeholder="language"></select><textarea name="translation" placeholder="type in your translation" class="block full"></textarea><input type="button" class="block right" value="submit"></article>');
-  $.get("/languages/all",addLanguages);
+  $("#action > section").append('<article><select id="selectLanguages" name="language" placeholder="language"></select><textarea name="translation" placeholder="type in your translation" class="block full"></textarea><input type="button" class="block right" value="submit"></article>');
+  $.get("/languages",selectLanguages);
+}
+
+function selectLanguages(data){
+  for (var i = 0; i < data.langs.length; i++) {
+    $("#selectLanguages").append('<option value="'+data.langs[i].id+'">'+data.langs[i].name+'</option>');
+  }
 }
 
 function displayFamilies(data){
@@ -272,7 +278,7 @@ function displayFamily(data){
   eventHandler();
 }
   function addNewLanguage(){
-    console.log("adding new languages");
+    //console.log("adding new languages");
     $("#languages > section").html('');
     $("#languages > section").append('<article class="shade"><h2>Add a new Language</h2></article>');
     $("#languages > section").append('<datalist id="languageFamilies"/>');
@@ -283,7 +289,7 @@ function displayFamily(data){
     $("#languages > section > article > input[type=button]").off("click").on("click",sendNewLanguage);
   }
   function addNewLanguageByFamily(){
-    console.log("adding new languages"+$(this).data("family"));
+    //console.log("adding new languages"+$(this).data("family"));
     var rememberFamily = $(this).data("family");
     $("#languages > section").html('');
     $("#languages > section").append('<article class="shade"><h2>Add a new Language</h2></article>');

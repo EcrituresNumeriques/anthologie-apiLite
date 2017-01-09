@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 
   //list all languages
-  if($_GET['page'] == "languages"){
+  if($_GET['page'] == "languages" || $_GET['page'] == "export"){
     include('get/languages/all.php');
   }
   //list all info on one language
