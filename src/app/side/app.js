@@ -247,7 +247,7 @@ function displayFamilies(data){
 }
 //load family in the second row
 function loadFamily(){
-  $.get("/v1/languages/families/"+$(this).data("name")).done(displayFamily);
+  $.get("/v1/languages/families/"+$(this).data("family")).done(displayFamily);
 }
 function displayFamily(data){
   $("#languages > section").html('');
