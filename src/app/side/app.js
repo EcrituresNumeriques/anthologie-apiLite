@@ -226,7 +226,7 @@ function addNewTranslation(){
   $("#action > section").html("");
   $("#action > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
   $("#action > section").append('<article><select id="selectLanguages" name="language" placeholder="language"></select><textarea name="translation" placeholder="type in your translation" class="block full"></textarea><input type="button" class="block right" value="submit"></article>');
-  $.get("/languages",selectLanguages);
+  $.get("/v1/languages",selectLanguages);
 }
 
 function selectLanguages(data){
