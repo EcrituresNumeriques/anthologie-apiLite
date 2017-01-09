@@ -117,6 +117,6 @@ main > section > section > article.shade{
 }
 
 /* entities quick select */
-#entities > section > article.hidden{
+#entities > section > article.hidden,#families > section > article.hidden,#firstColumn > section > article.hidden{
   display:none;
 }
