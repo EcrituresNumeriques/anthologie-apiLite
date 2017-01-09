@@ -86,19 +86,26 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //add new author
 
     //add new translation of a text
-    if($_GET['page'] == "newtranslation"){
+    elseif($_GET['page'] == "newtranslation"){
       include('post/translations/new');
     }
 
     //add new align
 
     //add new language
-
+    elseif ($_GET['page'] == "newLanguage") {
+      include('post/languages/new');
+    }
     //add new image
 
     //add new keyword
 
     //add new city
+
+    //No post found
+    else{
+        errorJSON("No valid post request",400);
+    }
   }
 
 
