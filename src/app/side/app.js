@@ -276,7 +276,7 @@ function displayFamily(data){
     $("#families > section > article").each(function(){
       $("#languages > section > datalist").append('<option value="'+$(this).data("family")+'"/>');
     });
-    $("#languages > section").append('<article><input id="newLanguageFamily" type="text" name="family" list="languageFamilies" value="" placeholder="family"><input type="text" name="lang" value="" placeholder="name"><input type="button" class="block right" value="submit"></article>');
+    $("#languages > section").append('<article><input id="newLanguageFamily" type="text" name="family" list="languageFamilies" value="" placeholder="family"><input id="newLanguageName" type="text" name="lang" value="" placeholder="name"><input type="button" class="block right" value="submit"></article>');
     $("#languages > section > article > input[type=button]").off("click").on("click",function(){
       $.post("v1/languages/new",{time:token.time,user:token.user,token:token.token,family:$("#newLanguageFamily").val(),name:$("#newLanguageName").val()})
       .done(function(data){
