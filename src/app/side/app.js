@@ -266,6 +266,7 @@ function displayFamily(data){
     $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity");
     $("#languages > section").append($language);
   }
+  eventHandler();
 }
   function addNewLanguage(){
     console.log("adding new languages");
