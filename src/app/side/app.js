@@ -249,7 +249,7 @@ function displayFamilies(data){
 function loadFamily(){
   $.get("/v1/languages/families/"+$(this).data("name")).done(displayFamily);
 }
-function displayFamily(){
+function displayFamily(data){
   $("#languages > section").html('');
   $("#action > section").html("");
   for(i=0;i<data.langs.length;i++){
