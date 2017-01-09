@@ -263,9 +263,12 @@ function displayFamily(data){
   for(i=0;i<data.langs.length;i++){
     $language = $("<article/>");
     $language.append('<p/>').children('p').html(data.langs[i].name);
-    $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity");
+    $language.attr("id","language"+data.langs[i].id_lang).data("id",data.langs[i].id_lang).addClass("entity clickMe");
     $("#languages > section").append($language);
   }
+  $(".entity").off("click").on("click",function(){
+    $.get("/v1/languages/"+$(this).data("id")).done(displayLanguage);
+  });
   eventHandler();
 }
   function addNewLanguage(){
@@ -277,20 +280,21 @@ function displayFamily(data){
       $("#languages > section > datalist").append('<option value="'+$(this).data("family")+'"/>');
     });
     $("#languages > section").append('<article><input id="newLanguageFamily" type="text" name="family" list="languageFamilies" value="" placeholder="family"><input id="newLanguageName" type="text" name="lang" value="" placeholder="name"><input type="button" class="block right" value="submit"></article>');
-    $("#languages > section > article > input[type=button]").off("click").on("click",function(){
-      $.post("v1/languages/new",{time:token.time,user:token.user,token:token.token,family:$("#newLanguageFamily").val(),name:$("#newLanguageName").val()})
-      .done(function(data){
-        $.get("/v1/languages/families").done(displayFamilies);
-        $.get("/v1/languages/families/"+decodeURIComponent($("#newLanguageFamily").val())).done(displayFamily);
-        $.get("/v1/languages/"+data.newLanguageId).done(displayLanguage);
-      })
-      .fail(function(data){
-        alert('something went wrong, are you loged in and provided a title?');
-      });
-    });
+    $("#languages > section > article > input[type=button]").off("click").on("click",sendNewLanguage);
   }
   function addNewLanguageByFamily(){
     console.log("adding new languages"+$(this).data("family"));
+  }
+  function sendNewLanguage(){
+    $.post("v1/languages/new",{time:token.time,user:token.user,token:token.token,family:$("#newLanguageFamily").val(),name:$("#newLanguageName").val()})
+    .done(function(data){
+      $.get("/v1/languages/families").done(displayFamilies);
+      $.get("/v1/languages/families/"+decodeURIComponent($("#newLanguageFamily").val())).done(displayFamily);
+      $.get("/v1/languages/"+data.newLanguageId).done(displayLanguage);
+    })
+    .fail(function(data){
+      alert('something went wrong, are you loged in and provided a family/name for the new language?');
+    });
   }
   function displayLanguage(data){
     for (var i = 0; i < data.langs.length; i++) {
