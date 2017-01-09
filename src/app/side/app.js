@@ -167,7 +167,7 @@ function displayEntity(data){
       $URI = $("<article/>");
       $URI.addClass("clickMe");
       $URI.append('<p><a href="'+data.entities[i].URI[j].value+'" target="_blank"><span class="name">['+data.entities[i].URI[j].name+']<span> <span class="translation">'+data.entities[i].URI[j].URN+'</span></a></p>');
-      $("#entity > section").append($author);
+      $("#entity > section").append($URI);
     }
 
     //header Authors
