@@ -161,7 +161,7 @@ function displayEntity(data){
 
     //header Alternate Title
     $("#entity > section").append('<article class="shade"><h2>URI(s)</h2></article>');
-    $addNewTitle = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add URI</p></article>').addClass("newTitle clickMe").data("entity",data.entities[i].id_entity).on("click",addURI);
+    $addNewTitle = $('<article><p><i class="fa fa-plus-circle" aria-hidden="true"></i> Add URI</p></article>').addClass("newURI clickMe").data("entity",data.entities[i].id_entity);
     $("#entity > section").append($addNewTitle);
     for(j=0;j<data.entities[i].URI.length;j++){
       $URI = $("<article/>");
@@ -251,7 +251,7 @@ function selectLanguages(data){
 }
 
 function addURI(){
-  $addURI = $("<article/>").append('<label>source : </label><br><select id="selectURI"/>').append('<input type="hidden" value="'+$(this).data('entity')+'" id="URIentity" name="entity"><label>URI : </label><br><input type="text" id="source"><input type="button" id="sendURI" class="block right" value="submit">');
+  $addURI = $("<article/>").append('<label>source : </label><br><select id="selectURI"/>').append('<input type="hidden" value="'+$(this).data('entity')+'" id="URIentity" name="entity"><br><label>URI : </label><br><input type="text" id="source"><input type="button" id="sendURI" class="block right" value="submit">');
   $("#action > section").append($addURI);
 }
 
@@ -344,8 +344,8 @@ function displayFamily(data){
     //add new entity
     $("#newEntity").off("click").on("click",newEntity);
 
-    //add new title
-    $(".newTitle").off("click").on("click",newEntityTitle);
+    //add new URI
+    $(".newURI").off("click").on("click",addURI);
 
     //add new author
 
