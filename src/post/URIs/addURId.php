@@ -25,7 +25,7 @@ if(is_numeric($_POST['URI']) && is_numeric($_POST['entity']) && !empty($_POST['d
   }
 
   try{
-  $insertNewURId = $db->prepare("INSERT INTO URI (entity_id,user_id,group_id,urid_source_id, value, URN) VALUES (:entity,:user,:group,:URI,:text,:URN,NOW(),NOW())");
+  $insertNewURId = $db->prepare("INSERT INTO URI (entity_id,user_id,group_id,urid_source_id, value, URN,created_at,updated_at) VALUES (:entity,:user,:group,:URI,:text,:URN,NOW(),NOW())");
   $insertNewURId->bindParam(":entity",$_POST['entity']);
   $insertNewURId->bindParam(":user",$user['user']['id']);
   (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
