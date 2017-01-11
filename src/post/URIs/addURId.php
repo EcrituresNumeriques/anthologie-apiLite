@@ -2,7 +2,7 @@
 if(is_numeric($_POST['URI']) && is_numeric($_POST['entity']) && !empty($_POST['destination'])){
   try{
     //grab info from URI_source
-    $getURI_source = $db->prepape("SELECT * FROM URI_source WHERE id = :URI");
+    $getURI_source = $db->prepare("SELECT * FROM URI_source WHERE id = :URI");
     $getURI_source->bindParam(":URI",$_POST['URI']);
     $getURI_source->execute();
     if($getURI_source->rowCount() > 0){
