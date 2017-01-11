@@ -260,7 +260,7 @@ function addURI(){
 function getURIs($appendTO){
   $.get("/v1/URIs",function(data){
     for (var i = 0; i < data.URIs.length; i++) {
-      $("#selectURI").append('<option value="'+data.URIs[i].id+'">'+data.URIs[i].name+'</option>');
+      $("#selectURI").append('<option value="'+data.URIs[i].id_URI+'">'+data.URIs[i].name+'</option>');
     }
   });
 }
