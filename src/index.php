@@ -94,7 +94,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //add new author
 
     //add new translation of a text
-    elseif($_GET['page'] == "newTranslation" && is_numeric($_POST['entity']) && is_numeric($_POST['language']) && !empty($_POST['text'])){
+    elseif($_GET['page'] == "newTranslation"){
       include('post/translations/new.php');
     }
 
@@ -103,6 +103,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //add new language
     elseif ($_GET['page'] == "newLanguage") {
       include('post/languages/new.php');
+    }
+    //add new URI destination
+    elseif ($_GET['page'] == "addURId") {
+      include('post/URIs/addURId.php');
     }
     //add new image
 

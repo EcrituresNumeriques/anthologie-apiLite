@@ -252,8 +252,9 @@ function selectLanguages(data){
 
 function addURI(){
   $addURI = $("<article/>").append('<label>source : </label><br><select id="selectURI"/>').append('<input type="hidden" value="'+$(this).data('entity')+'" id="URIentity" name="entity"><br><label>URI : </label><br><input type="text" id="source"><input type="button" id="sendURI" class="block right" value="submit">');
-  $("#action > section").append($addURI);
+  $("#action > section").html('').append($addURI);
   getURIs();
+  $("#sendURI").off("click").on("click",sendURId);
 }
 
 function getURIs($appendTO){
@@ -261,6 +262,15 @@ function getURIs($appendTO){
     for (var i = 0; i < data.URIs.length; i++) {
       $("#selectURI").append('<option value="'+data.URIs[i].id+'">'+data.URIs[i].name+'</option>');
     }
+  });
+}
+function sendURId(){
+  $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:$("#selectURI").val(),entity:$("#URIentity").val(),destination:$("#source").val()})
+  .done(function(data){
+    $.get("/v1/entities/"+$("#URIentity").val()).done(displayEntity);
+  })
+  .fail(function(data){
+    alert('something went wrong, are you loged in and provided a source/URI for this entity?');
   });
 }
 
