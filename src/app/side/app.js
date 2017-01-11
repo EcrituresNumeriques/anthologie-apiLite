@@ -253,6 +253,15 @@ function selectLanguages(data){
 function addURI(){
   $addURI = $("<article/>").append('<label>source : </label><br><select id="selectURI"/>').append('<input type="hidden" value="'+$(this).data('entity')+'" id="URIentity" name="entity"><br><label>URI : </label><br><input type="text" id="source"><input type="button" id="sendURI" class="block right" value="submit">');
   $("#action > section").append($addURI);
+  getURIs();
+}
+
+function getURIs($appendTO){
+  $.get("/v1/URIs",function(data){
+    for (var i = 0; i < data.URIs.length; i++) {
+      $("#selectURI").append('<option value="'+data.URIs[i].id+'">'+data.URIs[i].name+'</option>');
+    }
+  });
 }
 
 function displayFamilies(data){

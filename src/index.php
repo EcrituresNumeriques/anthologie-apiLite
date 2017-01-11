@@ -54,6 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if($_GET['page'] == "languagesFamily" && !empty($_GET['name'])){
     include('get/languages/family.php');
   }
+  //list all URIs
+  if($_GET['page'] == "URIs" || $_GET['page'] == "export"){
+    include('get/URIs/all.php');
+  }
 
 
   //not in the list
