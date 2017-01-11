@@ -250,6 +250,11 @@ function selectLanguages(data){
   }
 }
 
+function addURI(){
+  $addURI = $("<article/>").append('<label>source : </label><select id="selectURI"/>').append('<label>URI</label><input type="text" id="source"><input type="button" id="sendURI" class="block right" value="submit">');
+  $("#action > section").append($addURI);
+}
+
 function displayFamilies(data){
   $("#families > section").html('');
   for(i=0;i<data.lang_families.length;i++){
