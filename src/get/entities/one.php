@@ -14,7 +14,7 @@ try{
   $getTitleTranslation->bindParam(":id",$_GET['entity']);
   $getTitleTranslation->execute();
 
-  $getURI = $db->prepare("SELECT s.name,d.value,d.URN FROM URId d LEFT JOIN URI_source s ON d.urid_source_id = s.id WHERE d.id_entity = :id");
+  $getURI = $db->prepare("SELECT s.name,d.value,d.URN FROM URId d LEFT JOIN URI_source s ON d.urid_source_id = s.id WHERE d.entity_id = :id");
   $getURI->bindParam(":id",$_GET['entity']);
   $getURI->execute();
 }
