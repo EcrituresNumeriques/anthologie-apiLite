@@ -25,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if($_GET['page'] == "entity" && is_numeric($_GET['entity'])){
     include('get/entities/one.php');
   }
+  //list all info on one entity
+  if($_GET['page'] == "uriEntity" && !empty($_GET['uri'])){
+    include('get/entities/one.php');
+  }
 
   //list all authors
   if($_GET['page'] == "authors" || $_GET['page'] == "export"){
