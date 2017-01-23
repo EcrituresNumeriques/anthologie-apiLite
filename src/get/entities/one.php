@@ -13,6 +13,10 @@ try{
   $getTitleTranslation = $db->prepare("SELECT et.id,et.text_translated,l.name as lang,l.family FROM entities_translations et JOIN languages l ON et.language_id = l.id WHERE et.entity_id = :id");
   $getTitleTranslation->bindParam(":id",$_GET['entity']);
   $getTitleTranslation->execute();
+
+  $getURI = $db->prepare("SELECT s.name,d.value,d.URN FROM URId d LEFT JOIN URI_source s ON d.urid_source_id = s.id WHERE d.entity_id = :id");
+  $getURI->bindParam(":id",$_GET['entity']);
+  $getURI->execute();
 }
 catch(Exception $e){
   errorJSON('SQL error : ' . $e->getMessage(),500);
@@ -50,5 +54,6 @@ unset($authors);
 //put in $data : Vue
 $data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['authors'] = $unorderedAuthors;
-$data['entities'][0]['titleTranslation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
+$data['entities'][0]['translation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
+$data['entities'][0]['URI'] = $getURI->fetchAll(PDO::FETCH_ASSOC);
 ?>

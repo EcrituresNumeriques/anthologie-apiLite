@@ -37,8 +37,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 
   //list all languages
-  if($_GET['page'] == "languages"){
+  if($_GET['page'] == "languages" || $_GET['page'] == "export"){
     include('get/languages/all.php');
+  }
+  //list all info on one language
+  if($_GET['page'] == "language" && is_numeric($_GET['languageId'])){
+    include('get/languages/language.php');
+  }
+
+  //list all language families
+  if($_GET['page'] == "languagesFamilies" || $_GET['page'] == "export"){
+    include('get/languages/families.php');
+  }
+
+  //list all language families
+  if($_GET['page'] == "languagesFamily" && !empty($_GET['name'])){
+    include('get/languages/family.php');
+  }
+  //list all URIs
+  if($_GET['page'] == "URIs" || $_GET['page'] == "export"){
+    include('get/URIs/all.php');
   }
 
 
@@ -76,19 +94,30 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //add new author
 
     //add new translation of a text
-    if($_GET['page'] == "newtranslation"){
-      include('post/translations/new');
+    elseif($_GET['page'] == "newTranslation"){
+      include('post/translations/new.php');
     }
 
     //add new align
 
     //add new language
-
+    elseif ($_GET['page'] == "newLanguage") {
+      include('post/languages/new.php');
+    }
+    //add new URI destination
+    elseif ($_GET['page'] == "addURId") {
+      include('post/URIs/addURId.php');
+    }
     //add new image
 
     //add new keyword
 
     //add new city
+
+    //No post found
+    else{
+        errorJSON("No valid post request",400);
+    }
   }
 
 

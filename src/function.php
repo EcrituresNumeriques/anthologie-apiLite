@@ -20,6 +20,10 @@ function checkCredential($token,$id,$time,$db){
       if(base64_encode($encodedToken) == $token){
         $data['auth']['success'] = 1;
         $data['user']['id'] = $user['id'];
+        $getUserGroups = $db->prepare("SELECT group_id FROM fos_users_groups WHERE user_id = :user");
+        $getUserGroups->bindParam(":user",$user['id']);
+        $getUserGroups->execute();
+        $data['user']['groups'] = $getUserGroups->fetchAll(PDO::FETCH_ASSOC);
         unset($user);
       }
       else{
@@ -41,6 +45,22 @@ function errorJSON($why = "Unspecified error",$code = 400){
   http_response_code($code);
   $data = array("error"=>1,"why"=>$why);
   die(json_encode($data));
+}
+
+function startsWith($haystack, $needle)
+{
+     $length = strlen($needle);
+     return (substr($haystack, 0, $length) === $needle);
+}
+
+function endsWith($haystack, $needle)
+{
+    $length = strlen($needle);
+    if ($length == 0) {
+        return true;
+    }
+
+    return (substr($haystack, -$length) === $needle);
 }
 
 ?>
