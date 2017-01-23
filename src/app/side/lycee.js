@@ -2,11 +2,11 @@ $(document).ready(function(){
   //default mode
   var token = {};
   $target = $("#container");
-  init($target);
+  init();
 
 
 
-  function init($target){
+  function init(){
     //prompt for login
     $target.html("").addClass("login");
     $menuLogin = $("<nav>");
@@ -37,7 +37,7 @@ $(document).ready(function(){
     $menuURI.append('<p>Perseus URI : </p>');
     $menuURI.append('<input type="text" id="URI" value="" placeholder="http://data.perseus.org/citations/urn:cts:greekLit:tlg7000.tlg001.perseus-grc1:5.6">');
     $menuURI.append('<input type="button" id="goURI" value="Go">');
-    $menuURI.append();
+    $target.append($menuURI);
 
 
   }
