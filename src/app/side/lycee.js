@@ -22,13 +22,25 @@ $(document).ready(function(){
             alert('something went wrong');
           }
           else{
-            $("#logMeIn").children("nav").remove();
-            $("#logMeIn").html('<p><i class="fa fa-user" aria-hidden="true"></i> '+data.username+'</p>');
             token = data.token;
+            askURI();
           }
         });
       }
     });
   }
+
+  function askURI(){
+    //prompt for login
+    $target.html("").removeClass("login").addClass("URI");
+    $menuURI = $("<nav>");
+    $menuURI.append('<p>Perseus URI : </p>');
+    $menuURI.append('<input type="text" id="URI" value="" placeholder="http://data.perseus.org/citations/urn:cts:greekLit:tlg7000.tlg001.perseus-grc1:5.6">');
+    $menuURI.append('<input type="button" id="goURI" value="Go">');
+    $menuURI.append();
+
+
+  }
+
 
 });
