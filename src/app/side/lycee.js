@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   function init($target){
     //prompt for login
-    $target.html("");
+    $target.html("").addClass("login");
     $menuLogin = $("<nav>");
     $menuLogin.append('<input type="text" id="loginInput" value="" placeholder="Login">');
     $menuLogin.append('<input type="password" id="passwordInput" value="" placeholder="password">');

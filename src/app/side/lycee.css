@@ -1,0 +1,15 @@
+#full{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#container{
+  flex:0 0 auto;
+}
+.login > nav > input {
+  display: block;
+  padding: 1em;
+  width:20em;
+  text-align: center;
+}
