@@ -26,10 +26,10 @@ ErrorDocument 404 /index.php?page=404
 
 
     rewriteRule ^/?$ app/app.html [L]
-    rewriteRule ^/?favicon.ico?$ app/side/favicon.ico [L]
-    rewriteRule ^/?app.css?$ app/side/app.css [L]
-    rewriteRule ^/?reset.css?$ app/side/reset.css [L]
-    rewriteRule ^/?app.js?$ app/side/app.js [L]
+    rewriteRule ^/?favicon.ico$ app/side/favicon.ico [L]
+    rewriteRule ^/?app.css$ app/side/app.css [L]
+    rewriteRule ^/?reset.css$ app/side/reset.css [L]
+    rewriteRule ^/?app.js$ app/side/app.js [L]
 
 
 
