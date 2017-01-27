@@ -23,6 +23,7 @@ $(document).ready(function(){
           }
           else{
             token = data.token;
+            //Ask for URI reference
             askURI();
           }
         });
