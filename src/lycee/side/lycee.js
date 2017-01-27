@@ -40,7 +40,7 @@ $(document).ready(function(){
     $menuURI.append('<input type="button" id="goURI" value="Go">');
     $target.append($menuURI);
     $("#goURI").on("click",function(){
-      $.get("/v1/entities/URIs/"+encodeURIComponent($("#URI").val()))
+      $.get("/v1/entities/URIs/",{uri : $("#URI").val()})
       .done(function(data){
         console.log(data)
       });
