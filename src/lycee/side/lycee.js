@@ -70,7 +70,13 @@ $(document).ready(function(){
     resetTarget("entity");
     for(i=0;i<data.entities.length;i++){
       $entity = $("<nav>");
-      $entity.append("<p>Title :</p>");
+      $entity.append("<p>Title : "+data.entities[i].title+"</p>");
+      $entity.append("<p>Author(s) : </p>");
+      $entity.append("<ul>");
+      for (var j = 0; j < data.entities[i].authors.length; j++) {
+        $entity.children("ul").append("<li>"+data.entities[i].authors[j].name[0].name+"</li>");
+      }
+      $target.append($entity);
     }
   }
 
