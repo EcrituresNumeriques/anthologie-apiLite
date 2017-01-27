@@ -3,7 +3,8 @@
 //select info in database : Model
 try{
 $getEntities = $db->prepare("SELECT * FROM URId d WHERE d.value = :value");
-$getEntities->bindParam(":value",$_GET['uri']);
+$uri = urldecode($_GET['uri']);
+$getEntities->bindParam(":value",$uri);
 $getEntities->execute();
 }
 catch(Exception $e){
@@ -14,5 +15,5 @@ catch(Exception $e){
 
 //put in $data : Vue
 $data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
-$data['query'] = $_GET['uri'];
+$data['query'] = $uri;
 ?>
