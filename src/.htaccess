@@ -8,7 +8,7 @@ ErrorDocument 404 /index.php?page=404
 
     RewriteRule ^/?v1/entities$ index.php?page=entities [L,QSA]
     RewriteRule ^/?v1/entities/([0-9]+)$ index.php?page=entity&entity=$1 [L,QSA]
-    RewriteRule ^/?v1/entities/URIs/?$ index.php?page=uriEntity [L,QSA]
+    RewriteRule ^/?v1/entities/URIs/(.+)?$ index.php?page=uriEntity&uri=$1 [L,QSA]
     RewriteRule ^/?v1/authors$ index.php?page=authors [L,QSA]
     RewriteRule ^/?v1/URIs$ index.php?page=URIs [L,QSA]
     RewriteRule ^/?v1/languages$ index.php?page=languages [L,QSA]
