@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
   //list all info on one entity
   if($_GET['page'] == "uriEntity" && !empty($_GET['uri'])){
-    include('get/entities/one.php');
+    include('get/entities/uri.php');
   }
 
   //list all authors
