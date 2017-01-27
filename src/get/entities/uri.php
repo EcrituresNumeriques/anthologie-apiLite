@@ -14,4 +14,5 @@ catch(Exception $e){
 
 //put in $data : Vue
 $data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
+$data['query'] = $_GET['uri'];
 ?>
