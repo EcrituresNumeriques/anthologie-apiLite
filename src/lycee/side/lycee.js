@@ -8,8 +8,7 @@ $(document).ready(function(){
 
   function init(){
     //prompt for login
-    resetTarget();
-    $target.addClass("login");
+    resetTarget("login");
     $menuLogin = $("<nav>");
     $menuLogin.append('<input type="text" id="loginInput" value="" placeholder="Login">');
     $menuLogin.append('<input type="password" id="passwordInput" value="" placeholder="password">');
@@ -34,8 +33,7 @@ $(document).ready(function(){
 
   function askURI(){
     //prompt for login
-    resetTarget();
-    $target.addClass("URI");
+    resetTarget("URI");
     $menuURI = $("<nav>");
     $menuURI.append('<p>Perseus URI : </p>');
     $menuURI.append('<input type="text" id="URI" value="" placeholder="http://data.perseus.org/citations/urn:cts:greekLit:tlg7000.tlg001.perseus-grc1:5.6">');
@@ -61,17 +59,25 @@ $(document).ready(function(){
 
   function loadEntity(entity_id){
     console.log("loading entity : "+entity_id);
-
+    $.get("/v1/entities/"+entity_id).done(showEntity);
   }
 
   function newEntity(uri){
     console.log("creating new entity : "+uri);
   }
 
+  function showEntity(data){
+    resetTarget("entity");
+    for(i=0;i<data.entities.length;i++){
+      $entity = $("<nav>");
+      $entity.append("<p>Title :</p>");
+    }
+  }
 
 
-  function resetTarget(){
-    $target.html("").removeClass("login").removeClass("");
+
+  function resetTarget(newClass){
+    $target.html("").removeClass("login URI entity").addClass(newClass);
   }
 
 });
