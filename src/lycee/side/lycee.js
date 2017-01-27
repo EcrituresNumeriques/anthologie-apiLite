@@ -74,7 +74,11 @@ $(document).ready(function(){
       $entity.append("<p>Author(s) : </p>");
       $entity.append("<ul>");
       for (var j = 0; j < data.entities[i].authors.length; j++) {
-        $entity.children("ul").append("<li>"+data.entities[i].authors[j].name[0].name+"</li>");
+        var names = [];
+        for (var k = 0; k < data.entities[i].authors[j].name.length; k++) {
+          names.push(data.entities[i].authors[j].name[k].name);
+        }
+        $entity.children("ul").append("<li>"+names.join(" / ")+"</li>");
       }
       $target.append($entity);
     }
