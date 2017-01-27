@@ -38,7 +38,12 @@ $(document).ready(function(){
     $menuURI.append('<input type="text" id="URI" value="" placeholder="http://data.perseus.org/citations/urn:cts:greekLit:tlg7000.tlg001.perseus-grc1:5.6">');
     $menuURI.append('<input type="button" id="goURI" value="Go">');
     $target.append($menuURI);
-
+    $("#goURI").on("click",function(){
+      $.get("/v1/URI/"+encodeURI($("#URI").val()))
+      .done(function(data){
+        console.log(data)
+      });
+    });
 
   }
 
