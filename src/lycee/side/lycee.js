@@ -51,17 +51,26 @@ $(document).ready(function(){
     $menuURI.append('<input type="button" id="goURI" value="Go">');
     $target.append($menuURI);
     $("#goURI").on("click",function(){
+      cleanMessages();
       $.get("/v1/entities/URIs/",{uri : $("#URI").val()})
       .done(function(data){
 
         if(data.entities.length > 0){
           //entity found
+          displaySuccess('Entity using this URI has been found');
           loadEntity(data.entities[0].entity_id);
         }
         else{
           //create new entity via XML
+          displaySuccess('No entity found, creating new one');
           newEntity(data.query);
         }
+      })
+      .fail(function(){
+        displayError('something network related went wrong');
+      })
+      .always(function(){
+        hideLoading();
       });
     });
 
@@ -69,12 +78,13 @@ $(document).ready(function(){
 
 
   function loadEntity(entity_id){
-    console.log("loading entity : "+entity_id);
     $.get("/v1/entities/"+entity_id).done(showEntity);
   }
 
   function newEntity(uri){
-    console.log("creating new entity : "+uri);
+    //get XML version of the text
+    //if successfull add entity
+    displaySuccess('New entity created : -title-');
   }
 
   function showEntity(data){
@@ -110,13 +120,13 @@ $(document).ready(function(){
     $waiting.html("");
   }
   function displayError(error){
-    $error.html('<p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error+'</p>');
+    $error.append('<p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error+'</p>');
   }
   function hideError(){
     $error.html("");
   }
   function displaySuccess(success){
-    $success.html('<p><i class="fa fa-check" aria-hidden="true"></i> '+success+'</p>');
+    $success.append('<p><i class="fa fa-check" aria-hidden="true"></i> '+success+'</p>');
   }
   function hideSuccess(){
     $success.html("");
