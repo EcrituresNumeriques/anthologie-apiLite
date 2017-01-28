@@ -101,22 +101,22 @@ $(document).ready(function(){
   }
 
   function loadAPI(){
-    $waiting.html("<p><i class="fa fa-spinner faa-spin animated"></i> loading</p>")
+    $waiting.html('<p><i class="fa fa-spinner faa-spin animated"></i> loading</p>').slideDown();
   }
   function receivedAPI(){
-    $waiting.html("");
+    $waiting.slideUp().html("");
   }
   function displayError(error){
-    $error.slideDown().html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error).delay(2000).slideUp();
+    $error.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error).slideDown().delay(2000).slideUp();
   }
   function hideError(){
-    $error.html("");
+    $error.slideUp().html("");
   }
   function showSuccess(success){
-    $success.slideDown().html('<i class="fa fa-check" aria-hidden="true"></i> '+success).delay(2000).slideUp();
+    $success.html('<i class="fa fa-check" aria-hidden="true"></i> '+success).slideDown().delay(2000).slideUp();
   }
   function hideSuccess(){
-    $success.html("");
+    $success.slideUp().html("");
   }
 
 });
