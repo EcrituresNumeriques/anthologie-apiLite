@@ -120,7 +120,7 @@ $(document).ready(function(){
 
         //adding URI
         displayLoading('Adding URI to newly created entity');
-        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:uri,entity:newEntityId,destination:1})
+        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:1,entity:newEntityId,destination:uri})
         .done(function(data){
           displaySuccess('URI linked to newly created entity');
 
