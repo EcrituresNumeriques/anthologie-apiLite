@@ -30,6 +30,7 @@
   background-color: #7f8c8d;
   margin-top:2em;
   cursor: pointer;
+  text-align: center;
 }
 .message{
   color:white;
