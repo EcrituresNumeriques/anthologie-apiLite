@@ -128,7 +128,7 @@ $(document).ready(function(){
           displayLoading('Adding greek text to newly created entity');
           $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:12,text:text,entity:newEntityId})
           .done(function(data){
-            displaySuccess('Greek text added');
+            displaySuccess('Greek text added to the newly created entity');
 
             //display entity
             loadEntity(newEntityId);
@@ -182,8 +182,12 @@ $(document).ready(function(){
         $entity.children("ul.authors").append("<li>"+names.join(" / ")+"</li>");
       }
 
-
       $target.append($entity);
+      $target.append('<nav id="backToUri"><p>Back to URI input</p></nav>');
+      $("#backToUri").on("click",function(){
+        cleanMessages();
+        askURI();
+      });
     }
   }
 
