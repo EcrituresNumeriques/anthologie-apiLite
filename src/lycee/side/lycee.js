@@ -183,7 +183,7 @@ $(document).ready(function(){
       }
 
       $target.append($entity);
-      $target.append('<nav id="backToUri"><p>Back to URI input</p></nav>');
+      $target.append('<nav id="backToUri" class="message"><p>Back to URI input</p></nav>');
       $("#backToUri").on("click",function(){
         cleanMessages();
         askURI();
