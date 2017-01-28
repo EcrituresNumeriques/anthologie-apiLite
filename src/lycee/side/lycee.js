@@ -63,7 +63,7 @@ $(document).ready(function(){
         }
         else{
           //create new entity via XML
-          displaySuccess('No entity found, creating new one');
+          displaySuccess('No entity found');
           newEntity(data.query);
         }
       })
@@ -86,14 +86,7 @@ $(document).ready(function(){
     //get XML version of the text
     displayLoading('Getting XML from perseus');
     $.get(uri+"/xml")
-    .done(function (xml){
-      //getting all needed infos
-      var psg = $(xml).find('psg').text();
-      var title = $(xml).find('title').text();
-      var text = $(xml).find('p').text();
-      displaySuccess('New entity created : '+title+' '+psg);
-      displaySuccess(text);
-    })
+    .done(parsePerseus)
     .fail(function(){
       displayError('something network related went wrong');
     })
@@ -101,6 +94,38 @@ $(document).ready(function(){
       hideLoading();
     });
   }
+
+
+  function parsePerseus(xml){
+    displayLoading('Creating new entity...');
+    //getting all needed infos
+    var title = $(xml).find('title').text() +' '+$(xml).find('psg').text();
+    var text = $(xml).find('p').text();
+    if(title && title.length > 0 && text && text.length > 0){
+      displayLoading('Creating new entity');
+      $.post("v1/entities/new",{time:token.time,user:token.user,token:token.token,title:title})
+      .done(function(data){
+        displaySuccess('New entity created : '+title);
+        //adding URI
+
+        //display entity
+        $.get("/v1/entities/"+data.newEntityId).done(showEntity);
+      })
+      .fail(function(){
+        displayError('something network related went wrong');
+      })
+      .always(function(){
+        hideLoading();
+      });
+    }
+    else{
+      displayError('Unable to parse URI provided');
+    }
+  }
+
+
+
+
 
   function showEntity(data){
     resetTarget("entity");
