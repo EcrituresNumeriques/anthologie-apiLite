@@ -94,7 +94,9 @@ $(document).ready(function(){
     displayLoading('Getting XML from perseus');
     var uriSave = uri;
     $.get(uri+"/xml")
-    .done(parsePerseus)
+    .done(function(xml){
+      parsePerseus(xml,uriSave);
+    })
     .fail(function(){
       displayError('something network related went wrong');
     })
@@ -104,7 +106,7 @@ $(document).ready(function(){
   }
 
 
-  function parsePerseus(xml){
+  function parsePerseus(xml,uri){
     displayLoading('Creating new entity...');
     //getting all needed infos
     var title = $(xml).find('title').text() +' '+$(xml).find('psg').text();
@@ -118,7 +120,7 @@ $(document).ready(function(){
 
         //adding URI
         displayLoading('Adding URI to newly created entity');
-        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:uriSave,entity:newEntityId,destination:1})
+        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:uri,entity:newEntityId,destination:1})
         .done(function(data){
           displaySuccess('URI linked to newly created entity');
 
