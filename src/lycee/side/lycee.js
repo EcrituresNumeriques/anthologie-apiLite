@@ -19,7 +19,7 @@ $(document).ready(function(){
     $target.append($menuLogin);
     $("#goLogIn").on("click",function(){
       if($("#loginInput").val() != "" && $("#passwordInput").val() != ""){
-        displayLoading();
+        displayLoading('user login');
         $.post("/v1/user/login",{username:$("#loginInput").val(),password:$("#passwordInput").val()})
         .done(function(data){
           if(data.success != "1"){
@@ -51,6 +51,7 @@ $(document).ready(function(){
     $menuURI.append('<input type="button" id="goURI" value="Go">');
     $target.append($menuURI);
     $("#goURI").on("click",function(){
+      displayLoading('URI checker');
       cleanMessages();
       $.get("/v1/entities/URIs/",{uri : $("#URI").val()})
       .done(function(data){
@@ -83,8 +84,22 @@ $(document).ready(function(){
 
   function newEntity(uri){
     //get XML version of the text
-    //if successfull add entity
-    displaySuccess('New entity created : -title-');
+    displayLoading('Getting XML from perseus');
+    $.get(uri+"/xml")
+    .done(function (xml){
+      //getting all needed infos
+      var psg = $(xml).find('psg').text();
+      var title = $(xml).find('title').text();
+      var text = $(xml).find('p').text();
+      displaySuccess('New entity created : '+title+' '+psg);
+      displaySuccess(text);
+    })
+    .fail(function(){
+      displayError('something network related went wrong');
+    })
+    .always(function(){
+      hideLoading();
+    });
   }
 
   function showEntity(data){
@@ -113,8 +128,8 @@ $(document).ready(function(){
     $target.html("").removeClass("login URI entity").addClass(newClass);
   }
 
-  function displayLoading(){
-    $waiting.html('<p><i class="fa fa-spinner faa-spin animated"></i> loading</p>');
+  function displayLoading(loading){
+    $waiting.html('<p><i class="fa fa-spinner faa-spin animated"></i> loading : '++'</p>');
   }
   function hideLoading(){
     $waiting.html("");
