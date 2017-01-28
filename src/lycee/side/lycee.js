@@ -79,12 +79,20 @@ $(document).ready(function(){
 
 
   function loadEntity(entity_id){
-    $.get("/v1/entities/"+entity_id).done(showEntity);
+    displayLoading('Loading entity');
+    $.get("/v1/entities/"+entity_id).done(showEntity)
+    .fail(function(){
+      displayError('something network related went wrong');
+    })
+    .always(function(){
+      hideLoading();
+    });;
   }
 
   function newEntity(uri){
     //get XML version of the text
     displayLoading('Getting XML from perseus');
+    var uri = uri;
     $.get(uri+"/xml")
     .done(parsePerseus)
     .fail(function(){
@@ -105,8 +113,38 @@ $(document).ready(function(){
       displayLoading('Creating new entity');
       $.post("/v1/entities/new",{time:token.time,user:token.user,token:token.token,title:title})
       .done(function(data){
+        var newEntityId = data.newEntityId;
         displaySuccess('New entity created : '+title);
+
         //adding URI
+        displayLoading('Adding URI to newly created entity');
+        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:uri,entity:newEntityId,destination:1})
+        .done(function(data){
+          displaySuccess('URI linked to newly created entity');
+
+          //adding text translation
+          displayLoading('Adding greek text to newly created entity');
+          $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:12,text:text,entity:newEntityId})
+          .done(function(data){
+            displaySuccess('Greek text added');
+
+            //display entity
+            loadEntity(newEntityId);
+          })
+          .fail(function(){
+            displayError('something network related went wrong');
+          })
+          .always(function(){
+            hideLoading();
+          });
+
+        })
+        .fail(function(){
+          displayError('something network related went wrong');
+        })
+        .always(function(){
+          hideLoading();
+        });
 
         //display entity
         $.get("/v1/entities/"+data.newEntityId).done(showEntity);
