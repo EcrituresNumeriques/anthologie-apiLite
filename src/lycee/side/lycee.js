@@ -19,21 +19,24 @@ $(document).ready(function(){
     $target.append($menuLogin);
     $("#goLogIn").on("click",function(){
       if($("#loginInput").val() != "" && $("#passwordInput").val() != ""){
-        loadAPI();
+        displayLoading();
         $.post("/v1/user/login",{username:$("#loginInput").val(),password:$("#passwordInput").val()})
         .done(function(data){
           if(data.success != "1"){
-            displayError('something went wrong');
+            displayError('bad credentials');
           }
           else{
-            showSuccess('loged in as '+data.username);
+            displaySuccess('loged in as '+data.username);
             token = data.token;
             //Ask for URI reference
             askURI();
           }
         })
+        .fail(function(){
+          displayError('something network related went wrong');
+        })
         .always(function(){
-          receivedAPI();
+          //hideLoading();
         });
       }
     });
@@ -100,23 +103,27 @@ $(document).ready(function(){
     $target.html("").removeClass("login URI entity").addClass(newClass);
   }
 
-  function loadAPI(){
-    $waiting.html('<p><i class="fa fa-spinner faa-spin animated"></i> loading</p>').slideDown();
+  function displayLoading(){
+    $waiting.html('<p><i class="fa fa-spinner faa-spin animated"></i> loading</p>');
   }
-  function receivedAPI(){
-    $waiting.slideUp().html("");
+  function hideLoading(){
+    $waiting.html("");
   }
   function displayError(error){
-    $error.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error).slideDown().delay(2000).slideUp();
+    $error.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error);
   }
   function hideError(){
-    $error.slideUp().html("");
+    $error.html("");
   }
-  function showSuccess(success){
-    $success.html('<i class="fa fa-check" aria-hidden="true"></i> '+success).slideDown().delay(2000).slideUp();
+  function displaySuccess(success){
+    $success.html('<i class="fa fa-check" aria-hidden="true"></i> '+success);
   }
   function hideSuccess(){
-    $success.slideUp().html("");
+    $success.html("");
+  }
+  function cleanMessages(){
+    hideSuccess();
+    hideError();
   }
 
 });
