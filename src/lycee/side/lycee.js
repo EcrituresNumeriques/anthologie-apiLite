@@ -36,7 +36,7 @@ $(document).ready(function(){
           displayError('something network related went wrong');
         })
         .always(function(){
-          //hideLoading();
+          hideLoading();
         });
       }
     });
@@ -110,13 +110,13 @@ $(document).ready(function(){
     $waiting.html("");
   }
   function displayError(error){
-    $error.html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error);
+    $error.html('<p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error+'</p>');
   }
   function hideError(){
     $error.html("");
   }
   function displaySuccess(success){
-    $success.html('<i class="fa fa-check" aria-hidden="true"></i> '+success);
+    $success.html('<p><i class="fa fa-check" aria-hidden="true"></i> '+success+'</p>');
   }
   function hideSuccess(){
     $success.html("");

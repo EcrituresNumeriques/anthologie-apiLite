@@ -32,4 +32,5 @@
 
 #error > p, #waiting > p, #success > p{
   margin:1em;
+  width: 20em;
 }
