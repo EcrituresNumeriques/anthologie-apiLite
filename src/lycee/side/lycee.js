@@ -149,8 +149,6 @@ $(document).ready(function(){
           hideLoading();
         });
 
-        //display entity
-        $.get("/v1/entities/"+data.newEntityId).done(showEntity);
       })
       .fail(function(){
         displayError('something network related went wrong');
