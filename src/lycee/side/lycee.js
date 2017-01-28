@@ -222,6 +222,7 @@ $(document).ready(function(){
   function cleanMessages(){
     hideSuccess();
     hideError();
+    hideCTA();
   }
 
 });
