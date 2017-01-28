@@ -129,7 +129,7 @@ $(document).ready(function(){
   }
 
   function displayLoading(loading){
-    $waiting.html('<p><i class="fa fa-spinner faa-spin animated"></i> loading : '++'</p>');
+    $waiting.html('<p><i class="fa fa-spinner faa-spin animated"></i> loading : '+loading+'</p>');
   }
   function hideLoading(){
     $waiting.html("");
