@@ -103,7 +103,7 @@ $(document).ready(function(){
     var text = $(xml).find('p').text();
     if(title && title.length > 0 && text && text.length > 0){
       displayLoading('Creating new entity');
-      $.post("v1/entities/new",{time:token.time,user:token.user,token:token.token,title:title})
+      $.post("/v1/entities/new",{time:token.time,user:token.user,token:token.token,title:title})
       .done(function(data){
         displaySuccess('New entity created : '+title);
         //adding URI
