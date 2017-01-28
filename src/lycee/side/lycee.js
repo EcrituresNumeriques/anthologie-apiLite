@@ -26,7 +26,7 @@ $(document).ready(function(){
             displayError('something went wrong');
           }
           else{
-            showSuccess(success)
+            showSuccess('loged in as '+data.username);
             token = data.token;
             //Ask for URI reference
             askURI();
