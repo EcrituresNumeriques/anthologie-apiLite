@@ -5,6 +5,7 @@ $(document).ready(function(){
   $error = $("#error");
   $waiting = $("#waiting");
   $success = $("#success");
+  $cta = $("#cta");
   init();
 
 
@@ -183,8 +184,8 @@ $(document).ready(function(){
       }
 
       $target.append($entity);
-      $target.append('<nav id="backToUri" class="message"><p>Back to URI input</p></nav>');
-      $("#backToUri").on("click",function(){
+      $cta.append('<p>Back to URI input</p>');
+      $cta.off("click").on("click",function(){
         cleanMessages();
         askURI();
       });
@@ -214,6 +215,9 @@ $(document).ready(function(){
   }
   function hideSuccess(){
     $success.html("");
+  }
+  function hideCTA(){
+      $cta.html("");
   }
   function cleanMessages(){
     hideSuccess();
