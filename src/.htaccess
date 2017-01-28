@@ -30,6 +30,7 @@ ErrorDocument 404 /index.php?page=404
     rewriteRule ^/?app.css$ app/side/app.css [L]
     rewriteRule ^/?reset.css$ app/side/reset.css [L]
     rewriteRule ^/?app.js$ app/side/app.js [L]
+    rewriteRule ^/?font-awesome-animation.min.css$ app/side/font-awesome-animation.min.css [L]
 
 
 

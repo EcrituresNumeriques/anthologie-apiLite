@@ -2,6 +2,9 @@ $(document).ready(function(){
   //default mode
   var token = {};
   $target = $("#container");
+  $error = $("#error");
+  $waiting = $("#waiting");
+  $success = $("#success");
   init();
 
 
@@ -16,16 +19,21 @@ $(document).ready(function(){
     $target.append($menuLogin);
     $("#goLogIn").on("click",function(){
       if($("#loginInput").val() != "" && $("#passwordInput").val() != ""){
+        loadAPI();
         $.post("/v1/user/login",{username:$("#loginInput").val(),password:$("#passwordInput").val()})
         .done(function(data){
           if(data.success != "1"){
-            alert('something went wrong');
+            displayError('something went wrong');
           }
           else{
+            showSuccess(success)
             token = data.token;
             //Ask for URI reference
             askURI();
           }
+        })
+        .always(function(){
+          receivedAPI();
         });
       }
     });
@@ -72,14 +80,16 @@ $(document).ready(function(){
       $entity = $("<nav>");
       $entity.append("<p>Title : "+data.entities[i].title+"</p>");
       $entity.append("<p>Author(s) : </p>");
-      $entity.append("<ul>");
+      $entity.append('<ul class="authors">');
       for (var j = 0; j < data.entities[i].authors.length; j++) {
         var names = [];
         for (var k = 0; k < data.entities[i].authors[j].name.length; k++) {
           names.push(data.entities[i].authors[j].name[k].name);
         }
-        $entity.children("ul").append("<li>"+names.join(" / ")+"</li>");
+        $entity.children("ul.authors").append("<li>"+names.join(" / ")+"</li>");
       }
+
+
       $target.append($entity);
     }
   }
@@ -88,6 +98,25 @@ $(document).ready(function(){
 
   function resetTarget(newClass){
     $target.html("").removeClass("login URI entity").addClass(newClass);
+  }
+
+  function loadAPI(){
+    $waiting.html("<p><i class="fa fa-spinner faa-spin animated"></i> loading</p>")
+  }
+  function receivedAPI(){
+    $waiting.html("");
+  }
+  function displayError(error){
+    $error.slideDown().html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> '+error).delay(2000).slideUp();
+  }
+  function hideError(){
+    $error.html("");
+  }
+  function showSuccess(success){
+    $success.slideDown().html('<i class="fa fa-check" aria-hidden="true"></i> '+success).delay(2000).slideUp();
+  }
+  function hideSuccess(){
+    $success.html("");
   }
 
 });
