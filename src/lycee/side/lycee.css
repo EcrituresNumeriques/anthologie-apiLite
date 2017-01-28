@@ -17,19 +17,19 @@
 
 #error{
   background-color: #c0392b;
-  color:white;
 }
 
 #waiting{
   background-color: #2c3e50;
-  color:white;
 }
 
 #success{
   background-color:#27ae60;
-  color:white;
 }
-
+.message{
+  color:white;
+  margin-bottom: 2em;
+}
 #error > p, #waiting > p, #success > p{
   margin:1em;
   width: 20em;
