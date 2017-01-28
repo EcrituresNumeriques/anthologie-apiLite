@@ -92,7 +92,7 @@ $(document).ready(function(){
   function newEntity(uri){
     //get XML version of the text
     displayLoading('Getting XML from perseus');
-    var uri = uri;
+    var uriSave = uri;
     $.get(uri+"/xml")
     .done(parsePerseus)
     .fail(function(){
@@ -118,7 +118,7 @@ $(document).ready(function(){
 
         //adding URI
         displayLoading('Adding URI to newly created entity');
-        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:uri,entity:newEntityId,destination:1})
+        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:uriSave,entity:newEntityId,destination:1})
         .done(function(data){
           displaySuccess('URI linked to newly created entity');
 
