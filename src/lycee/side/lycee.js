@@ -242,20 +242,29 @@ $(document).ready(function(){
 
   function addNewImage(id_entity){
         resetTarget("newImage");
-        $form = $("<form>");
+        $form = $('form id="newImage">');
         $form.append('<h2>Add a new Image</h2>');
         $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
         $form.append('<input type="file" name="file" id="fileImage">');
-        $form.append('<input type="text" name="URL" id="URLImage" placeholder="http://www.cliolamuse.com/IMG/jpg/grec_vase_red.jpg">');
+        $form.append('<input type="text" name="url" id="URLImage" placeholder="http://www.cliolamuse.com/IMG/jpg/grec_vase_red.jpg">');
         $form.append('<input type="button" class="block right" value="submit">');
         $form.children("input[type=button]").off("click").on("click",sendNewImage);
         $target.append($form);
 
   }
   function sendNewImage(){
-    var formData = new FormData($("#fileImage")[0]);
-    $.post("/v1/images/new",{time:token.time,user:token.user,token:token.token,url:$("#URLImage").val(),file:formData,entity:$("#entityId").val()})
-    .done(function(data){
+    var formData = new FormData($("#newImage")[0]);
+
+
+    $.ajax({
+        url: "/v1/images/new",
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false
+    }).done(function(data){
       displaySuccess('New Image was added');
       loadEntity($("#entityId").val());
     })
