@@ -199,7 +199,7 @@ $(document).ready(function(){
       $entity.append('<h2>Image(s)</h2>');
       $entity.append('<ul class="images">');
       for (var j = 0; j < data.entities[i].images.length; j++) {
-        $entity.children("ul.images").append('<li class="img">'+data.entities[i].translation[j].family+'</li>');
+        $entity.children("ul.images").append('<li class="img"><a href="'+data.entities[i].images[j].baseURL+'/img/'+data.entities[i].images[j].file+'" target="_blank"><img src="'+data.entities[i].images[j].baseURL+'/thumbs/'+data.entities[i].images[j].file+'"></a></li>');
       }
 
       $target.append($entity);
