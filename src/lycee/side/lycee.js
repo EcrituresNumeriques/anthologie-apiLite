@@ -200,6 +200,7 @@ $(document).ready(function(){
 
       $("#newTranslation").on("click",function(){
         cleanMessages();
+        console.log("jumping to new translation");
         addNewTranslation(data.id_entity);
       });
       $(".lang").on("click",function(){
@@ -214,6 +215,7 @@ $(document).ready(function(){
 
 
   function addNewTranslation(id_entity){
+    console.log("jumping to new translation, in function");
     resetTarget("newTranslation");
     $form = $("<form>");
     $form.append('<h2>Add a new Translation</h2>');
@@ -279,7 +281,7 @@ $(document).ready(function(){
 
 
   function resetTarget(newClass){
-    $target.html("").removeClass("login URI entity").addClass(newClass);
+    $target.html("").removeClass("login URI entity newTranslation").addClass(newClass);
   }
 
   function displayLoading(loading){
