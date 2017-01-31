@@ -211,6 +211,7 @@ $(document).ready(function(){
         }
         else{
           $(".align").removeClass("align");
+          $(".alignThose").remove();
         }
       });
       $cta.off("click").on("click",function(){
