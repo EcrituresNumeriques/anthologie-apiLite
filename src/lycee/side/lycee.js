@@ -201,8 +201,7 @@ $(document).ready(function(){
       var thisData = data;
       $("#newTranslation").on("click",function(){
         cleanMessages();
-        console.log("jumping to new translation"+thisData.entities[0].id_entity);
-        addNewTranslation(thisData.entities[i].id_entity);
+        addNewTranslation(thisData.entities[0].id_entity);
       });
       $(".lang").on("click",function(){
         $(this).next(".text").slideToggle();
