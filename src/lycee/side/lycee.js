@@ -192,7 +192,7 @@ $(document).ready(function(){
       $entity.append('<p>Translation(s)</p>');
       $entity.append('<ul class="translation">');
       for (var j = 0; j < data.entities[i].translation.length; j++) {
-        $entity.children("ul.translation").append('['data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].family+']<br>'+nl2br(data.entities[i].translation[j].text_translated));
+        $entity.children("ul.translation").append('['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].family+']<br>'+nl2br(data.entities[i].translation[j].text_translated));
       }
 
       $target.append($entity);
