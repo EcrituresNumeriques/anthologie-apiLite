@@ -1,5 +1,6 @@
 <?php
-print_r($_FILES);
+//print_r($_FILES);
+print_r($_POST);
 if(is_numeric($_POST['entity']) && (!empty($_POST['url']) OR !empty($_FILES))){
   try{
   $insertNewImage = $db->prepare("INSERT INTO images (user_id,group_id,URL) VALUES (:user.:group,:url)");
