@@ -200,7 +200,7 @@ $(document).ready(function(){
 
       $("#newTranslation").on("click",function(){
         cleanMessages();
-        console.log("jumping to new translation");
+        console.log("jumping to new translation"+data.entities[i].id_entity);
         addNewTranslation(data.entities[i].id_entity);
       });
       $(".lang").on("click",function(){
