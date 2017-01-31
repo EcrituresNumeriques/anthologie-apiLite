@@ -189,6 +189,11 @@ $(document).ready(function(){
         }
         $entity.children("ul.authors").append("<li>"+names.join(" / ")+"</li>");
       }
+      $entity.append('<p>Translation(s)</p>');
+      $entity.append('<ul class="translation">');
+      for (var j = 0; j < data.entities[i].translation.length; j++) {
+        $entity.children("ul.translation").append('['data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].family+']<br>'+nl2br(data.entities[i].translation[j].text_translated));
+      }
 
       $target.append($entity);
       $cta.append('<p>Back to URI input</p>');
@@ -230,6 +235,10 @@ $(document).ready(function(){
     hideSuccess();
     hideError();
     hideCTA();
+  }
+  function nl2br (str) {
+    var breakTag = '<br>';
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
   }
 
 });
