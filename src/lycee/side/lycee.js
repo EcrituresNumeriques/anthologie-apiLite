@@ -179,8 +179,13 @@ $(document).ready(function(){
       $entity.append('<ul class="authors">');
       for (var j = 0; j < data.entities[i].authors.length; j++) {
         var names = [];
-        for (var k = 0; k < data.entities[i].authors[j].name.length; k++) {
-          names.push(data.entities[i].authors[j].name[k].name);
+        if(data.entities[i].authors[j].name[0].name == null){
+          names = [data.entities[i].authors[j].default];
+        }
+        else{
+          for (var k = 0; k < data.entities[i].authors[j].name.length; k++) {
+            names.push(data.entities[i].authors[j].name[k].name);
+          }
         }
         $entity.children("ul.authors").append("<li>"+names.join(" / ")+"</li>");
       }
