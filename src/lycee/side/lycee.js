@@ -246,8 +246,8 @@ $(document).ready(function(){
     resetTarget("alignTranslations");
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
-    $form.append('<p style="margin-top:3em">'+data.translation[0].text_translated+'</p>');
-    $form.append('<p style="margin-top:3em">'+data.translation[1].text_translated+'</p>');
+    $form.append('<p style="margin-top:3em">'+nl2br(data.translation[0].text_translated)+'</p>');
+    $form.append('<p style="margin-top:3em">'+nl2br(data.translation[1].text_translated)+'</p>');
     $target.append($form);
   }
 
