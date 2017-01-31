@@ -249,6 +249,21 @@ $(document).ready(function(){
         $form.append('<input type="text" name="URL" id="URLImage">');
         $form.append('<input type="button" class="block right" value="submit">');
         $form.children("input[type=button]").off("click").on("click",sendNewImage);
+
+  }
+  function sendNewImage(){
+    $.post("/v1/images/new",{time:token.time,user:token.user,token:token.token,url:$("#URLImage").val(),file:$("#fileImage").val(),entity:$("#entityId").val()})
+    .done(function(data){
+      displaySuccess('New Image was added');
+      loadEntity($("#entityId").val());
+    })
+    .fail(function(data){
+      displayError('Unable to add new Image');
+      loadEntity($("#entityId").val());
+    })
+    .always(function(data){
+      hideLoading();
+    });
   }
 
   function addNewTranslation(id_entity){
