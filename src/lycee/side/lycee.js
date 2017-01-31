@@ -114,7 +114,7 @@ $(document).ready(function(){
     var text = $(xml).find('p').text();
     var authors = [];
     $(xml).find('persName').each(function(){
-      authors.push = {uri:'http://catalog.perseus.org/catalog/urn:cts:greekLit:'+$(this).attr("key"),name:$(this).children("foreign").first();}
+      authors.push({uri:'http://catalog.perseus.org/catalog/urn:cts:greekLit:'+$(this).attr("key"),name:$(this).children("foreign").first()});
     });
     if(title && title.length > 0 && text && text.length > 0){
       displayLoading('Creating new entity');
