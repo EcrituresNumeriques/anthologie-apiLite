@@ -195,6 +195,13 @@ $(document).ready(function(){
       for (var j = 0; j < data.entities[i].translation.length; j++) {
         $entity.children("ul.translation").append('<li class="lang">['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].lang+']</li><li class="text" data-id="'+data.entities[i].translation[j].id+'">'+nl2br(data.entities[i].translation[j].text_translated)+'</li>');
       }
+
+      $entity.append('<h2>Image(s)</h2>');
+      $entity.append('<ul class="images">');
+      for (var j = 0; j < data.entities[i].images.length; j++) {
+        $entity.children("ul.images").append('<li class="img">'+data.entities[i].translation[j].family+'</li>');
+      }
+
       $target.append($entity);
       $cta.append('<p>Back to URI input</p>');
 
