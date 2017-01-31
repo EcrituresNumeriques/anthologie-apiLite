@@ -253,7 +253,8 @@ $(document).ready(function(){
 
   }
   function sendNewImage(){
-    $.post("/v1/images/new",{time:token.time,user:token.user,token:token.token,url:$("#URLImage").val(),file:$("#fileImage")[0].files[0],entity:$("#entityId").val()})
+    var formData = new FormData($("#fileImage")[0]);
+    $.post("/v1/images/new",{time:token.time,user:token.user,token:token.token,url:$("#URLImage").val(),file:formData,entity:$("#entityId").val()})
     .done(function(data){
       displaySuccess('New Image was added');
       loadEntity($("#entityId").val());
