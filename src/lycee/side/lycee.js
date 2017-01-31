@@ -249,6 +249,7 @@ $(document).ready(function(){
         $form.append('<input type="text" name="URL" id="URLImage">');
         $form.append('<input type="button" class="block right" value="submit">');
         $form.children("input[type=button]").off("click").on("click",sendNewImage);
+        $target.append($form);
 
   }
   function sendNewImage(){
