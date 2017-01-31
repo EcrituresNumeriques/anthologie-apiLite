@@ -57,7 +57,7 @@ if(is_numeric($_POST['URI']) && is_numeric($_POST['entity']) && !empty($_POST['d
       else{
         $addAuthor->bindParam(":name",$author['name']);
         $addAuthor->execute() or die('Unable to add New Author');
-        $authorID = $db->lastInsertedId();
+        $authorID = $db->lastInsertId();
         $addAuthorURI->bindParam(":author",$authorID);
         $addAuthorURI->bindParam(":uri",$authors['uri']);
         $addAuthorURI->execute() or die('Unable to add Author URI');
