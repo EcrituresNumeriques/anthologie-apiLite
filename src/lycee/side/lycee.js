@@ -254,9 +254,9 @@ $(document).ready(function(){
   }
   function sendNewImage(){
     var formData = new FormData($("#newImage")[0]);
-    formData.append(time,token.time);
-    formData.append(user,token.user);
-    formData.append(token,token.token);
+    formData.append("time",token.time);
+    formData.append("user",token.user);
+    formData.append("token",token.token);
 
 
     $.ajax({
