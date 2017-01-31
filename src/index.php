@@ -62,6 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if($_GET['page'] == "URIs" || $_GET['page'] == "export"){
     include('get/URIs/all.php');
   }
+  //get translation to align
+  if($_GET['page'] == "alignTranslations"){
+    include("get/translation/align.php");
+  }
 
 
   //not in the list
@@ -70,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 }
 
-// if request is a POST, check credential and insert new stuff 
+// if request is a POST, check credential and insert new stuff
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //filter out empty request
   if(empty($_GET['page'])){
