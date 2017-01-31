@@ -1,5 +1,5 @@
 <?php
-//print_r($_FILES);
+print_r($_FILES);
 print_r($_POST);
 if(is_numeric($_POST['entity']) && (!empty($_POST['url']) OR !empty($_FILES))){
   try{
