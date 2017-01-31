@@ -247,7 +247,7 @@ $(document).ready(function(){
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
     $form.append('<p>'+data.translation[0].text_translated+'</p>');
-    $form.append('<p>'+data.translation[1].text_translated+'</p>');
+    $form.append('<p style="margin-top:3em">'+data.translation[1].text_translated+'</p>');
     $target.append($form);
   }
 
