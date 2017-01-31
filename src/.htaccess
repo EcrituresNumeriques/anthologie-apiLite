@@ -22,6 +22,7 @@ ErrorDocument 404 /index.php?page=404
     RewriteRule ^/?v1/entities/new/?$ index.php?page=newEntity [L,QSA]
     RewriteRule ^/?v1/translations/new$ index.php?page=newTranslation [L,QSA]
     RewriteRule ^/?v1/languages/new$ index.php?page=newLanguage [L,QSA]
+    RewriteRule ^/?v1/images/new$ index.php?page=newImage [L,QSA]
     RewriteRule ^/?v1/URIs/addURId$ index.php?page=addURId [L,QSA]
 
 

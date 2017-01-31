@@ -113,6 +113,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
       include('post/URIs/addURId.php');
     }
     //add new image
+    elseif($_GET['page'] == "newImage"){
+      include('post/images/new.php');
+    }
 
     //add new keyword
 
