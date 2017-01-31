@@ -240,7 +240,7 @@ $(document).ready(function(){
     }
   }
 
-  functino addNewImage(id_entity){
+  function addNewImage(id_entity){
         resetTarget("newImage");
         $form = $("<form>");
         $form.append('<h2>Add a new Translation</h2>');
