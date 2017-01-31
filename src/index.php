@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 }
 
-// if request is a POST, check credential and insert new stuff
+// if request is a POST, check credential and insert new stuff 
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   //filter out empty request
   if(empty($_GET['page'])){
