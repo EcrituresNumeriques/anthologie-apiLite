@@ -193,7 +193,7 @@ $(document).ready(function(){
       $entity.append('<ul class="translation">');
       $entity.children("ul.translation").append('<li class="newStuff" id="newTranslation"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Translation</li>');
       for (var j = 0; j < data.entities[i].translation.length; j++) {
-        $entity.children("ul.translation").append('<li class="lang">['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].lang+']</li><li class="text">'+nl2br(data.entities[i].translation[j].text_translated)+'</li>');
+        $entity.children("ul.translation").append('<li class="lang">['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].lang+']</li><li class="text" data-id="'+data.entities[i].translation[j].id+'">'+nl2br(data.entities[i].translation[j].text_translated)+'</li>');
       }
       $target.append($entity);
       $cta.append('<p>Back to URI input</p>');
@@ -213,6 +213,13 @@ $(document).ready(function(){
           $(".align").removeClass("align");
           $(".alignThose").remove();
         }
+        $(".alignThose").off("click").on("click",function(){
+          var idAlign = [];
+          $(".alignThose").parent(".text").each(function(){
+            idAlign.push($(this).data("id"));
+          });
+          console.log(idAlign);
+        });
       });
       $cta.off("click").on("click",function(){
         cleanMessages();
