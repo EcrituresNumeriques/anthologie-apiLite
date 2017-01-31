@@ -53,8 +53,11 @@
   list-style: disc;
   cursor:pointer;
 }
+.entity li:not(.text) {
+  text-align: center;
+}
 .entity .translation .lang:not(:first-child){
-margin-top 0.5em;
+  margin-top : 0.5em;
 }
 .entity .translation .text{
   display:none;
