@@ -41,6 +41,18 @@
   width: 20em;
 }
 
+
+.newStuff{
+  background-color: #27ae60;
+  color:white;
+  padding:0.5em;
+  margin:0.5em 0;
+  list-style: none;
+  cursor:pointer;
+}
+
+
+
 .entity h2,.entity h1{
   margin: 0.5em 0;
   text-align: center;

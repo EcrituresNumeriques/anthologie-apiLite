@@ -191,7 +191,7 @@ $(document).ready(function(){
       }
       $entity.append('<h2>Translation(s)</h2>');
       $entity.append('<ul class="translation">');
-      $entity.append('<li class="newStuff" id="newTranslation"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Translation</li>');
+      $entity.children("ul.translation").append('<li class="newStuff" id="newTranslation"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Translation</li>');
       for (var j = 0; j < data.entities[i].translation.length; j++) {
         $entity.children("ul.translation").append('<li class="lang">['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].lang+']</li><li class="text">'+nl2br(data.entities[i].translation[j].text_translated)+'</li>');
       }
