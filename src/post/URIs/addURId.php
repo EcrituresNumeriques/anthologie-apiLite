@@ -41,6 +41,31 @@ if(is_numeric($_POST['URI']) && is_numeric($_POST['entity']) && !empty($_POST['d
   }
 
   if(!empty($_POST[authors])){
+    $checkAuthor = $db->prepare("SELECT id_author FROM authors_authority WHERE URI = :uri");
+    $addAuthor = $db->prepare("INSERT INTO authors (name) VALUES (:name)");
+    $addAuthorURI = $db->prepare("INSERT INTO authors_authority (id_author,URI) VALUES (:author,:uri)");
+    $addAuthorToEntity = $db->prepare("INSERT INTO entities_authors_assoc (entities_id,authors_id) VALUES(:entity,:author) ON DUPLICATE KEY update authors_id = authors_id");
+    foreach ($_POST[authors] as $author) {
+      $checkAuthor->bindParam(":uri",$authors['uri']);
+      $checkAuthor->execute() or die('Unable to retrieve Author from URI');
+      if($checkAuthor->rowCount() > 0){
+        //Author found
+        $authorInfo = $checkAuthor->fetch(PDO::FETCH_ASSOC);
+        $authorID = $authorInfo['id_author'];
+      }
+      else{
+        $addAuthor->bindParam(":name",$author['name']);
+        $addAuthor->execute() or die('Unable to add New Author');
+        $authorID = $db->lastInsertedId();
+        $addAuthorURI->bindParam(":author",$authorID);
+        $addAuthorURI->bindParam(":uri",$authors['uri']);
+        $addAuthorURI->execute() or die('Unable to add Author URI');
+      }
+      //add Author to entity (if not already in it)
+      $addAuthorToEntity->bindParam(":entity",$_POST['entity']);
+      $addAuthorToEntity->bindParam(":author",$authorID);
+      $addAuthorToEntity->execute() or die('Unable to bind author to entity');
+    }
     $data['authors'] = $_POST['authors'];
   }
 
