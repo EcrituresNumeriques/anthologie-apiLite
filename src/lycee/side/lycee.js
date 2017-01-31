@@ -263,7 +263,7 @@ $(document).ready(function(){
         url: "/v1/images/new",
         type: 'POST',
         data: formData,
-        async: false,
+        async: true,
         cache: false,
         contentType: false,
         processData: false
