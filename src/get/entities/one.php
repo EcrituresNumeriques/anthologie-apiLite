@@ -17,6 +17,10 @@ try{
   $getURI = $db->prepare("SELECT s.name,d.value,d.URN FROM URId d LEFT JOIN URI_source s ON d.urid_source_id = s.id WHERE d.entity_id = :id");
   $getURI->bindParam(":id",$_GET['entity']);
   $getURI->execute();
+
+  $getImages = $db->prepare("SELECT i.* FROM entities_images_assoc eia JOIN images i ON eia.image_id = i.id WHERE eia.entity_id = :id");
+  $getImages->bindParam(":id",$_GET['entity']);
+  $getImages->execute();
 }
 catch(Exception $e){
   errorJSON('SQL error : ' . $e->getMessage(),500);
@@ -57,4 +61,5 @@ $data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['authors'] = $unorderedAuthors;
 $data['entities'][0]['translation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['URI'] = $getURI->fetchAll(PDO::FETCH_ASSOC);
+$data['entities'][0]['images'] = $getImages->fetchAll(PDO::FETCH_ASSOC);
 ?>
