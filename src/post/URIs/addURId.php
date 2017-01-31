@@ -59,7 +59,7 @@ if(is_numeric($_POST['URI']) && is_numeric($_POST['entity']) && !empty($_POST['d
         $addAuthor->execute() or die('Unable to add New Author');
         $authorID = $db->lastInsertId();
         $addAuthorURI->bindParam(":author",$authorID);
-        $addAuthorURI->bindParam(":uri",$authors['uri']);
+        $addAuthorURI->bindParam(":uri",$author['uri']);
         $addAuthorURI->execute() or die('Unable to add Author URI');
       }
       //add Author to entity (if not already in it)
