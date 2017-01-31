@@ -242,6 +242,7 @@ $(document).ready(function(){
   }
 
   function alignTranslations(data){
+    cleanMessages();
     resetTarget("alignTranslations");
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
