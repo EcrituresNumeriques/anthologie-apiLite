@@ -6,7 +6,7 @@ try{
   $getEntities->bindParam(":id",$_GET['entity']);
   $getEntities->execute();
 
-  $getAuthors = $db->prepare("SELECT a.id,a.name as default,a.born,a.born_range,a.died,a.died_range,at.name,l.name as lang,l.family FROM entities_authors_assoc eaa JOIN authors a ON eaa.authors_id = a.id LEFT JOIN author_translations at ON a.id = at.author_id LEFT JOIN languages l ON at.language_id = l.id WHERE eaa.entities_id = :id");
+  $getAuthors = $db->prepare("SELECT a.id,a.name as defaultName,a.born,a.born_range,a.died,a.died_range,at.name,l.name as lang,l.family FROM entities_authors_assoc eaa JOIN authors a ON eaa.authors_id = a.id LEFT JOIN author_translations at ON a.id = at.author_id LEFT JOIN languages l ON at.language_id = l.id WHERE eaa.entities_id = :id");
   $getAuthors->bindParam(":id",$_GET['entity']);
   $getAuthors->execute();
 

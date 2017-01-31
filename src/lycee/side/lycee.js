@@ -180,7 +180,7 @@ $(document).ready(function(){
       for (var j = 0; j < data.entities[i].authors.length; j++) {
         var names = [];
         if(data.entities[i].authors[j].name[0].name == null){
-          names = [data.entities[i].authors[j].default];
+          names = [data.entities[i].authors[j].defaultName];
         }
         else{
           for (var k = 0; k < data.entities[i].authors[j].name.length; k++) {
