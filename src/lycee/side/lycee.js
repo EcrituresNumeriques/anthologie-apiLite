@@ -197,6 +197,9 @@ $(document).ready(function(){
 
       $target.append($entity);
       $cta.append('<p>Back to URI input</p>');
+      $(".lang").on("click",function(){
+        $(this).next(".text").slideToggle();
+      });
       $cta.off("click").on("click",function(){
         cleanMessages();
         askURI();
