@@ -191,12 +191,17 @@ $(document).ready(function(){
       }
       $entity.append('<h2>Translation(s)</h2>');
       $entity.append('<ul class="translation">');
+      $entity.append('<li class="newStuff" id="newTranslation"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Translation</li>');
       for (var j = 0; j < data.entities[i].translation.length; j++) {
         $entity.children("ul.translation").append('<li class="lang">['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].lang+']</li><li class="text">'+nl2br(data.entities[i].translation[j].text_translated)+'</li>');
       }
-
       $target.append($entity);
       $cta.append('<p>Back to URI input</p>');
+
+      $("#newTranslation").on("click",function(){
+        cleanMessages();
+        addNewTranslation(data.id_entity);
+      });
       $(".lang").on("click",function(){
         $(this).next(".text").slideToggle();
       });
@@ -204,6 +209,70 @@ $(document).ready(function(){
         cleanMessages();
         askURI();
       });
+    }
+  }
+
+
+  function addNewTranslation(id_entity){
+    resetTarget("newTranslation");
+    $form = $("<form>");
+    $form.append('<h2>Add a new Translation</h2>');
+    $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
+    $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
+    $form.append('<textarea id="textTranslation" name="translation" placeholder="type in your translation" class="block full"></textarea>');
+    $form.append('<input type="button" class="block right" value="submit">');
+    $target.append($form);
+    displayLoading('loading languages');
+    $.get("/v1/languages",selectLanguages);
+    $("#action > section > article > input[type=button]").off("click").on("click",sendNewTranslation);
+  }
+
+  function sendNewTranslation(){
+    displayLoading('sending');
+    $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
+    .done(function(data){
+      displaySuccess('New translation added');
+      loadEntity($("#entityId").val());
+    })
+    .fail(function(data){
+      displayError('Unable to add new translation');
+      loadEntity($("#entityId").val());
+    })
+    .always(function(data){
+      hideLoading();
+    });
+  }
+
+  function selectLanguages(data){
+    for (var i = 0; i < data.langs.length; i++) {
+      $("#selectLanguages").append('<option value="'+data.langs[i].id_lang+'">'+data.langs[i].name+'</option>');
+    }
+    hideLoading();
+  }
+
+
+
+  //add new translation
+  function addNewTranslation(){
+    $("#action > section").html("");
+    $("#action > section").append('<article class="shade"><h2>Add a new Translation</h2></article>');
+    $("#action > section").append('<article><input type="hidden" id="entityId" value="'+$(this).data("entity")+'"><select id="selectLanguages" name="language" placeholder="language"></select><textarea id="textTranslation" name="translation" placeholder="type in your translation" class="block full"></textarea><input type="button" class="block right" value="submit"></article>');
+    $.get("/v1/languages",selectLanguages);
+    $("#action > section > article > input[type=button]").off("click").on("click",sendNewTranslation);
+  }
+  function sendNewTranslation(){
+    $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
+    .done(function(data){
+      $.get("/v1/entities/"+$("#entityId").val()).done(displayEntity);
+    })
+    .fail(function(data){
+      alert('something went wrong, are you loged in and provided a family/name for the new language?');
+    });
+  }
+
+  function selectLanguages(data){
+    for (var i = 0; i < data.langs.length; i++) {
+      $("#selectLanguages").append('<option value="'+data.langs[i].id_lang+'">'+data.langs[i].name+'</option>');
     }
   }
 
