@@ -204,7 +204,14 @@ $(document).ready(function(){
         addNewTranslation(thisData.entities[0].id_entity);
       });
       $(".lang").on("click",function(){
-        $(this).next(".text").slideToggle();
+        $(this).next(".text").slideToggle().toggleClass("opened");
+        if($(".opened").length == 2){
+            $(".opened").addClass("align");
+            $(".align").append('<i class="fa fa-link alignThose" aria-hidden="true"></i>');
+        }
+        else{
+          $(".align").removeClass("align");
+        }
       });
       $cta.off("click").on("click",function(){
         cleanMessages();
