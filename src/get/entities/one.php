@@ -20,7 +20,8 @@ try{
 
   $getImages = $db->prepare("SELECT i.URL,i.file,i.credit,i.date,:baseURL as baseUrl FROM entities_images_assoc eia JOIN images i ON eia.image_id = i.id WHERE eia.entity_id = :id");
   $getImages->bindParam(":id",$_GET['entity']);
-  $getImages->bindParam(":baseURL",$_SERVER['HTTP_HOST']."/media/");
+  $baseURl = $_SERVER['HTTP_HOST']."/media/";
+  $getImages->bindParam(":baseURL",$baseURl);
   $getImages->execute();
 }
 catch(Exception $e){
