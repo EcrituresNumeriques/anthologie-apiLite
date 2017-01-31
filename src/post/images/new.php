@@ -4,7 +4,7 @@ if(is_numeric($_POST['entity']) && (!empty($_POST['url']) OR !empty($_FILES['fil
 
   //If file is provided, this is the source
   if(!empty($_FILES['file'])){
-    $raw = $_FILES["fileToUpload"]["tmp_name"];
+    $raw = $_FILES["file"]["tmp_name"];
   }
   else{
     $raw=$_POST['url'];
