@@ -40,12 +40,13 @@ if(is_numeric($_POST['URI']) && is_numeric($_POST['entity']) && !empty($_POST['d
     errorJSON('SQL error : ' . $e->getMessage(),500);
   }
 
-  if(!empty($_POST[authors])){
+  if(!empty($_POST['authors'])){
     $checkAuthor = $db->prepare("SELECT id_author FROM authors_authority WHERE URI = :uri");
     $addAuthor = $db->prepare("INSERT INTO authors (name) VALUES (:name)");
     $addAuthorURI = $db->prepare("INSERT INTO authors_authority (id_author,URI) VALUES (:author,:uri)");
     $addAuthorToEntity = $db->prepare("INSERT INTO entities_authors_assoc (entities_id,authors_id) VALUES(:entity,:author) ON DUPLICATE KEY update authors_id = authors_id");
-    foreach ($_POST[authors] as $author) {
+    foreach ($_POST['authors'] as $author) {
+      $data['tryingAddAuthor'] = $author;
       $checkAuthor->bindParam(":uri",$authors['uri']);
       $checkAuthor->execute() or die('Unable to retrieve Author from URI');
       if($checkAuthor->rowCount() > 0){
