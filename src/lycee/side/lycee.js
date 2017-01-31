@@ -233,7 +233,7 @@ $(document).ready(function(){
     .always(function(){
       hideLoading();
     });
-    $("#action > section > article > input[type=button]").off("click").on("click",sendNewTranslation);
+    $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
   }
 
   function sendNewTranslation(){

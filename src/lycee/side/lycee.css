@@ -53,14 +53,16 @@
 
 
 
-.entity h2,.entity h1{
+h2, h1{
   margin: 0.5em 0;
   text-align: center;
   font-weight: bold;
 }
-.entity h1{
+h1{
   font-size: 1.3em;
 }
+
+
 .entity .translation .lang {
   list-style: disc;
   cursor:pointer;
