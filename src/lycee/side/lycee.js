@@ -201,7 +201,7 @@ $(document).ready(function(){
       $("#newTranslation").on("click",function(){
         cleanMessages();
         console.log("jumping to new translation");
-        addNewTranslation(data.id_entity);
+        addNewTranslation(data.entities[i].id_entity);
       });
       $(".lang").on("click",function(){
         $(this).next(".text").slideToggle();
@@ -225,7 +225,14 @@ $(document).ready(function(){
     $form.append('<input type="button" class="block right" value="submit">');
     $target.append($form);
     displayLoading('loading languages');
-    $.get("/v1/languages",selectLanguages);
+    $.get("/v1/languages")
+    .done(selectLanguages)
+    .fail(function(){
+      displayError('Unable to get languages');
+    })
+    .always(function(){
+      hideLoading();
+    });
     $("#action > section > article > input[type=button]").off("click").on("click",sendNewTranslation);
   }
 
@@ -249,7 +256,6 @@ $(document).ready(function(){
     for (var i = 0; i < data.langs.length; i++) {
       $("#selectLanguages").append('<option value="'+data.langs[i].id_lang+'">'+data.langs[i].name+'</option>');
     }
-    hideLoading();
   }
 
 
