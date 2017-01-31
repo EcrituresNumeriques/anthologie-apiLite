@@ -39,6 +39,11 @@ if(is_numeric($_POST['URI']) && is_numeric($_POST['entity']) && !empty($_POST['d
   catch(Exception $e){
     errorJSON('SQL error : ' . $e->getMessage(),500);
   }
+
+  if(!empty($_POST[authors])){
+    $data['authors'] = $_POST['authors'];
+  }
+
 }
 else{
   errorJSON("missing information",400);

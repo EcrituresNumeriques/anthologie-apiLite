@@ -112,6 +112,10 @@ $(document).ready(function(){
     //getting all needed infos
     var title = $(xml).find('title').text() +' '+$(xml).find('psg').text();
     var text = $(xml).find('p').text();
+    var authors = [];
+    $(xml).find('persName').each(function(){
+      authors.push = {uri:'http://catalog.perseus.org/catalog/urn:cts:greekLit:'+$(this).attr("key"),name:$(this).children("foreign").first();}
+    });
     if(title && title.length > 0 && text && text.length > 0){
       displayLoading('Creating new entity');
       $.post("/v1/entities/new",{time:token.time,user:token.user,token:token.token,title:title})
@@ -121,7 +125,7 @@ $(document).ready(function(){
 
         //adding URI
         displayLoading('Adding URI to newly created entity');
-        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:1,entity:newEntityId,destination:uri})
+        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:1,entity:newEntityId,destination:uri,authors:authors})
         .done(function(data){
           displaySuccess('URI linked to newly created entity');
 
