@@ -35,6 +35,7 @@ foreach ($intermediaire as $author) {
       "died" => $author['died'],
       "born_range" => $author['born_range'],
       "died_range" => $author['died_range'],
+      "defaultName" => $author['defaultName'],
     );
   }
   $authors[$author['id']]['name'][] = array(
