@@ -244,7 +244,7 @@ $(document).ready(function(){
         resetTarget("newImage");
         $form = $('<form id="newImage">');
         $form.append('<h2>Add a new Image</h2>');
-        $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
+        $form.append('<input type="hidden" name="entity" id="entity" value="'+id_entity+'">');
         $form.append('<input type="file" name="file" id="fileImage">');
         $form.append('<input type="text" name="url" id="URLImage" placeholder="http://www.cliolamuse.com/IMG/jpg/grec_vase_red.jpg">');
         $form.append('<input type="button" class="block right" value="submit">');
