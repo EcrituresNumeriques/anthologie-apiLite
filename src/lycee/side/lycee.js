@@ -174,8 +174,8 @@ $(document).ready(function(){
     resetTarget("entity");
     for(i=0;i<data.entities.length;i++){
       $entity = $("<nav>");
-      $entity.append("<p>Title : "+data.entities[i].title+"</p>");
-      $entity.append("<p>Author(s) : </p>");
+      $entity.append("<h1>"+data.entities[i].title+"</h1>");
+      $entity.append("<h2>Author(s)</h2>");
       $entity.append('<ul class="authors">');
       for (var j = 0; j < data.entities[i].authors.length; j++) {
         var names = [];
@@ -189,10 +189,10 @@ $(document).ready(function(){
         }
         $entity.children("ul.authors").append("<li>"+names.join(" / ")+"</li>");
       }
-      $entity.append('<p>Translation(s)</p>');
+      $entity.append('<h2>Translation(s)</h2>');
       $entity.append('<ul class="translation">');
       for (var j = 0; j < data.entities[i].translation.length; j++) {
-        $entity.children("ul.translation").append('['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].family+']<br>'+nl2br(data.entities[i].translation[j].text_translated));
+        $entity.children("ul.translation").append('<li class="lang">['+data.entities[i].translation[j].family+' / '+data.entities[i].translation[j].lang+']</li><li class="text">'+nl2br(data.entities[i].translation[j].text_translated)+'</li>');
       }
 
       $target.append($entity);
