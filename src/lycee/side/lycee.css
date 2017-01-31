@@ -87,7 +87,7 @@ h1{
   top: 0;
 }
 
-.newTranslation input,.newTranslation textarea{
+.newImage input, .newTranslation input,.newTranslation textarea{
   display: block;
   padding: 1em;
   width:20em;

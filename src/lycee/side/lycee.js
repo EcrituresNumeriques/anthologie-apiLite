@@ -198,6 +198,7 @@ $(document).ready(function(){
 
       $entity.append('<h2>Image(s)</h2>');
       $entity.append('<ul class="images">');
+      $entity.children("ul.translation").append('<li class="newStuff" id="newImage"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Image</li>');
       for (var j = 0; j < data.entities[i].images.length; j++) {
         $entity.children("ul.images").append('<li class="img"><a href="'+data.entities[i].images[j].baseURL+'img/'+data.entities[i].images[j].file+'" target="_blank"><img src="'+data.entities[i].images[j].baseURL+'thumbs/'+data.entities[i].images[j].file+'"></a</li>');
       }
@@ -209,6 +210,10 @@ $(document).ready(function(){
       $("#newTranslation").on("click",function(){
         cleanMessages();
         addNewTranslation(thisData.entities[0].id_entity);
+      });
+      $("#newImage").on("click",function(){
+        cleanMessages();
+        addNewImage(thisData.entities[0].id_entity);
       });
       $(".lang").on("click",function(){
         $(this).next(".text").slideToggle().toggleClass("opened");
@@ -235,9 +240,18 @@ $(document).ready(function(){
     }
   }
 
+  functino addNewImage(id_entity){
+        resetTarget("newImage");
+        $form = $("<form>");
+        $form.append('<h2>Add a new Translation</h2>');
+        $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
+        $form.append('<input type="file" name="file" id="fileImage">');
+        $form.append('<input type="text" name="URL" id="URLImage">');
+        $form.append('<input type="button" class="block right" value="submit">');
+        $form.children("input[type=button]").off("click").on("click",sendNewImage);
+  }
 
   function addNewTranslation(id_entity){
-    console.log("jumping to new translation, in function");
     resetTarget("newTranslation");
     $form = $("<form>");
     $form.append('<h2>Add a new Translation</h2>');
@@ -245,6 +259,8 @@ $(document).ready(function(){
     $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
     $form.append('<textarea id="textTranslation" name="translation" placeholder="type in your translation" class="block full"></textarea>');
     $form.append('<input type="button" class="block right" value="submit">');
+    $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
+
     $target.append($form);
     displayLoading('loading languages');
     $.get("/v1/languages")
@@ -282,7 +298,7 @@ $(document).ready(function(){
 
 
   function resetTarget(newClass){
-    $target.html("").removeClass("login URI entity newTranslation").addClass(newClass);
+    $target.html("").removeClass("login URI entity newTranslation newImage").addClass(newClass);
   }
 
   function displayLoading(loading){
