@@ -198,10 +198,11 @@ $(document).ready(function(){
       $target.append($entity);
       $cta.append('<p>Back to URI input</p>');
 
+      var thisData = data;
       $("#newTranslation").on("click",function(){
         cleanMessages();
-        console.log("jumping to new translation"+data.entities[i].id_entity);
-        addNewTranslation(data.entities[i].id_entity);
+        console.log("jumping to new translation"+thisData.entities[0].id_entity);
+        addNewTranslation(thisData.entities[i].id_entity);
       });
       $(".lang").on("click",function(){
         $(this).next(".text").slideToggle();
