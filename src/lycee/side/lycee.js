@@ -264,6 +264,7 @@ $(document).ready(function(){
         $target.append($form);
         $cta.append('<p id="goToEntity" data-id="'+id_entity+'">Go back to entity</p>');
         $cta.off("click").on("click",function(){
+          cleanMessages();
           loadEntity($(this).children("#goToEntity").data("id"));
         });
   }
