@@ -204,6 +204,7 @@ $(document).ready(function(){
       }
 
       $target.append($entity);
+      hideCTA();
       $cta.append('<p>Back to URI input</p>');
 
       var thisData = data;
@@ -264,7 +265,6 @@ $(document).ready(function(){
         $target.append($form);
         $cta.append('<p id="goToEntity" data-id="'+id_entity+'">Go back to entity</p>');
         $cta.off("click").on("click",function(){
-          cleanMessages();
           loadEntity($(this).children("#goToEntity").data("id"));
         });
   }
