@@ -3,7 +3,7 @@ if(is_numeric($_POST['entity']) && !empty($_POST['url'])){
   //TODO: If a file is provided, grab a copy on the server
 
   try{
-  $insertNewImage = $db->prepare("INSERT INTO images (user_id,group_id,URL,title,credit) VALUES (:user.:group,:url,:title,:credit)");
+  $insertNewImage = $db->prepare("INSERT INTO images (user_id,group_id,URL,title,credit) VALUES (:user,:group,:url,:title,:credit)");
   $insertNewImage->bindParam(":url",$_POST['url']);
   $title = (!empty($_POST['title'])?$_POST['title']:NULL);
   $insertNewImage->bindParam(":title",$title);
