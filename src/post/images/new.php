@@ -5,9 +5,9 @@ if(is_numeric($_POST['entity']) && !empty($_POST['url'])){
   try{
   $insertNewImage = $db->prepare("INSERT INTO images (user_id,group_id,URL,title,credit) VALUES (:user.:group,:url,:title,:credit)");
   $insertNewImage->bindParam(":url",$_POST['url']);
-  $title = (!empty($_POST['title'])?NULL:$_POST['title']);
+  $title = (!empty($_POST['title'])?$_POST['title']:NULL);
   $insertNewImage->bindParam(":title",$title);
-  $credit = (!empty($_POST['credit'])?NULL:$_POST['credit']);
+  $credit = (!empty($_POST['credit'])?$_POST['credit']:NULL);
   $insertNewImage->bindParam(":credit",$credit);
   $insertNewImage->bindParam(":user",$user['user']['id']);
   (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
