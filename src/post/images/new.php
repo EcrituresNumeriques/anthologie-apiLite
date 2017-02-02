@@ -13,6 +13,12 @@ if(is_numeric($_POST['entity']) && !empty($_POST['url'])){
   (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
   $insertNewImage->bindParam(":group",$user['user']['groups'][0]);
   $insertNewImage->execute();
+
+  $imageId = $db->lastInsertId();
+  //add assoc
+  $insertAssocImage = $db->prepare("INSERT INTO entities_images_assoc (entity_id,image_id) VALUES(:entity,:image)");
+  $insertAssocImage->bindParam(":entity",$_POST['entity']);
+  $insertAssocImage->bindParam(":image",$imageId);
   }
   catch(Exception $e){
     errorJSON('SQL error : ' . $e->getMessage(),500);
