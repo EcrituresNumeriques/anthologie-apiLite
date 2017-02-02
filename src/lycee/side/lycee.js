@@ -263,7 +263,7 @@ $(document).ready(function(){
         $form.children("input[type=button]").off("click").on("click",sendNewImage);
         $target.append($form);
         $cta.append('<p id="goToEntity" data-id="'+id_entity+'">Go back to entity</p>');
-        $("#goToEntity").on("click",function(){
+        $cta.off("click").on("click",function(){
           loadEntity($(this).data("id"));
         });
   }
