@@ -17,6 +17,7 @@ if(is_numeric($_POST['entity']) && !empty($_POST['url'])){
   catch(Exception $e){
     errorJSON('SQL error : ' . $e->getMessage(),500);
   }
+  $data['newImage'] = $_POST['url'];
 }
 else{
   errorJSON("missing information",400);
