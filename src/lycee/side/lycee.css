@@ -92,3 +92,23 @@ h1{
   padding: 1em;
   width:20em;
 }
+
+ul.images{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+ul.images > li#newImage{
+  flex:1 1 100%;
+}
+ul.images > li.img {
+  flex:0 0 64px;
+}
+ul.images > li.img > a {
+  display:block;
+}
+ul.images > li.img > a > img {
+  max-width:64px;
+  max-height: 64px;
+}
