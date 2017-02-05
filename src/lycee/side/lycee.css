@@ -63,6 +63,14 @@ h1{
 }
 
 
+.login > nav > p {
+  text-align: center;
+  padding: 1em;
+}
+.login > nav > p > a{
+  
+}
+
 .entity .translation .lang {
   cursor:pointer;
 }
