@@ -6,6 +6,7 @@ $(document).ready(function(){
   $waiting = $("#waiting");
   $success = $("#success");
   $cta = $("#cta");
+  $aside = $("side");
   init();
 
 
@@ -405,6 +406,9 @@ $(document).ready(function(){
   }
   function hideCTA(){
       $cta.html("");
+  }
+  function hideAside(){
+      $aside.html("");
   }
   function cleanMessages(){
     hideSuccess();
