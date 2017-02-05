@@ -56,15 +56,28 @@ $(document).ready(function(){
     $register.append('<input type="text" id="institution" name="institution" value="" placeholder="Institution">');
     $register.append('<input type="button" id="goRegister" value="Go">');
     $target.append($register);
+    $cta.append('<p id="goToLogin">Go back to login</p>');
+    $("#goToLogin").on('click',function(){
+      hideCTA();
+      init();
+    });
     $("#goRegister").on("click",function(){
+      cleanMessages()
       displayLoading('Registering');
       $.post("/v1/user/register",{username:$("#username").val(),password:$("#password").val(),email:$("#email").val(),firstName:$("#firstName").val(),lastName:$("#lastName").val(),institution:$("#institution").val()})
-      .done(init)
+      .done(function(data){
+        displaySuccess('Account created');
+        init();
+      })
       .fail(function(xhr){
         var data = JSON.parse(xhr.responseText);
         console.log(data);
-
-          displayError(data.why);
+        $cta.append('<p id="goToLogin">Go back to login</p>');
+        $("#goToLogin").on('click',function(){
+          hideCTA();
+          init();
+        });
+        displayError(data.why);
       })
       .always(function(){
         hideLoading();
