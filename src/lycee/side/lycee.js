@@ -61,6 +61,7 @@ $(document).ready(function(){
       $.post("/v1/user/register",{username:$("#username").val(),password:$("#password").val(),email:$("#email").val(),firstName:$("#firstName").val(),lastName:$("#lastName").val(),institution:$("#institution").val()})
       .done(init)
       .fail(function(data){
+        console.log(data);
           displayError(data.why);
       })
       .always(function(){
