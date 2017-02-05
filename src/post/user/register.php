@@ -6,7 +6,6 @@ if(empty($_POST['username'])){
 if(empty($_POST['password'])){
   errorJSON('Username not specified',400);
 }
-}
 if(empty($_POST['email'])){
   errorJSON('Email not specified',400);
 }
