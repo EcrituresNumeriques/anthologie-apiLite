@@ -17,6 +17,7 @@ $(document).ready(function(){
     $menuLogin.append('<input type="text" id="loginInput" value="" placeholder="Login">');
     $menuLogin.append('<input type="password" id="passwordInput" value="" placeholder="password">');
     $menuLogin.append('<input type="button" id="goLogIn" value="Go">');
+    $menuLogin.append('<a id="orRegister">Or register</a>');
     $target.append($menuLogin);
     $("#goLogIn").on("click",function(){
       if($("#loginInput").val() != "" && $("#passwordInput").val() != ""){
