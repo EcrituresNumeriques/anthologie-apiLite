@@ -354,7 +354,7 @@ $(document).ready(function(){
 
 
   function resetTarget(newClass){
-    $target.html("").removeClass("login URI entity newTranslation newImage").addClass(newClass);
+    $target.html("").removeClass("login URI entity newTranslation newImage register").addClass(newClass);
   }
 
   function displayLoading(loading){

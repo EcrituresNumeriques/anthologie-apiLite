@@ -8,7 +8,7 @@
 #container{
   flex:0 0 auto;
 }
-.login > nav > input,.URI > nav > input {
+.login > nav > input,.URI > nav > input,.register > nav > input {
   display: block;
   padding: 1em;
   width:20em;
