@@ -32,6 +32,11 @@ if($encodedPassword == $user['password']){
   $data['username'] = $user['username'];
   $data['success'] = 1;
 
+  //update last_login
+  $updateUser = $db->prepare("UPDATE fos_users SET last_login = NOW() WHERE id = :id");
+  $updateUser->bindParam(":id",$user['id']);
+  $updateUser->execute();
+
   //generate TOKEN here : tableless token v1
   $data['token']['time'] = time();
   $data['token']['user'] = $user['id'];

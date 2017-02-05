@@ -201,10 +201,11 @@ $(document).ready(function(){
       $entity.append('<ul class="images">');
       $entity.children("ul.images").append('<li class="newStuff" id="newImage"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Image</li>');
       for (var j = 0; j < data.entities[i].images.length; j++) {
-        $entity.children("ul.images").append('<li class="img"><a href="'+data.entities[i].images[j].baseURL+'img/'+data.entities[i].images[j].file+'" target="_blank"><img src="'+data.entities[i].images[j].baseURL+'thumbs/'+data.entities[i].images[j].file+'"></a</li>');
+        $entity.children("ul.images").append('<li class="img"><a href="'+data.entities[i].images[j].URL+'" target="_blank"><img src="'+data.entities[i].images[j].URL+'"></a</li>');
       }
 
       $target.append($entity);
+      hideCTA();
       $cta.append('<p>Back to URI input</p>');
 
       var thisData = data;
@@ -257,12 +258,16 @@ $(document).ready(function(){
         $form = $('<form id="newImage">');
         $form.append('<h2>Add a new Image</h2>');
         $form.append('<input type="hidden" name="entity" id="entityId" value="'+id_entity+'">');
-        $form.append('<input type="file" name="file" id="fileImage">');
-        $form.append('<input type="text" name="url" id="URLImage" placeholder="http://www.cliolamuse.com/IMG/jpg/grec_vase_red.jpg">');
+        $form.append('<input type="text" name="url" id="URLImage" placeholder="URL of the image (ex : http://www.cliolamuse.com/IMG/jpg/grec_vase_red.jpg)">');
+        $form.append('<input type="text" name="title" id="titleImage" placeholder="Title">');
+        $form.append('<input type="text" name="credit" id="creditImage" placeholder="credits">');
         $form.append('<input type="button" class="block right" value="submit">');
         $form.children("input[type=button]").off("click").on("click",sendNewImage);
         $target.append($form);
-
+        $cta.append('<p id="goToEntity" data-id="'+id_entity+'">Go back to entity</p>');
+        $cta.off("click").on("click",function(){
+          loadEntity($(this).children("#goToEntity").data("id"));
+        });
   }
   function sendNewImage(){
     var formData = new FormData($("#newImage")[0]);
@@ -270,16 +275,8 @@ $(document).ready(function(){
     formData.append("user",token.user);
     formData.append("token",token.token);
 
-
-    $.ajax({
-        url: "/v1/images/new",
-        type: 'POST',
-        data: formData,
-        async: true,
-        cache: false,
-        contentType: false,
-        processData: false
-    }).done(function(data){
+    $.post("/v1/images/new",{time:token.time,user:token.user,token:token.token,url:$("#URLImage").val(),title:$("#titleImage").val(),credit:$("#creditImage").val(),entity:$("#entityId").val()})
+    .done(function(data){
       displaySuccess('New Image was added');
       loadEntity($("#entityId").val());
     })
@@ -311,6 +308,10 @@ $(document).ready(function(){
     })
     .always(function(){
       hideLoading();
+    });
+    $cta.append('<p id="goToEntity" data-id="'+id_entity+'">Go back to entity</p>');
+    $cta.off("click").on("click",function(){
+      loadEntity($(this).children("#goToEntity").data("id"));
     });
     $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
   }
