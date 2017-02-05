@@ -85,6 +85,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if($_GET['page'] == "login"){
     include('post/user/login.php');
   }
+  elseif($_GET['page'] == "register"){
+    include('post/user/register.php');
+  }
   else{
     $user = checkCredential($_POST['token'],$_POST['user'],$_POST['time'],$db);
     if(empty($user)){
