@@ -11,8 +11,9 @@ if(empty($_POST['email'])){
 }
 //check if user doesn't already exist
 try{
-$checkUser = $db->prepare("SELECT id,username, salt, password FROM fos_users WHERE username = :username");
+$checkUser = $db->prepare("SELECT id,username, salt, password FROM fos_users WHERE username = :username OR email = :email");
 $checkUser->bindParam(":username",$_POST['username']);
+$checkUser->bindParam(":email",$_POST['email']);
 $checkUser->execute();
 }
 catch(Exception $e){
@@ -25,7 +26,7 @@ if($checkUser->rowCount() > 0){
 
 
 //if not, insert into database
-$insertUser = $db->prepare("INSERT INTO fos_users (username,salt,password,first_name,last_name,institution,last_login,enabled,roles,email) VALUES (:username,:salt,:password,:first,:last,:institution,NOW(),1,:roles,:email)");
+$insertUser = $db->prepare("INSERT INTO fos_users (username,username_canonical,salt,password,first_name,last_name,institution,last_login,enabled,roles,email,email_canonical) VALUES (:username,:username,:salt,:password,:first,:last,:institution,NOW(),1,:roles,:email,:email)");
 
 //generate salt
 $salt = bin2hex(openssl_random_pseudo_bytes(31));
