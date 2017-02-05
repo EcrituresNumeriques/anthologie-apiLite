@@ -44,6 +44,19 @@ $(document).ready(function(){
     });
   }
 
+  function register(){
+    resetTarget('register');
+    $register = $('<nav>');
+    $register.append('<input type="text" id="username" name="username" value="" placeholder="Login">');
+    $register.append('<input type="password" id="password" name="password" value="" placeholder="Password">');
+    $register.append('<input type="text" id="email" name="email" value="" placeholder="Email">');
+    $register.append('<input type="text" id="firstName" name="firstName" value="" placeholder="First name">');
+    $register.append('<input type="text" id="lastName" name="lastName" value="" placeholder="Last name">');
+    $register.append('<input type="text" id="institution" name="institution" value="" placeholder="Institution">');
+    $register.append('<input type="button" id="goRegister" value="Go">');
+    $target.append($register);
+  }
+
   function askURI(){
     //prompt for login
     resetTarget("URI");

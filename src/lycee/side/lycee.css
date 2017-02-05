@@ -68,7 +68,7 @@ h1{
   padding: 1em;
 }
 .login > nav > p > a{
-  
+  cursor:pointer;
 }
 
 .entity .translation .lang {
