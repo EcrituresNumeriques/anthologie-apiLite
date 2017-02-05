@@ -21,7 +21,7 @@ catch(Exception $e){
 }
 
 if($checkUser->rowCount() > 0){
-  errorJSON('Username already used',400);
+  errorJSON('Username or Email already used',400);
 }
 
 
@@ -55,5 +55,5 @@ $insertUser->bindParam(":roles",$role);
 $insertUser->bindParam(":salt",$salt);
 $insertUser->bindParam(":password",$encodedPassword);
 $insertUser->execute() or die('Unabled to add new user');
-
+$data['success'] = 1;
 ?>
