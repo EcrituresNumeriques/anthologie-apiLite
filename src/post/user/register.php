@@ -25,7 +25,7 @@ if($checkUser->rowCount() > 0){
 $insertUser = $db->prepare("INSERT INTO fos_users (username,salt,password,first_name,last_name,institution,last_login,enabled,roles,email) VALUES (:username,:salt,:password,:first,:last,:institution,NOW(),1,:roles,:email)");
 
 //generate salt
-$salt = bin2hex(random_bytes ( 31 ));
+$salt = bin2hex(openssl_random_pseudo_bytes(31));
 //encode password
 $password = $_POST['password'];
 $salted = $password.'{'.$salt.'}';
