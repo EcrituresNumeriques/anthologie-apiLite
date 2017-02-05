@@ -42,6 +42,7 @@ $(document).ready(function(){
         });
       }
     });
+    $("#orRegister").on("click",register);
   }
 
   function register(){
