@@ -60,8 +60,10 @@ $(document).ready(function(){
       displayLoading('Registering');
       $.post("/v1/user/register",{username:$("#username").val(),password:$("#password").val(),email:$("#email").val(),firstName:$("#firstName").val(),lastName:$("#lastName").val(),institution:$("#institution").val()})
       .done(init)
-      .fail(function(data){
+      .fail(function(xhr){
+        var data = JSON.parse(xhr.responseText);
         console.log(data);
+
           displayError(data.why);
       })
       .always(function(){
