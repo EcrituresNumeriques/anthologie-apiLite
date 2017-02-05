@@ -6,6 +6,10 @@ if(empty($_POST['username'])){
 if(empty($_POST['password'])){
   errorJSON('Username not specified',400);
 }
+}
+if(empty($_POST['email'])){
+  errorJSON('Email not specified',400);
+}
 //check if user doesn't already exist
 try{
 $checkUser = $db->prepare("SELECT id,username, salt, password FROM fos_users WHERE username = :username");
@@ -34,8 +38,6 @@ for ($i=1; $i<5000; $i++) {
     $digest = hash('sha512', $digest.$salted, true);
 }
 $encodedPassword = base64_encode($digest);
-
-
 
 //generate dummy values
 (!empty($_POST['firstname'])?:$_POST['firstname'] = NULL);
