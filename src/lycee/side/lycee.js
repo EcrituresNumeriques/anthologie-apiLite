@@ -28,6 +28,7 @@ $(document).ready(function(){
             displayError('bad credentials');
           }
           else{
+            cleanMessages();
             displaySuccess('loged in as '+data.username);
             token = data.token;
             //Ask for URI reference
@@ -62,7 +63,7 @@ $(document).ready(function(){
       init();
     });
     $("#goRegister").on("click",function(){
-      cleanMessages()
+      cleanMessages();
       displayLoading('Registering');
       $.post("/v1/user/register",{username:$("#username").val(),password:$("#password").val(),email:$("#email").val(),firstName:$("#firstName").val(),lastName:$("#lastName").val(),institution:$("#institution").val()})
       .done(function(data){
