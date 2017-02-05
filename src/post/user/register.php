@@ -40,16 +40,16 @@ for ($i=1; $i<5000; $i++) {
 $encodedPassword = base64_encode($digest);
 
 //generate dummy values
-(!empty($_POST['firstname'])?:$_POST['firstname'] = NULL);
+(!empty($_POST['firstName'])?:$_POST['firstName'] = NULL);
 (!empty($_POST['email'])?:$_POST['email'] = NULL);
-(!empty($_POST['lastname'])?:$_POST['lastname'] = NULL);
+(!empty($_POST['lastName'])?:$_POST['lastName'] = NULL);
 (!empty($_POST['institution'])?:$_POST['institution'] = NULL);
 $role = serialize(array());
 //bindEverything
 $insertUser->bindParam(":username",$_POST['username']);
-$insertUser->bindParam(":first",$_POST['firstname']);
 $insertUser->bindParam(":email",$_POST['email']);
-$insertUser->bindParam(":last",$_POST['lastname']);
+$insertUser->bindParam(":first",$_POST['firstName']);
+$insertUser->bindParam(":last",$_POST['lastName']);
 $insertUser->bindParam(":institution",$_POST['institution']);
 $insertUser->bindParam(":roles",$role);
 $insertUser->bindParam(":salt",$salt);

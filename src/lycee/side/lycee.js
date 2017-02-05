@@ -56,6 +56,17 @@ $(document).ready(function(){
     $register.append('<input type="text" id="institution" name="institution" value="" placeholder="Institution">');
     $register.append('<input type="button" id="goRegister" value="Go">');
     $target.append($register);
+    $("#goRegister").on("click",function(){
+      displayLoading('Registering');
+      $.post("/v1/user/register",{username:$("#username").val(),password:$("#password").val(),email:$("#email").val(),firstName:$("#firstName").val(),lastName:$("#lastName").val(),institution:$("#institution").val()})
+      .done(init)
+      .fail(function(data){
+          displayError(data.why);
+      })
+      .always(function(){
+        hideLoading();
+      });
+    });
   }
 
   function askURI(){
