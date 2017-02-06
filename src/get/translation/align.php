@@ -80,12 +80,12 @@ function versJSON($vers,$word,$textNbr){
         if(preg_match("/\w+/", $value)){
           $tmp['t'] = $value;
           $tmp['h'] = array_fill(0,$textNbr,array());
-          $tmp['h'][$textNbr] = $word;
+          $tmp['h'][$textNbr][] = $word;
         }
         elseif(preg_match("/\p{Greek}+/u", $value)){
           $tmp['t'] = $value;
           $tmp['h'] = array_fill(0,$textNbr,array());
-          $tmp['h'][$textNbr] = $word;
+          $tmp['h'][$textNbr][] = $word;
         }
         else{
           $tmp['p'] = $value;
