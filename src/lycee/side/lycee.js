@@ -292,7 +292,7 @@ $(document).ready(function(){
     resetSide("Align");
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
-    appendAlign($form,data.json);
+    appendAlign($form,data.align.json);
 
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[0].text_translated)+'</p>');
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[1].text_translated)+'</p>');
