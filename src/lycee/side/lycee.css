@@ -5,14 +5,14 @@
   align-items: center;
   justify-content: center;
 }
-#main,#aside{
+#main,#side{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
 }
-#aside.newTranslation {
+#side.newTranslation {
   margin-left: 2em;
 }
 #container{
