@@ -388,7 +388,7 @@ $(document).ready(function(){
     $target.html("").removeClass("login URI entity newTranslation newImage register").addClass(newClass);
   }
   function resetSide(newClass){
-    $aside.html("").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
+    $aside.html("").parent("aside").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
   }
 
   function displayLoading(loading){
@@ -414,11 +414,13 @@ $(document).ready(function(){
   }
   function hideAside(){
       $aside.html("");
+      $ctaSide.html("");
   }
   function cleanMessages(){
     hideSuccess();
     hideError();
     hideCTA();
+    hideAside();
   }
   function nl2br (str) {
     var breakTag = '<br>';
