@@ -289,11 +289,11 @@ $(document).ready(function(){
 
   function alignTranslations(data){
     cleanDisplay();
-    resetSide("newTranslation");
+    resetSide("Align");
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
-    $form.append('<p style="margin-top:3em">'+nl2br(data.translation[0].text_translated)+'</p>');
-    $form.append('<p style="margin-top:3em">'+nl2br(data.translation[1].text_translated)+'</p>');
+    $form.append('<p style="margin:2em 0">'+nl2br(data.translation[0].text_translated)+'</p>');
+    $form.append('<p style="margin:2em 0">'+nl2br(data.translation[1].text_translated)+'</p>');
     $form.append('<input type="button" class="block right" value="submit">');
     $aside.append($form);
     $form.children("input[type=button]").off("click").on("click",sendAlign);
@@ -393,6 +393,7 @@ $(document).ready(function(){
   }
   function resetSide(newClass){
     $aside.html("").parent("aside").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
+    $ctaSide.html("");
   }
 
   function displayLoading(loading){
