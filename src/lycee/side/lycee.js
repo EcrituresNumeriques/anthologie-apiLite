@@ -298,7 +298,7 @@ $(document).ready(function(){
   }
 
   function addNewImage(id_entity){
-        resetTarget("newImage");
+        resetSide("newTranslation");
         $form = $('<form id="newImage">');
         $form.append('<h2>Add a new Image</h2>');
         $form.append('<input type="hidden" name="entity" id="entityId" value="'+id_entity+'">');
@@ -307,11 +307,9 @@ $(document).ready(function(){
         $form.append('<input type="text" name="credit" id="creditImage" placeholder="credits">');
         $form.append('<input type="button" class="block right" value="submit">');
         $form.children("input[type=button]").off("click").on("click",sendNewImage);
-        $target.append($form);
-        $cta.append('<p id="goToEntity" data-id="'+id_entity+'">Go back to entity</p>');
-        $cta.off("click").on("click",function(){
-          loadEntity($(this).children("#goToEntity").data("id"));
-        });
+        $aside.append($form);
+        $ctaSide.append('<p id="goToEntity">Cancel</p>');
+        $ctaSide.off("click").on("click",hideAside);
   }
   function sendNewImage(){
     var formData = new FormData($("#newImage")[0]);
@@ -323,6 +321,7 @@ $(document).ready(function(){
     .done(function(data){
       displaySuccess('New Image was added');
       loadEntity($("#entityId").val());
+      hideAside();
     })
     .fail(function(data){
       displayError('Unable to add new Image');
