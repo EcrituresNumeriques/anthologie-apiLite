@@ -288,13 +288,20 @@ $(document).ready(function(){
   }
 
   function alignTranslations(data){
-    cleanMessages();
-    resetTarget("alignTranslations");
+    cleanDisplay();
+    resetSide("newTranslation");
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
     $form.append('<p style="margin-top:3em">'+nl2br(data.translation[0].text_translated)+'</p>');
     $form.append('<p style="margin-top:3em">'+nl2br(data.translation[1].text_translated)+'</p>');
-    $target.append($form);
+    $form.append('<input type="button" class="block right" value="submit">');
+    $side.append($form);
+    $form.children("input[type=button]").off("click").on("click",sendAlign);
+    $ctaSide.append('<p id="goToEntity">Cancel</p>');
+    $ctaSide.off("click").on("click",hideAside);
+  }
+  function sendAlign(){
+    console.log('sending');
   }
 
   function addNewImage(id_entity){
