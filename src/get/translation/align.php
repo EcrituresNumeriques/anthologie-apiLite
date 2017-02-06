@@ -40,7 +40,7 @@ else{
      foreach ($tmp as $word) {
        $thisLine[] = array("t"=>$word,"data"=>array(array(),array()));
      }
-     $jsonLine = $thisLine;
+     $jsonLine[] = $thisLine;
     }
     //add this line to json
     $json[] = $jsonLine;
