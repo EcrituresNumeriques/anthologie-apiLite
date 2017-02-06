@@ -328,9 +328,9 @@ $(document).ready(function(){
       }
       $form.append($text);
     }
-    $(".highlight").on("click",function(){
+    $(".highlight").on("click",function(data){
       console.log(data[$(this).data('text')][$(this).data('vers')][$(this).data('word')].h);
-    });
+    })(data);
 
 /*
     var t=0;
