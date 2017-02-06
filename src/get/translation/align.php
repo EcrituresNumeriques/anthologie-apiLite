@@ -33,7 +33,12 @@ else{
   foreach ($translations as $translation) {
     //generate lines by line
     $lines = explode("\n",$translation['text_translated']);
-    $json[] = $lines;
+    $jsonLine = array();
+    foreach ($lines as $line) {
+      $jsonLine[] = explode(" ",$line);
+    }
+    //add this line to json
+    $json[] = $jsonLine;
   }
   $data['align']['json'] = $json;
 }
