@@ -311,7 +311,7 @@ $(document).ready(function(){
       //for each line, start adding the words
       for (var j = 0; j < data[i].length; j++) {
         //for every word, append to $text
-        for (var k = 0; k < array.length; k++) {
+        for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[t].text[s][v][w].t) !== "undefined" && data[t].text[s][v][w].t != "")  {
             $word = $('<span id="'+i+'-'+k+'">'+data[i][j][k].t+'</span>');
           }
