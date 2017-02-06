@@ -7,7 +7,7 @@ $(document).ready(function(){
   $success = $("#success");
   $cta = $("#cta");
   $ctaSide = $("#ctaSide");
-  $aside = $("sideContainer");
+  $aside = $("#sideContainer");
   init();
 
 
