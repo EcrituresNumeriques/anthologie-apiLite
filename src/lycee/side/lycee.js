@@ -295,7 +295,7 @@ $(document).ready(function(){
     $form.append('<p style="margin-top:3em">'+nl2br(data.translation[0].text_translated)+'</p>');
     $form.append('<p style="margin-top:3em">'+nl2br(data.translation[1].text_translated)+'</p>');
     $form.append('<input type="button" class="block right" value="submit">');
-    $side.append($form);
+    $aside.append($form);
     $form.children("input[type=button]").off("click").on("click",sendAlign);
     $ctaSide.append('<p id="goToEntity">Cancel</p>');
     $ctaSide.off("click").on("click",hideAside);
