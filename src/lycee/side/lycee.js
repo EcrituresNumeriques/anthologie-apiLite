@@ -333,7 +333,7 @@ $(document).ready(function(){
   }
 
   function addNewTranslation(id_entity){
-    resetTarget("newTranslation");
+    resetSide("newTranslation");
     $form = $("<form>");
     $form.append('<h2>Add a new Translation</h2>');
     $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
@@ -342,7 +342,7 @@ $(document).ready(function(){
     $form.append('<input type="button" class="block right" value="submit">');
     $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
 
-    $target.append($form);
+    $side.append($form);
     displayLoading('loading languages');
     $.get("/v1/languages")
     .done(selectLanguages)
@@ -352,9 +352,10 @@ $(document).ready(function(){
     .always(function(){
       hideLoading();
     });
-    $cta.append('<p id="goToEntity" data-id="'+id_entity+'">Go back to entity</p>');
-    $cta.off("click").on("click",function(){
-      loadEntity($(this).children("#goToEntity").data("id"));
+    $ctaSide.append('<p id="goToEntity">Cancel</p>');
+    $ctaSide.off("click").on("click",function(){
+      resetSide();
+      //loadEntity($(this).children("#goToEntity").data("id"));
     });
     $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
   }
@@ -384,6 +385,9 @@ $(document).ready(function(){
 
   function resetTarget(newClass){
     $target.html("").removeClass("login URI entity newTranslation newImage register").addClass(newClass);
+  }
+  function resetSide(newCLass){
+    $side.html("").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
   }
 
   function displayLoading(loading){
