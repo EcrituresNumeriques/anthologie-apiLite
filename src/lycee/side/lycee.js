@@ -387,7 +387,7 @@ $(document).ready(function(){
   function resetTarget(newClass){
     $target.html("").removeClass("login URI entity newTranslation newImage register").addClass(newClass);
   }
-  function resetSide(){
+  function resetSide(newClass){
     $aside.html("").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
   }
 
