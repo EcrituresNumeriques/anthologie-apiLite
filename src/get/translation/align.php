@@ -35,7 +35,8 @@ else{
     $lines = explode("\n",$translation['text_translated']);
     $jsonLine = array();
     foreach ($lines as $line) {
-      $jsonLine[] = explode(" ",$line);
+      //$jsonLine[] = explode(" ",$line);
+      $jsonLine[] = preg_split("/(?<=\w)\b\s*/",$line);
     }
     //add this line to json
     $json[] = $jsonLine;
