@@ -15,6 +15,9 @@
 #side.newTranslation,#side.Align {
   margin-left: 2em;
 }
+#side.Align p.alignement{
+  margin:2em;
+}
 #side.Align .highlight{
   padding:4px;
 }
