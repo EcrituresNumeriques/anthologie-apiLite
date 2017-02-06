@@ -6,6 +6,7 @@ $(document).ready(function(){
   $waiting = $("#waiting");
   $success = $("#success");
   $cta = $("#cta");
+  $ctaSide = $("#ctaSide");
   $aside = $("side");
   init();
 
@@ -342,7 +343,7 @@ $(document).ready(function(){
     $form.append('<input type="button" class="block right" value="submit">');
     $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
 
-    $side.append($form);
+    $aside.append($form);
     displayLoading('loading languages');
     $.get("/v1/languages")
     .done(selectLanguages)
@@ -387,7 +388,7 @@ $(document).ready(function(){
     $target.html("").removeClass("login URI entity newTranslation newImage register").addClass(newClass);
   }
   function resetSide(newCLass){
-    $side.html("").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
+    $aside.html("").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
   }
 
   function displayLoading(loading){
