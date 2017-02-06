@@ -355,7 +355,7 @@ $(document).ready(function(){
     });
     $ctaSide.append('<p id="goToEntity">Cancel</p>');
     $ctaSide.off("click").on("click",function(){
-      resetSide();
+      resetSide('');
       //loadEntity($(this).children("#goToEntity").data("id"));
     });
     $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
@@ -387,7 +387,7 @@ $(document).ready(function(){
   function resetTarget(newClass){
     $target.html("").removeClass("login URI entity newTranslation newImage register").addClass(newClass);
   }
-  function resetSide(newCLass){
+  function resetSide(){
     $aside.html("").removeClass("newTranslation newImage Align City Keyword").addClass(newClass);
   }
 
