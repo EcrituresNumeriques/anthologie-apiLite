@@ -316,7 +316,7 @@ $(document).ready(function(){
             $word = $('<span id="'+i+'-'+k+'">'+data[i][j][k].t+'</span>');
           }
           else{
-            $word = $(data[i][j][k].p);
+            $word = data[i][j][k].p;
           }
           $text.append($word);
         }
