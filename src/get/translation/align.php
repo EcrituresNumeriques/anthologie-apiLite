@@ -61,7 +61,7 @@ else{
 function stropheJSON($strophe,$textNbr){
     $w = 0;
     $return = array();
-    $parts = explode('\n', $strophe);
+    $parts = explode("\n", $strophe);
     foreach($parts as $value){
         $tmp = versJSON($value,$w,$textNbr);
         $w += count($tmp);
