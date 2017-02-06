@@ -15,22 +15,45 @@ if($_GET['id'] > $_GET['id2']){
 }
 
 
-$getAlign = $db->prepare("SELECT json FROM entities_translations_align WHERE pair = :pair");
+$getAlign = $db->prepare("SELECT pair,json FROM entities_translations_align WHERE pair = :pair");
 $pair = $_GET['id'].";".$_GET['id2'];
 $getAlign->bindParam(":pair",$pair);
 $getAlign->execute() or die('unable to get alignements');
 
 if($getAlign->rowCount > 0){
-$data['align'] = $getAlign->fetch(PDO::FETCH_ASSOC);
+  $data['align'] = $getAlign->fetch(PDO::FETCH_ASSOC);
 }
 else{
-$getTranslations = $db->prepare("SELECT * FROM `entities_translations` where id = :id OR id = :id2");
-$getTranslations->bindParam(":id",$_GET['id']);
-$getTranslations->bindParam(":id2",$_GET['id2']);
-$getTranslations->execute() or die('Unable to get translations');
-$data['translation'] = $getTranslations->fetchAll(PDO::FETCH_ASSOC);
+  $getTranslations = $db->prepare("SELECT * FROM `entities_translations` where id = :id OR id = :id2");
+  $getTranslations->bindParam(":id",$_GET['id']);
+  $getTranslations->bindParam(":id2",$_GET['id2']);
+  $getTranslations->execute() or die('Unable to get translations');
+  $translations = $getTranslations->fetchAll(PDO::FETCH_ASSOC);
+  $json = array();
+  foreach ($transations as $translation) {
+    //generate lines by line
+    $lines = explode("\n",$translation['text_translated']);
+    $json[] = $lines;
+  }
+  $data['align']['json'] = json_encode($lines);
 }
 
+
+/*
+JSON model :
+
+>[
+  [
+    [{"t":"hello","hl":[[1],[1]]},{"p":","},{"t":"world","hl":[[3],[3]]}],
+    []
+  ],
+  [
+    [],
+    []
+  ]
+]
+
+*/
 
 
 ?>

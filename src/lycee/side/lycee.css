@@ -12,8 +12,14 @@
   justify-content: center;
 
 }
-#side.newTranslation {
+#side.newTranslation,#side.Align {
   margin-left: 2em;
+}
+#side.Align .highlight:hover{
+  cursor:pointer;
+}
+.highlight.highlighted{
+  background-color:#F4FA58;
 }
 #container{
   flex:0 0 auto;
