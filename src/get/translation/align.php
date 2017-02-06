@@ -30,7 +30,7 @@ else{
   $getTranslations->execute() or die('Unable to get translations');
   $translations = $getTranslations->fetchAll(PDO::FETCH_ASSOC);
   $json = array();
-  foreach ($transations as $translation) {
+  foreach ($translations as $translation) {
     //generate lines by line
     $lines = explode("\n",$translation['text_translated']);
     $json[] = $lines;
