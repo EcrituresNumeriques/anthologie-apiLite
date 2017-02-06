@@ -35,7 +35,7 @@ else{
     $lines = explode("\n",$translation['text_translated']);
     $json[] = $lines;
   }
-  $data['align']['json'] = json_encode($lines);
+  $data['align']['json'] = $json;
 }
 
 
