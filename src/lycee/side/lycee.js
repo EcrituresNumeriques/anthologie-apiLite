@@ -312,7 +312,7 @@ $(document).ready(function(){
       for (var j = 0; j < data[i].length; j++) {
         //for every word, append to $text
         for (var k = 0; k < data[i][j].length; k++) {
-          if(typeof(data[t].text[s][v][w].t) !== "undefined" && data[t].text[s][v][w].t != "")  {
+          if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
             $word = $('<span id="'+i+'-'+k+'">'+data[i][j][k].t+'</span>');
           }
           else{
