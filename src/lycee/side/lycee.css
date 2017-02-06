@@ -130,3 +130,8 @@ ul.images > li.img > a > img {
   max-width:64px;
   max-height: 64px;
 }
+
+#goToEntity {
+  width:20em;
+  margin:1em;
+}
