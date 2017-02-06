@@ -313,7 +313,8 @@ $(document).ready(function(){
         //for every word, append to $text
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
-            $word = $(' <span id="'+i+'-'+word+k+'">'+data[i][j][k].t+'</span> ');
+            currentWord = Number(word)+Number(k);
+            $word = $(' <span id="'+i+'-'+currentWord+'">'+data[i][j][k].t+'</span> ');
           }
           else{
             $word = " "+data[i][j][k].p+" ";
