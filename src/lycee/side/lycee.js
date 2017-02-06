@@ -326,13 +326,13 @@ $(document).ready(function(){
         word += k;
       }
       $form.append($text);
+      var thisData = data;
+      console.log($(".highlight"));
+      $(".highlight").off('click').on("click",function(){
+        console.log("click");
+        console.log(thisData[$(this).data('text')][$(this).data('vers')][$(this).data('word')].h);
+      });
     }
-    var thisData = data;
-    console.log($(".highlight"));
-    $(".highlight").on("click",function(){
-      console.log("click");
-      console.log(thisData[$(this).data('text')][$(this).data('vers')][$(this).data('word')].h);
-    });
   }
 
   function sendAlign(){
