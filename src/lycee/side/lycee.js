@@ -307,13 +307,13 @@ $(document).ready(function(){
     //for each text, create a paragraphe
     for (var i = 0; i < data.length; i++) {
       $text = $('<p class="alignement" data-texte="'+i+'">');
-
+      var word = 0;
       //for each line, start adding the words
       for (var j = 0; j < data[i].length; j++) {
         //for every word, append to $text
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
-            $word = $(' <span id="'+i+'-'+k+'">'+data[i][j][k].t+'</span> ');
+            $word = $(' <span id="'+i+'-'+word+k+'">'+data[i][j][k].t+'</span> ');
           }
           else{
             $word = " "+data[i][j][k].p+" ";
@@ -323,6 +323,7 @@ $(document).ready(function(){
 
         //then add a <br>
         $text.append('<br>');
+        word += k;
       }
       $form.append($text);
     }
