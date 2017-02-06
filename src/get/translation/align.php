@@ -35,7 +35,12 @@ else{
     $lines = explode("\n",$translation['text_translated']);
     $jsonLine = array();
     foreach ($lines as $line) {
-     $jsonLine[] = preg_split("/[ [:punct:]]+/",$line,-1,PREG_SPLIT_DELIM_CAPTURE);
+     $tmp = preg_split("/[ [:punct:]]+/",$line,-1,PREG_SPLIT_DELIM_CAPTURE);
+     $thisLine = array();
+     foreach ($tmp as $word) {
+       $thisLine[] = array("t"=>$word,"data"=>array(array(),array()));
+     }
+     $jsonLine = $thisLine;
     }
     //add this line to json
     $json[] = $jsonLine;
