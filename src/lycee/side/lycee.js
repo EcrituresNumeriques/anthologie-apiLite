@@ -292,14 +292,150 @@ $(document).ready(function(){
     resetSide("Align");
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
-    $form.append('<p style="margin:2em 0">'+nl2br(data.translation[0].text_translated)+'</p>');
-    $form.append('<p style="margin:2em 0">'+nl2br(data.translation[1].text_translated)+'</p>');
+    appendAlign($form.data.json);
+
+    //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[0].text_translated)+'</p>');
+    //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[1].text_translated)+'</p>');
     $form.append('<input type="button" class="block right" value="submit">');
     $aside.append($form);
     $form.children("input[type=button]").off("click").on("click",sendAlign);
     $ctaSide.append('<p id="goToEntity">Cancel</p>');
     $ctaSide.off("click").on("click",hideAside);
   }
+
+  function appendAlign($form,data){
+    //for each text, create a paragraphe
+    for (var i = 0; i < data.length; i++) {
+      $text = $('<p class="alignement" data-texte="'+i+'">');
+
+      //for each line, start adding the words
+      for (var j = 0; j < data[i].length; j++) {
+        //for every word, append to $text
+        for (var k = 0; k < array.length; k++) {
+          if(typeof(data[t].text[s][v][w].t) !== "undefined" && data[t].text[s][v][w].t != "")  {
+            $word = $('<span id="'+i+'-'+k+'">'+data[i][j][k].t+'</span>');
+          }
+          else{
+            $word = $(data[i][j][k].p);
+          }
+          $text.append($word);
+        }
+
+        //then add a <br>
+        $text.append('<br>');
+      }
+      $form.append($text);
+    }
+
+/*
+    var t=0;
+    while(t<data.length){
+                    var wordid = 0;
+                    var highlight = "";
+                    $text = $("<div>");
+                    var s = 0;
+                    while(s<data[t].length){
+                        $("#text"+t).append("<p class=\"strophe"+s+"\"></p>");
+                        var v = 0;
+                        while(v<data[t].text[s].length){
+                            var w = 0;
+                            while(w<data[t].text[s][v].length){
+                                wordid++;
+                                if(typeof(data[t].text[s][v][w].t) !== "undefined" && data[t].text[s][v][w].t != "")  {
+                                    //console.log("word"+t);
+                                    highlight = "";
+                                    for(o=0;o<data[t].text[s][v][w].h.length;o++){
+                                        for(m=0;m<data[t].text[s][v][w].h[o].length;m++){
+                                            highlight = highlight+";"+o+"-"+data[t].text[s][v][w].h[o][m];
+                                        }
+                                    }
+
+                                    $("div#text"+t+" p.strophe"+s).append("<span id=\""+t+"-"+wordid+"\" class=\"highlight\" data-vers=\""+v+"\" data-mot=\""+w+"\" data-texte=\""+t+"\" data-highlight=\""+highlight+"\" >"+data[t].text[s][v][w].t+"</span> ");
+                                }
+                                else if(data[t].text[s][v].t != ""){
+                                    //console.log("ponctuation"+t);
+                                    if(data[t].text[s][v][w].p == "'" || data[t].text[s][v][w].p == "-"){
+                                        $("div#text"+t+" p.strophe"+s).html($("div#text"+t+" p.strophe"+s).html().substring(0,$("div#text"+t+" p.strophe"+s).html().length - 1));
+                                        $("div#text"+t+" p.strophe"+s).append(data[t].text[s][v][w].p);
+                                    }
+                                    else if(data[t].text[s][v][w].p == ":" || data[t].text[s][v][w].p == ";" || data[t].text[s][v][w].p == "," || data[t].text[s][v][w].p == "!" || data[t].text[s][v][w].p == "?" || data[t].text[s][v][w].p == "."){
+                                        $("div#text"+t+" p.strophe"+s).html($("div#text"+t+" p.strophe"+s).html().substring(0,$("div#text"+t+" p.strophe"+s).html().length - 1));
+                                        $("div#text"+t+" p.strophe"+s).append(data[t].text[s][v][w].p+" ");
+                                    }
+                                    else{
+                                        $("div#text"+t+" p.strophe"+s).append(data[t].text[s][v][w].p+" ");
+                                    }
+
+
+                                }
+                                w++;
+                            }
+                            $("div#text"+t+" p.strophe"+s).append("<br>");
+                            //console.log("line"+t);
+                            v++;
+                        }
+                        s++;
+                    }
+                    t++;
+                }
+
+                var stropheHeight = 0;
+                var nStrophe = 0;
+                while(nStrophe<s){
+                    var stropheHeight = 0;
+                    $(".strophe"+nStrophe).each(function(){
+                        if($(this).innerHeight() > stropheHeight){
+                            stropheHeight = $(this).innerHeight();
+                        }
+                        $(".strophe"+nStrophe).css("height",stropheHeight);
+                    });
+                    nStrophe++;
+                }
+
+                console.log(s);
+
+
+                $(".highlight").on("mouseenter",function(){
+                    var toHighlight = $(this).data("highlight");
+                    var hl = toHighlight.split(";");
+                    var i = 1;
+                    $(".highlighted").removeClass("highlighted");
+                    while(i<hl.length){
+                        $("#"+hl[i]).addClass("highlighted");
+                        i++;
+                    }
+
+                });
+                $(".highlight").on("mouseleave",function(){
+                    $(".highlighted").removeClass("highlighted");
+                });
+                $(".highlight").on("click",function(){
+                    //console.log(firstClick+" / "+firstText+" /" +otherText);
+                    $(this).addClass("washighlighted");
+                    if(firstClick){
+                        firstClick = false;
+                        firstText = $(this).data("texte");
+                        otherText = false;
+                        $(this).toggleClass("hardhighlighted");
+                    }
+                    else if(otherText == false && $(this).data("texte") == firstText){
+                        $(this).toggleClass("hardhighlighted");
+                    }
+                    else if($(this).data("texte") != firstText){
+                        otherText = true;
+                        $(this).toggleClass("hardhighlighted");
+                    }
+                    else if(otherText == true && $(this).data("texte") == firstText){
+                        firstText = $(this).data("texte");
+                        otherText = false;
+                        saveAlign();
+                        $(".hardhighlighted").removeClass("hardhighlighted");
+                        $(this).toggleClass("hardhighlighted");
+                    }
+                });
+*/
+  }
+
   function sendAlign(){
     console.log('sending');
   }

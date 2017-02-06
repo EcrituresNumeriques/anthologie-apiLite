@@ -15,11 +15,20 @@
 #side.newTranslation,#side.Align {
   margin-left: 2em;
 }
-#side.Align .highlight:hover{
-  cursor:pointer;
+#side.Align .highlight{
+  padding:4px;
 }
-.highlight.highlighted{
-  background-color:#F4FA58;
+#side.Align .highlight:hover{
+    cursor:pointer;
+}
+#side.Align .highlight.washighlighted{
+    background-color:#E0E0E0;
+}
+#side.Align .highlight.highlighted{
+    background-color:#F4FA58;
+}
+#side.Align .highlight.hardhighlighted{
+    background-color:#82FA58;
 }
 #container{
   flex:0 0 auto;
