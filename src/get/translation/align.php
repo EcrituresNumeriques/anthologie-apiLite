@@ -32,7 +32,7 @@ else{
   $json = array();
   $i = 0;
   foreach ($translations as $translation) {
-    $json[] = stropheJSON($translation['text_translated'],$i);
+    $json[] = stropheJSON($translation['text_translated'],$i,count($translations));
     $i++;
     /*
     //generate lines by line
@@ -58,12 +58,12 @@ else{
 }
 
 
-function stropheJSON($strophe,$textNbr){
+function stropheJSON($strophe,$textNbr,$textMax){
     $w = 0;
     $return = array();
     $parts = explode("\n", $strophe);
     foreach($parts as $value){
-        $tmp = versJSON($value,$w,$textNbr);
+        $tmp = versJSON($value,$w,$textNbr,$textMax);
         $w += count($tmp);
         $return[] = $tmp;
     }
@@ -71,7 +71,7 @@ function stropheJSON($strophe,$textNbr){
 }
 
 
-function versJSON($vers,$word,$textNbr){
+function versJSON($vers,$word,$textNbr,$textMax){
     $return = array();
     $string = preg_match_all("/\p{Greek}+|\w+|\p{P}+/u",$vers,$matches);
     foreach($matches[0] as $value){
@@ -79,12 +79,12 @@ function versJSON($vers,$word,$textNbr){
         $word++;
         if(preg_match("/\w+/", $value)){
           $tmp['t'] = $value;
-          $tmp['h'] = array_fill(0,$textNbr,array());
+          $tmp['h'] = array_fill(0,$textMax,array());
           $tmp['h'][$textNbr][] = $word;
         }
         elseif(preg_match("/\p{Greek}+/u", $value)){
           $tmp['t'] = $value;
-          $tmp['h'] = array_fill(0,$textNbr,array());
+          $tmp['h'] = array_fill(0,$textMax,array());
           $tmp['h'][$textNbr][] = $word;
         }
         else{
