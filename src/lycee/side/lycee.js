@@ -354,10 +354,7 @@ $(document).ready(function(){
       hideLoading();
     });
     $ctaSide.append('<p id="goToEntity">Cancel</p>');
-    $ctaSide.off("click").on("click",function(){
-      resetSide('');
-      //loadEntity($(this).children("#goToEntity").data("id"));
-    });
+    $ctaSide.off("click").on("click",hideAside);
     $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
   }
 
@@ -365,6 +362,7 @@ $(document).ready(function(){
     displayLoading('sending');
     $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
     .done(function(data){
+      hideAside();
       displaySuccess('New translation added');
       loadEntity($("#entityId").val());
     })
