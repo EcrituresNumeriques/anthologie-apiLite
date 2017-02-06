@@ -254,11 +254,11 @@ $(document).ready(function(){
 
       var thisData = data;
       $("#newTranslation").on("click",function(){
-        cleanMessages();
+        cleanDisplay();
         addNewTranslation(thisData.entities[0].id_entity);
       });
       $("#newImage").on("click",function(){
-        cleanMessages();
+        cleanDisplay();
         addNewImage(thisData.entities[0].id_entity);
       });
       $(".lang").on("click",function(){
@@ -418,6 +418,10 @@ $(document).ready(function(){
     hideError();
     hideCTA();
     hideAside();
+  }
+  function cleanDisplay(){
+    hideSuccess();
+    hideError();
   }
   function nl2br (str) {
     var breakTag = '<br>';
