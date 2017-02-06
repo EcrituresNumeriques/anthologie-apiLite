@@ -362,9 +362,9 @@ $(document).ready(function(){
     displayLoading('sending');
     $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
     .done(function(data){
-      hideAside();
       displaySuccess('New translation added');
       loadEntity($("#entityId").val());
+      hideAside();
     })
     .fail(function(data){
       displayError('Unable to add new translation');
