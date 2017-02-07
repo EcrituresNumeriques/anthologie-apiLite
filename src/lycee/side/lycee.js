@@ -306,6 +306,7 @@ $(document).ready(function(){
   function appendAlign($form,data){
     //for each text, create a paragraphe
     var thisData = data;
+    var alignementClick = [];
     for (var i = 0; i < data.length; i++) {
       $text = $('<p class="alignement" data-texte="'+i+'">');
       var word = 0;
@@ -317,7 +318,10 @@ $(document).ready(function(){
             currentWord = Number(word)+Number(k)+1;
             $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight")
             .hover(function(){hoverHighlight(thisData,$(this));},function(){cleanHoverHightlight();})
-            .on("click",function(){clickHighlight(thisData,$(this))});
+            .on("click",function(){
+              tmp = clickHighlight(thisData,$(this),alignementClick);
+              alignementClick = tmp.alignementClick;
+            });
           }
           else{
             $word = " "+data[i][j][k].p+" ";
@@ -332,8 +336,28 @@ $(document).ready(function(){
     }
   }
 
-  function clickHighlight(data,$el){
+  function clickHighlight(data,$el,alignementClick){
+    if(alignementClick.length === 2){
+      //check if element parent is the firstClicked
+      if($el.parent(".alignement").is(alignementClick[0]) && !$el.hasClass('hardhighlighted')){
+        console.log("BOOM, fire the json");
+      }
+    }
+    //check if el parent is the current
+    else if (alignementClick.length === 1){
+        if(!$el.parent(".alignement").is(alignementClick[0]) && !$el.hasClass('hardhighlighted')){
+          console.log("secondClick");
+          alignementClick.push($el.parent(".alignement"));
+      }
+    }
+    //set alignement firstClick
+    else{
+      console.log("newClick");
+      alignementClick.push($el.parent(".alignement"));
+    }
+    var returnArray = {alignementClick:alignementClick};
     $el.toggleClass('hardhighlighted');
+    return returnArray;
   }
 
   function hoverHighlight(data,$el){
