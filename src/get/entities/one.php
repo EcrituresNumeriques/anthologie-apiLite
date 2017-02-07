@@ -99,7 +99,7 @@ foreach ($rawTexts as $translationT) {
   $texts[$translationT['texts_id']]['translation'][] = array(
     "family"=>$translationT['family'],
     "lang"=>$translationT['name'],
-    "text_translated"=>$translationT['text_translated']
+    "text"=>$translationT['text']
   );
 }
 $unorderedTexts = array();
