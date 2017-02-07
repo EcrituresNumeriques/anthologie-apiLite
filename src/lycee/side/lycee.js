@@ -340,6 +340,7 @@ $(document).ready(function(){
     $(".highlighted").removeClass("highlighted");
     for (var i = 0; i < highlight.length; i++) {
       for (var j = 0; j < array.length; j++) {
+        console.log("text"+i+j);
         $("#"+i+'-'+j).addClass("highlighted");
       }
     }
