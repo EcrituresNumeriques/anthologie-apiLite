@@ -36,6 +36,7 @@ else{
     $i++;
   }
   $data['align']['json'] = $json;
+  $data['pair'] = $pair;
 }
 
 

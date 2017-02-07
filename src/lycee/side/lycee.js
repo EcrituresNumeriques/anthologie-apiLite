@@ -293,7 +293,8 @@ $(document).ready(function(){
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
     var thisData = data.align.json;
-    appendAlign($form, thisData);
+    var pair = data.pair;
+    appendAlign($form, thisData,pair);
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[0].text_translated)+'</p>');
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[1].text_translated)+'</p>');
     $aside.append($form);
@@ -301,7 +302,7 @@ $(document).ready(function(){
     $ctaSide.off("click").on("click",hideAside);
   }
 
-  function appendAlign($form,data){
+  function appendAlign($form,data,pair){
     //for each text, create a paragraphe
     var thisData = data;
     var alignementClick = [];
@@ -364,7 +365,8 @@ $(document).ready(function(){
       alignementClick = [];
       $('.hardhighlighted').removeClass('hardhighlighted');
     });
-    $sendAlign.off("click").on("click",sendAlign);
+    var thisPair = pair
+    $sendAlign.off("click").on("click",function(){sendAlign(thisData,thisPair});
     $alignThose.append($validateAlign).append($cancelAlign).append($sendAlign);
     $form.append($alignThose);
   }
@@ -439,8 +441,9 @@ $(document).ready(function(){
     $(".highlighted").removeClass("highlighted");
   }
 
-  function sendAlign(){
+  function sendAlign(data,pair){
     console.log('sending');
+    $.post(apiURL+"/v1/translation/align",{pair:pair,data:JSON.stringify(data)});
   }
 
   function addNewImage(id_entity){
