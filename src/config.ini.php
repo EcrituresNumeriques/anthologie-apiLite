@@ -2,6 +2,8 @@
 //include keys.ini
 require_once('config.keys.ini.php');
 
+//set crossOrigin valid
+header('Access-Control-Allow-Origin: *');
 //connect database
 try{
     $db = new PDO("mysql:host=".$dbCredential['host'].";dbname=".$dbCredential['base'], $dbCredential['user'], $dbCredential['pass']);

@@ -1,6 +1,7 @@
 $(document).ready(function(){
   //default mode
   var token = {};
+  var apiURL = "http://apapi.ecrituresnumeriques.ca:8080";
   $target = $("#container");
   $error = $("#error");
   $waiting = $("#waiting");
@@ -24,7 +25,7 @@ $(document).ready(function(){
     $("#goLogIn").on("click",function(){
       if($("#loginInput").val() != "" && $("#passwordInput").val() != ""){
         displayLoading('user login');
-        $.post("/v1/user/login",{username:$("#loginInput").val(),password:$("#passwordInput").val()})
+        $.post(apiURL+"/v1/user/login",{username:$("#loginInput").val(),password:$("#passwordInput").val()})
         .done(function(data){
           if(data.success != "1"){
             displayError('bad credentials');
@@ -67,7 +68,7 @@ $(document).ready(function(){
     $("#goRegister").on("click",function(){
       cleanMessages();
       displayLoading('Registering');
-      $.post("/v1/user/register",{username:$("#username").val(),password:$("#password").val(),email:$("#email").val(),firstName:$("#firstName").val(),lastName:$("#lastName").val(),institution:$("#institution").val()})
+      $.post(apiURL+"/v1/user/register",{username:$("#username").val(),password:$("#password").val(),email:$("#email").val(),firstName:$("#firstName").val(),lastName:$("#lastName").val(),institution:$("#institution").val()})
       .done(function(data){
         displaySuccess('Account created');
         init();
@@ -99,7 +100,7 @@ $(document).ready(function(){
     $("#goURI").on("click",function(){
       displayLoading('URI checker');
       cleanMessages();
-      $.get("/v1/entities/URIs/",{uri : $("#URI").val()})
+      $.get(apiURL+"/v1/entities/URIs/",{uri : $("#URI").val()})
       .done(function(data){
 
         if(data.entities.length > 0){
@@ -126,7 +127,7 @@ $(document).ready(function(){
 
   function loadEntity(entity_id){
     displayLoading('Loading entity');
-    $.get("/v1/entities/"+entity_id).done(showEntity)
+    $.get(apiURL+"/v1/entities/"+entity_id).done(showEntity)
     .fail(function(){
       displayError('something network related went wrong');
     })
@@ -163,20 +164,20 @@ $(document).ready(function(){
     });
     if(title && title.length > 0 && text && text.length > 0){
       displayLoading('Creating new entity');
-      $.post("/v1/entities/new",{time:token.time,user:token.user,token:token.token,title:title})
+      $.post(apiURL+"/v1/entities/new",{time:token.time,user:token.user,token:token.token,title:title})
       .done(function(data){
         var newEntityId = data.newEntityId;
         displaySuccess('New entity created : '+title);
 
         //adding URI
         displayLoading('Adding URI to newly created entity');
-        $.post("/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:1,entity:newEntityId,destination:uri,authors:authors})
+        $.post(apiURL+"/v1/URIs/addURId",{time:token.time,user:token.user,token:token.token,URI:1,entity:newEntityId,destination:uri,authors:authors})
         .done(function(data){
           displaySuccess('URI linked to newly created entity');
 
           //adding text translation
           displayLoading('Adding greek text to newly created entity');
-          $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:12,text:text,entity:newEntityId})
+          $.post(apiURL+"/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:12,text:text,entity:newEntityId})
           .done(function(data){
             displaySuccess('Greek text added to the newly created entity');
 
@@ -276,7 +277,7 @@ $(document).ready(function(){
           $(".alignThose").parent(".text").each(function(){
             idAlign.push($(this).data("id"));
           });
-          $.get("/v1/translation/"+idAlign[0]+"/"+idAlign[1]).done(alignTranslations);
+          $.get(apiURL+"/v1/translation/"+idAlign[0]+"/"+idAlign[1]).done(alignTranslations);
           console.log(idAlign);
         });
       });
@@ -361,7 +362,7 @@ $(document).ready(function(){
     formData.append("user",token.user);
     formData.append("token",token.token);
 
-    $.post("/v1/images/new",{time:token.time,user:token.user,token:token.token,url:$("#URLImage").val(),title:$("#titleImage").val(),credit:$("#creditImage").val(),entity:$("#entityId").val()})
+    $.post(apiURL+"/v1/images/new",{time:token.time,user:token.user,token:token.token,url:$("#URLImage").val(),title:$("#titleImage").val(),credit:$("#creditImage").val(),entity:$("#entityId").val()})
     .done(function(data){
       displaySuccess('New Image was added');
       loadEntity($("#entityId").val());
@@ -388,7 +389,7 @@ $(document).ready(function(){
 
     $aside.append($form);
     displayLoading('loading languages');
-    $.get("/v1/languages")
+    $.get(apiURL+"/v1/languages")
     .done(selectLanguages)
     .fail(function(){
       displayError('Unable to get languages');
@@ -403,7 +404,7 @@ $(document).ready(function(){
 
   function sendNewTranslation(){
     displayLoading('sending');
-    $.post("/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
+    $.post(apiURL+"/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
     .done(function(data){
       displaySuccess('New translation added');
       loadEntity($("#entityId").val());
