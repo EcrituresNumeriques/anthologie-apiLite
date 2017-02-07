@@ -23,6 +23,11 @@ try{
   $baseURl = (empty($_SERVER['HTTPS'])?"http://":"https://").$_SERVER['HTTP_HOST']."/media/";
   $getImages->bindParam(":baseURL",$baseURl);
   $getImages->execute();
+
+  $getScholies = $db->prepare("SELECT * FROM entities_scholies_assoc esa JOIN scholies_translations st ON esa.scholies_id = st.scholie_id JOIN languages l ON st.language_id = l.id WHERE esa.entities_id = :id ORDER BY scholies_id ASC")
+  $getScholies->bindParam(":id",$_GET['entity']);
+  $getScholies->execute()
+
 }
 catch(Exception $e){
   errorJSON('SQL error : ' . $e->getMessage(),500);
@@ -50,12 +55,30 @@ foreach ($intermediaire as $author) {
     "family"=>$author['family']
   );
 }
+
+
 //remove indexes
 $unorderedAuthors = array();
 foreach ($authors as $key => $value) {
   array_push($unorderedAuthors,$value);
 }
 unset($authors);
+
+//filter scholies
+$rawScholies = $getScholies->fetchAll(PDO::FETCH_ASSOC);
+foreach ($rawScholies as $translation) {
+  $scholies[$translation['scholies_id']]['id'] = $translation['scholies_id']
+  $scholies[$translation['scholies_id']]['translation'][] = array(
+    "family"=>$translation['family'],
+    "name"=>$translation['name'],
+    "text_translated"=>$translation['text_translated']
+  )
+}
+$unorderedScholies = array();
+foreach ($scholies as $key => $value) {
+  array_push($unorderedScholies,$value);
+}
+unset($scholies);
 
 
 //put in $data : Vue
@@ -64,4 +87,5 @@ $data['entities'][0]['authors'] = $unorderedAuthors;
 $data['entities'][0]['translation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['URI'] = $getURI->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['images'] = $getImages->fetchAll(PDO::FETCH_ASSOC);
+$data['entities'][0]['scholies'] = $unorderedScholies;
 ?>
