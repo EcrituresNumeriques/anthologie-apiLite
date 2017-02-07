@@ -316,7 +316,7 @@ $(document).ready(function(){
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
             currentWord = Number(word)+Number(k);
             $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").on("click",function(){
-              clickHighlight(thisData);
+              clickHighlight(thisData,$(this));
             });
           }
           else{
@@ -332,9 +332,9 @@ $(document).ready(function(){
     }
   }
 
-  function clickHighlight(data){
+  function clickHighlight(data,$el){
     console.log(data);
-    console.log($(this).data("text"));
+    console.log($el.data("text"));
   }
 
   function sendAlign(){
