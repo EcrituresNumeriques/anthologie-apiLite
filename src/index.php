@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
   //get translation to align
   if($_GET['page'] == "alignTranslations"){
-    include("get/translation/align.php");
+    include("get/align/align.php");
   }
 
 

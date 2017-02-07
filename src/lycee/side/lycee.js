@@ -277,7 +277,7 @@ $(document).ready(function(){
           $(".alignThose").parent(".text").each(function(){
             idAlign.push($(this).data("id"));
           });
-          $.get(apiURL+"/v1/translation/"+idAlign[0]+"/"+idAlign[1]).done(alignTranslations);
+          $.get(apiURL+"/v1/align/"+idAlign[0]+"/"+idAlign[1]).done(alignTranslations);
         });
       });
       $cta.off("click").on("click",function(){
@@ -443,7 +443,7 @@ $(document).ready(function(){
 
   function sendAlign(data,pair){
     console.log('sending');
-    $.post(apiURL+"/v1/translation/align",{pair:pair,data:JSON.stringify(data)});
+    $.post(apiURL+"/v1/align",{pair:pair,data:JSON.stringify(data)});
   }
 
   function addNewImage(id_entity){
