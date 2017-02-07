@@ -259,8 +259,8 @@ $(document).ready(function(){
       $entity.append('<h2>External text(s)</h2>');
       $entity.append('<ul class="texts">');
       $entity.children("ul.texts").append('<li class="newStuff" id="newText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new external text</li>');
-      for (var j = 0; j < data.entities[i].text.length; j++) {
-        $entity.children("ul.texts").append('<li class="langText">['+data.entities[i].text[j].translation[0].family+' / '+data.entities[i].text[j].translation[0].lang+']</li><li class="textText" data-id="'+data.entities[i].text[j].id+'">'+nl2br(data.entities[i].text[j].translation[0].text_translated)+'</li>');
+      for (var j = 0; j < data.entities[i].texts.length; j++) {
+        $entity.children("ul.texts").append('<li class="langText">['+data.entities[i].texts[j].translation[0].family+' / '+data.entities[i].texts[j].translation[0].lang+']</li><li class="textText" data-id="'+data.entities[i].texts[j].id+'">'+nl2br(data.entities[i].texts[j].translation[0].text_translated)+'</li>');
       }
 
       $target.append($entity);
