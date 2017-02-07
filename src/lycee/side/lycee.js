@@ -315,9 +315,9 @@ $(document).ready(function(){
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
             currentWord = Number(word)+Number(k)+1;
-            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").hover(function(){
-              hoverHighlight(thisData,$(this));
-            },function(){cleanHoverHightlight();});
+            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight")
+            .hover(function(){hoverHighlight(thisData,$(this));},function(){cleanHoverHightlight();})
+            .on("click",function(){clickHighlight(thisData,$(this))});
           }
           else{
             $word = " "+data[i][j][k].p+" ";
@@ -332,9 +332,11 @@ $(document).ready(function(){
     }
   }
 
+  function clickHighlight(data,$el){
+    $el.toggleClass('hardhighlighted');
+  }
+
   function hoverHighlight(data,$el){
-    console.log(data);
-    console.log(data[$el.data("text")][$el.data("vers")][$el.data("word")].h);
     var highlight = data[$el.data("text")][$el.data("vers")][$el.data("word")].h;
     $(".highlighted").removeClass("highlighted");
     for (var i = 0; i < highlight.length; i++) {
