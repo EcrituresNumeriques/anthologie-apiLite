@@ -361,7 +361,7 @@ $(document).ready(function(){
         });
 
         //clean all hardhighlighted
-        alignementClick = [];
+        alignementClick = [$el.parent(".alignement")];
         $('.hardhighlighted').removeClass('hardhighlighted');
         console.log("validate, fire the json");
       }
