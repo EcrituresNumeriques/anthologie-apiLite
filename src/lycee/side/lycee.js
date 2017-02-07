@@ -330,6 +330,7 @@ $(document).ready(function(){
   }
 
   function clickHighlight(){
+    console.log(thisData);
     console.log($(this).data("text"));
   }
 
