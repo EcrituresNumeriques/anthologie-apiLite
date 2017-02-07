@@ -339,10 +339,12 @@ $(document).ready(function(){
     $(".highlighted").removeClass("highlighted");
     for (var i = 0; i < highlight.length; i++) {
       for (var j = 0; j < highlight[i].length; j++) {
-        console.log("text"+i+j);
         $("#"+i+'-'+j).addClass("highlighted");
       }
     }
+  }
+  cleanHoverHightlight(){
+    $(".highlighted").removeClass("highlighted");
   }
 
   function sendAlign(){
