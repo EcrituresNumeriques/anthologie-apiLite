@@ -316,7 +316,7 @@ $(document).ready(function(){
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
             currentWord = Number(word)+Number(k);
-            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").on("click",function(){
+            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").on("hover",function(){
               clickHighlight(thisData,$(this));
             });
           }
@@ -336,6 +336,13 @@ $(document).ready(function(){
   function clickHighlight(data,$el){
     console.log(data);
     console.log(data[$el.data("text")][$el.data("vers")][$el.data("word")].h);
+    var highlight = data[$el.data("text")][$el.data("vers")][$el.data("word")].h;
+    $(".highlighted").removeClass("highlighted");
+    for (var i = 0; i < highlight.length; i++) {
+      for (var j = 0; j < array.length; j++) {
+        $("#"+i+'-'+j).addClass("highlighted");
+      }
+    }
   }
 
   function sendAlign(){
