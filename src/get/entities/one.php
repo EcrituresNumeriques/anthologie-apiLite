@@ -86,12 +86,12 @@ unset($scholies);
 
 //filter textss
 $rawTexts = $getTexts->fetchAll(PDO::FETCH_ASSOC);
-foreach ($rawTexts as $translation) {
-  $texts[$translation['texts_id']]['id'] = $translation['texts_id'];
-  $texts[$translation['texts_id']]['translation'][] = array(
-    "family"=>$translation['family'],
-    "lang"=>$translation['name'],
-    "text_translated"=>$translation['text_translated']
+foreach ($rawTexts as $translationT) {
+  $texts[$translationT['texts_id']]['id'] = $translationT['texts_id'];
+  $texts[$translationT['texts_id']]['translation'][] = array(
+    "family"=>$translationT['family'],
+    "lang"=>$translationT['name'],
+    "text_translated"=>$translationT['text_translated']
   );
 }
 $unorderedTexts = array();
