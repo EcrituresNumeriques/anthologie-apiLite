@@ -20,7 +20,7 @@ $pair = $_GET['id'].";".$_GET['id2'];
 $getAlign->bindParam(":pair",$pair);
 $getAlign->execute() or die('unable to get alignements');
 
-if($getAlign->rowCount > 0){
+if($getAlign->rowCount() > 0){
   $data['align'] = $getAlign->fetch(PDO::FETCH_ASSOC);
   $data['align']['json'] = json_decode($data['align']['json']);
 }
@@ -77,24 +77,4 @@ function versJSON($vers,$word,$textNbr,$textMax){
     }
     return $return;
 }
-
-
-
-/*
-JSON model :
-
->[
-  [
-    [{"t":"hello","hl":[[1],[1]]},{"p":","},{"t":"world","hl":[[3],[3]]}],
-    []
-  ],
-  [
-    [],
-    []
-  ]
-]
-
-*/
-
-
 ?>
