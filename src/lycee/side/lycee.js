@@ -337,11 +337,10 @@ $(document).ready(function(){
       $form.append($text);
     }
     $alignThose = $('<nav id="alignThose">');
-    $alignThose.append('<p class="alignCTA" id="validateAlign"><i class="fa fa-check" aria-hidden="true"></i></p>');
-    $alignThose.append('<p class="alignCTA" id="cancelAlign"><i class="fa fa-times" aria-hidden="true"></i></p>');
-    $alignThose.append('<p class="alignCTA" id="sendAlign"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send to server</p>');
-    $form.append($alignThose);
-    $("#validateAlign").off("click").on("click",function(){
+    $validateAlign = $('<p class="alignCTA" id="validateAlign"><i class="fa fa-check" aria-hidden="true"></i></p>');
+    $cancelAlign = $('<p class="alignCTA" id="cancelAlign"><i class="fa fa-times" aria-hidden="true"></i></p>');
+    $sendAlign = $('<p class="alignCTA" id="sendAlign"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send to server</p>');
+    $validateAlign.off("click").on("click",function(){
       if(alignementClick.length === 2){
         var h = [[],[]];
         $('.hardhighlighted').each(function(){
@@ -361,11 +360,13 @@ $(document).ready(function(){
         console.log("validate, fire the json");
       }
     });
-    $("#cancelAlign").off("click").on("click",function(){
+    $cancelAlign.off("click").on("click",function(){
       alignementClick = [];
       $('.hardhighlighted').removeClass('hardhighlighted');
     });
-    $("#sendAlign").off("click").on("click",sendAlign);
+    $sendAlign.off("click").on("click",sendAlign);
+    $alignThose.append($validateAlign).append($cancelAlign).append($sendAlign);
+    $form.append($alignThose);
   }
 
   function clickHighlight(data,$el,alignementClick){
