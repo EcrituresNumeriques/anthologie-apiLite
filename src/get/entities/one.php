@@ -67,12 +67,12 @@ unset($authors);
 //filter scholies
 $rawScholies = $getScholies->fetchAll(PDO::FETCH_ASSOC);
 foreach ($rawScholies as $translation) {
-  $scholies[$translation['scholies_id']]['id'] = $translation['scholies_id']
+  $scholies[$translation['scholies_id']]['id'] = $translation['scholies_id'];
   $scholies[$translation['scholies_id']]['translation'][] = array(
     "family"=>$translation['family'],
     "name"=>$translation['name'],
     "text_translated"=>$translation['text_translated']
-  )
+  );
 }
 $unorderedScholies = array();
 foreach ($scholies as $key => $value) {
