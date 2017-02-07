@@ -24,9 +24,9 @@ try{
   $getImages->bindParam(":baseURL",$baseURl);
   $getImages->execute();
 
-  $getScholies = $db->prepare("SELECT * FROM entities_scholies_assoc esa JOIN scholies_translations st ON esa.scholies_id = st.scholie_id JOIN languages l ON st.language_id = l.id WHERE esa.entities_id = :id ORDER BY scholies_id ASC")
+  $getScholies = $db->prepare("SELECT * FROM entities_scholies_assoc esa JOIN scholies_translations st ON esa.scholies_id = st.scholie_id JOIN languages l ON st.language_id = l.id WHERE esa.entities_id = :id ORDER BY scholies_id ASC");
   $getScholies->bindParam(":id",$_GET['entity']);
-  $getScholies->execute()
+  $getScholies->execute();
 
 }
 catch(Exception $e){
