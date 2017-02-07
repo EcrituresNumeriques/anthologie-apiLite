@@ -341,7 +341,6 @@ $(document).ready(function(){
     if(alignementClick.length === 2){
       //check if element parent is the firstClicked
       if($el.parent(".alignement").is(alignementClick[0]) && !$el.hasClass('hardhighlighted')){
-
         //update JSON
 
         //generate h
@@ -358,6 +357,12 @@ $(document).ready(function(){
         alignementClick = [];
         $('.hardhighlighted').removeClass('hardhighlighted');
         console.log("BOOM, fire the json");
+      }
+      //else hardhighlighted have been removed
+      else if($el.parent(".alignement").is(alignementClick[0]) && $el.hasClass('hardhighlighted') && alignementClick[0].children(".hardhighlighted").length === 1){
+        alignementClick = [];
+        $('.hardhighlighted').removeClass('hardhighlighted');
+        console.log("abord everything");
       }
     }
     //check if el parent is the current
