@@ -305,6 +305,7 @@ $(document).ready(function(){
 
   function appendAlign($form,data){
     //for each text, create a paragraphe
+    var thisData = data;
     for (var i = 0; i < data.length; i++) {
       $text = $('<p class="alignement" data-texte="'+i+'">');
       var word = 0;
@@ -314,7 +315,9 @@ $(document).ready(function(){
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
             currentWord = Number(word)+Number(k);
-            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").on("click",clickHighlight);
+            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").on("click",function(){
+              clickHighlight(thisData);
+            });
           }
           else{
             $word = " "+data[i][j][k].p+" ";
@@ -329,8 +332,8 @@ $(document).ready(function(){
     }
   }
 
-  function clickHighlight(){
-    console.log(thisData);
+  function clickHighlight(data){
+    console.log(data);
     console.log($(this).data("text"));
   }
 
