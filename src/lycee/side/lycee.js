@@ -529,6 +529,7 @@ $(document).ready(function(){
   }
 
   function sendNewTranslation(){
+    cleanDisplay();
     displayLoading('sending');
     $.post(apiURL+"/v1/translations/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
     .done(function(data){
@@ -569,6 +570,7 @@ $(document).ready(function(){
     $ctaSide.off("click").on("click",hideAside);
   }
   function sendNewScholie(){
+    cleanDisplay();
     displayLoading('sending');
     $.post(apiURL+"/v1/scholie/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
     .done(function(data){
@@ -608,6 +610,7 @@ $(document).ready(function(){
     $ctaSide.off("click").on("click",hideAside);
   }
   function sendNewText(){
+    cleanDisplay();
     displayLoading('sending');
     $.post(apiURL+"/v1/text/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
     .done(function(data){
