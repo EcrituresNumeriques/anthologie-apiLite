@@ -7,7 +7,7 @@ if(empty($_POST['data'])){
   errorJSON('JSON data align not specified',400);
 }
 
-if($_POST['data'] != json_encode(json_decode($_POST['data']))){
+if(count(json_decode($_POST['data'])) != 2){
   errorJSON('JSON data align not proper JSON',400);
 }
 
