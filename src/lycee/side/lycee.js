@@ -314,7 +314,7 @@ $(document).ready(function(){
         //for every word, append to $text
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
-            currentWord = Number(word)+Number(k);
+            currentWord = Number(word)+Number(k)+1;
             $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").hover(function(){
               hoverHighlight(thisData,$(this));
             },function(){cleanHoverHightlight();});
@@ -339,7 +339,7 @@ $(document).ready(function(){
     $(".highlighted").removeClass("highlighted");
     for (var i = 0; i < highlight.length; i++) {
       for (var j = 0; j < highlight[i].length; j++) {
-        $("#"+i+'-'+j).addClass("highlighted");
+        $("#"+i+'-'+highlight[i][j]).addClass("highlighted");
       }
     }
   }
