@@ -28,6 +28,10 @@ try{
   $getScholies->bindParam(":id",$_GET['entity']);
   $getScholies->execute();
 
+  $getTexts = $db->prepare("SELECT * FROM entities_texts_assoc esa JOIN texts_translations st ON esa.texts_id = st.text_id JOIN languages l ON st.language_id = l.id WHERE esa.entities_id = :id ORDER BY texts_id ASC");
+  $getTexts->bindParam(":id",$_GET['entity']);
+  $getTexts->execute();
+
 }
 catch(Exception $e){
   errorJSON('SQL error : ' . $e->getMessage(),500);
@@ -80,6 +84,22 @@ foreach ($scholies as $key => $value) {
 }
 unset($scholies);
 
+//filter textss
+$rawTexts = $getTexts->fetchAll(PDO::FETCH_ASSOC);
+foreach ($rawTexts as $translation) {
+  $texts[$translation['texts_id']]['id'] = $translation['texts_id'];
+  $texts[$translation['texts_id']]['translation'][] = array(
+    "family"=>$translation['family'],
+    "lang"=>$translation['name'],
+    "text_translated"=>$translation['text_translated']
+  );
+}
+$unorderedTexts = array();
+foreach ($texts as $key => $value) {
+  array_push($unorderedTexts,$value);
+}
+unset($texts);
+
 
 //put in $data : Vue
 $data['entities'] = $getEntities->fetchAll(PDO::FETCH_ASSOC);
@@ -88,4 +108,5 @@ $data['entities'][0]['translation'] = $getTitleTranslation->fetchAll(PDO::FETCH_
 $data['entities'][0]['URI'] = $getURI->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['images'] = $getImages->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['scholies'] = $unorderedScholies;
+$data['entities'][0]['texts'] = $unorderedTexts;
 ?>
