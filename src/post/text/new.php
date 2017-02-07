@@ -8,17 +8,17 @@ if(is_numeric($_POST['entity']) && is_numeric($_POST['language']) && !empty($_PO
     $insertTexts->bindParam(":group",$user['user']['groups'][0]);
     $insertTexts->execute() or die('Unable to add texts');
 
-    $TextsID = $db->lastInsertId();
+    $textsID = $db->lastInsertId();
 
     //assoc this Texts with entity
-    $assocTexts = $db->prepare("INSERT INTO entities_texts_assoc (entities_id,Textss_id) VALUES (:entity,:texts)");
+    $assocTexts = $db->prepare("INSERT INTO entities_texts_assoc (entities_id,texts_id) VALUES (:entity,:texts)");
     $assocTexts->bindParam(":entity",$_POST['entity']);
     $assocTexts->bindParam(":texts", $TextsID);
     $assocTexts->execute() or die('Unable to assoc texts');
 
     //translate this Texts
     $translateTexts = $db->prepare("INSERT INTO texts_translations (texts_id,user_id,group_id,language_id,text_translated,created_at,updated_at) VALUES (:textid, :user, :group, :language, :text, NOW(), NOW())");
-    $translateTexts->bindParam(":textid", $TextsID);
+    $translateTexts->bindParam(":textid", $textsID);
     $translateTexts->bindParam(":user",$user['user']['id']);
     (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
     $translateTexts->bindParam(":group",$user['user']['groups'][0]);
