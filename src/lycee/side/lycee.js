@@ -292,13 +292,8 @@ $(document).ready(function(){
     resetSide("Align");
     $form = $('<nav>');
     $form.append('<h2>Align Translations</h2>');
-    appendAlign($form,data.align.json);
     var thisData = data.align.json;
-    console.log($(".highlight"));
-    $(".highlight").off('click').on("click",function(){
-      console.log("click");
-      console.log(thisData[$(this).data('text')][$(this).data('vers')][$(this).data('word')].h);
-    });
+    appendAlign($form, thisData);
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[0].text_translated)+'</p>');
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[1].text_translated)+'</p>');
     $form.append('<input type="button" class="block right" value="submit">');
