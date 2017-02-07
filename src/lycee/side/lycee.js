@@ -335,7 +335,7 @@ $(document).ready(function(){
 
   function clickHighlight(data,$el){
     console.log(data);
-    console.log($el.data("text"));
+    console.log(data[$el.data("text")][$el.data("vers")][$el.data("word")].t);
   }
 
   function sendAlign(){
