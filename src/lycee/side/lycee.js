@@ -339,7 +339,7 @@ $(document).ready(function(){
     var highlight = data[$el.data("text")][$el.data("vers")][$el.data("word")].h;
     $(".highlighted").removeClass("highlighted");
     for (var i = 0; i < highlight.length; i++) {
-      for (var j = 0; j < array.length; j++) {
+      for (var j = 0; j < highlight[i].length; j++) {
         console.log("text"+i+j);
         $("#"+i+'-'+j).addClass("highlighted");
       }
