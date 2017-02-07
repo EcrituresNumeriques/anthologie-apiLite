@@ -17,6 +17,7 @@
 }
 #side.Align p.alignement{
   margin:2em;
+
 }
 #side.Align .highlight{
   padding:4px;
@@ -69,6 +70,27 @@
   width: 20em;
 }
 
+.noSelect{
+  user-select: none;
+user-select: auto;
+user-select: text;
+user-select: contain;
+user-select: all;
+
+-moz-user-select: none;
+-moz-user-select: text;
+-moz-user-select: all;
+
+-webkit-user-select: none;
+-webkit-user-select: text;
+-webkit-user-select: all;
+/* ne fonctionne pas dans Safari, seules les
+   valeurs "none" et "text" fonctionnent */
+
+-ms-user-select: none;
+-ms-user-select: text;
+-ms-user-select: element;
+}
 
 .newStuff{
   background-color: #27ae60;

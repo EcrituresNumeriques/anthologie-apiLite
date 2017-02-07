@@ -308,7 +308,7 @@ $(document).ready(function(){
     var thisData = data;
     var alignementClick = [];
     for (var i = 0; i < data.length; i++) {
-      $text = $('<p class="alignement" data-texte="'+i+'">');
+      $text = $('<p class="alignement noSelect" data-texte="'+i+'">');
       var word = 0;
       //for each line, start adding the words
       for (var j = 0; j < data[i].length; j++) {
