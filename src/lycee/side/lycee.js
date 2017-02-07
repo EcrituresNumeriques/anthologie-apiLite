@@ -256,6 +256,13 @@ $(document).ready(function(){
         $entity.children("ul.scholies").append('<li class="langScholie">['+data.entities[i].scholies[j].translation[0].family+' / '+data.entities[i].scholies[j].translation[0].lang+']</li><li class="textScholie" data-id="'+data.entities[i].scholies[j].id+'">'+nl2br(data.entities[i].scholies[j].translation[0].text_translated)+'</li>');
       }
 
+      $entity.append('<h2>External text(s)</h2>');
+      $entity.append('<ul class="texts">');
+      $entity.children("ul.texts").append('<li class="newStuff" id="newText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new external text</li>');
+      for (var j = 0; j < data.entities[i].text.length; j++) {
+        $entity.children("ul.texts").append('<li class="langText">['+data.entities[i].text[j].translation[0].family+' / '+data.entities[i].text[j].translation[0].lang+']</li><li class="textText" data-id="'+data.entities[i].text[j].id+'">'+nl2br(data.entities[i].text[j].translation[0].text_translated)+'</li>');
+      }
+
       $target.append($entity);
       hideCTA();
       $cta.append('<p>Back to URI input</p>');
@@ -268,6 +275,10 @@ $(document).ready(function(){
       $("#newScholie").on("click",function(){
         cleanDisplay();
         addNewScholie(thisData.entities[0].id_entity);
+      });
+      $("#newText").on("click",function(){
+        cleanDisplay();
+        addNewText(thisData.entities[0].id_entity);
       });
       $("#newImage").on("click",function(){
         cleanDisplay();
@@ -567,6 +578,45 @@ $(document).ready(function(){
     })
     .fail(function(data){
       displayError('Unable to add new scholie');
+      loadEntity($("#entityId").val());
+    })
+    .always(function(data){
+      hideLoading();
+    });
+  }
+  function addNewText(id_entity){
+    resetSide("newTranslation");
+    $form = $("<form>");
+    $form.append('<h2>Add a new external text</h2>');
+    $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
+    $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
+    $form.append('<textarea id="textTranslation" name="translation" placeholder="type in your translation" class="block full"></textarea>');
+    $form.append('<input type="button" class="block right" value="submit">');
+    $form.children("input[type=button]").off("click").on("click",sendNewText);
+
+    $aside.append($form);
+    displayLoading('loading languages');
+    $.get(apiURL+"/v1/languages")
+    .done(selectLanguages)
+    .fail(function(){
+      displayError('Unable to get languages');
+    })
+    .always(function(){
+      hideLoading();
+    });
+    $ctaSide.append('<p id="goToEntity">Cancel</p>');
+    $ctaSide.off("click").on("click",hideAside);
+  }
+  function sendNewText(){
+    displayLoading('sending');
+    $.post(apiURL+"/v1/text/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
+    .done(function(data){
+      displaySuccess('New text added');
+      loadEntity($("#entityId").val());
+      hideAside();
+    })
+    .fail(function(data){
+      displayError('Unable to add new text');
       loadEntity($("#entityId").val());
     })
     .always(function(data){
