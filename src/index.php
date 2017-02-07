@@ -110,6 +110,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //add new align
+    elseif($_GET['page'] == "updateAlign"){
+      include('post/align/update.php');
+    }
 
     //add new language
     elseif ($_GET['page'] == "newLanguage") {

@@ -443,7 +443,7 @@ $(document).ready(function(){
 
   function sendAlign(data,pair){
     console.log('sending');
-    $.post(apiURL+"/v1/align",{pair:pair,data:JSON.stringify(data)});
+    $.post(apiURL+"/v1/align",{time:token.time,user:token.user,token:token.token,pair:pair,data:JSON.stringify(data)});
   }
 
   function addNewImage(id_entity){
