@@ -343,7 +343,7 @@ $(document).ready(function(){
       }
     }
   }
-  cleanHoverHightlight(){
+  function cleanHoverHightlight(){
     $(".highlighted").removeClass("highlighted");
   }
 
