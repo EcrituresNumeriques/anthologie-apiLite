@@ -387,7 +387,9 @@ $(document).ready(function(){
       alignementClick.push($el.parent(".alignement"));
     }
     var returnArray = {alignementClick:alignementClick,data:data};
+    console.log(abord);
     if(!abord){
+      console.log("noToggle");
       $el.toggleClass('hardhighlighted');
     }
     return returnArray;
