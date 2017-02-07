@@ -296,9 +296,7 @@ $(document).ready(function(){
     appendAlign($form, thisData);
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[0].text_translated)+'</p>');
     //$form.append('<p style="margin:2em 0">'+nl2br(data.translation[1].text_translated)+'</p>');
-    $form.append('<input type="button" class="block right" value="submit">');
     $aside.append($form);
-    $form.children("input[type=button]").off("click").on("click",sendAlign);
     $ctaSide.append('<p id="goToEntity">Cancel</p>');
     $ctaSide.off("click").on("click",hideAside);
   }
@@ -338,6 +336,36 @@ $(document).ready(function(){
       }
       $form.append($text);
     }
+    $alignThose = $('<nav id="alignThose">');
+    $alignThose.append('<p class="alignCTA" id="validateAlign"><i class="fa fa-check" aria-hidden="true"></i></p>');
+    $alignThose.append('<p class="alignCTA" id="cancelAlign"><i class="fa fa-times" aria-hidden="true"></i></p>');
+    $alignThose.append('<p class="alignCTA" id="sendAlign"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send to server</p>');
+    $form.append($alignThose);
+    $("#validateAlign").off("click").on("click",function(){
+      if(alignementClick.length === 2){
+        var h = [[],[]];
+        $('.hardhighlighted').each(function(){
+          h[$(this).data("text")].push($(this).data("pos"));
+        });
+        if(h[0].length>0 && h[1].length > 0){
+          $('.hardhighlighted').addClass("washighlighted");
+        }
+        //assign h to all hardhighlighted
+        $('.hardhighlighted').each(function(){
+          data[$(this).data("text")][$(this).data("vers")][$(this).data("word")].h = h;
+        });
+
+        //clean all hardhighlighted
+        alignementClick = [];
+        $('.hardhighlighted').removeClass('hardhighlighted');
+        console.log("validate, fire the json");
+      }
+    });
+    $("#cancelAlign").off("click").on("click",function(){
+      alignementClick = [];
+      $('.hardhighlighted').removeClass('hardhighlighted');
+    });
+    $("#sendAlign").off("click").on("click",sendAlign);
   }
 
   function clickHighlight(data,$el,alignementClick){

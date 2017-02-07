@@ -34,6 +34,14 @@
 #side.Align .highlight.hardhighlighted{
     background-color:#82FA58;
 }
+#side.Align .alignCTA{
+  padding:0.5em;
+  margin-left: 1em;
+  display: inline-block;
+  color:white;
+  cursor: pointer;s
+}
+
 #container{
   flex:0 0 auto;
 }
@@ -44,15 +52,15 @@
   text-align: center;
 }
 
-#error{
+#error,#side.Align #cancelAlign.alignCTA{
   background-color: #c0392b;
 }
 
-#waiting{
+#waiting,#side.Align #sendAlign.alignCTA{
   background-color: #2c3e50;
 }
 
-#success{
+#success,#side.Align #validateAlign.alignCTA{
   background-color:#27ae60;
 }
 #cta,#ctaSide{
