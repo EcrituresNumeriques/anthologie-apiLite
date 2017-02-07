@@ -340,6 +340,10 @@ $(document).ready(function(){
     if(alignementClick.length === 2){
       //check if element parent is the firstClicked
       if($el.parent(".alignement").is(alignementClick[0]) && !$el.hasClass('hardhighlighted')){
+        //clean all hardhighlighted
+        alignementClick = [];
+        $('.hardhighlighted').removeClass('hardhighlighted');
+        //update JSON
         console.log("BOOM, fire the json");
       }
     }
