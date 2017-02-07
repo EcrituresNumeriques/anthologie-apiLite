@@ -329,7 +329,7 @@ $(document).ready(function(){
     }
   }
 
-  function clickHighlight($(this)){
+  function clickHighlight(){
     console.log($(this).data("text"));
   }
 
