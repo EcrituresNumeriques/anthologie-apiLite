@@ -70,7 +70,7 @@ foreach ($rawScholies as $translation) {
   $scholies[$translation['scholies_id']]['id'] = $translation['scholies_id'];
   $scholies[$translation['scholies_id']]['translation'][] = array(
     "family"=>$translation['family'],
-    "name"=>$translation['name'],
+    "lang"=>$translation['name'],
     "text_translated"=>$translation['text_translated']
   );
 }
