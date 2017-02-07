@@ -17,7 +17,7 @@ if(is_numeric($_POST['entity']) && is_numeric($_POST['language']) && !empty($_PO
     $assocTexts->execute() or die('Unable to assoc texts');
 
     //translate this Texts
-    $translateTexts = $db->prepare("INSERT INTO texts_translations (text_id,user_id,group_id,language_id,text_translated,created_at,updated_at) VALUES (:textid, :user, :group, :language, :text, NOW(), NOW())");
+    $translateTexts = $db->prepare("INSERT INTO texts_translations (text_id,user_id,group_id,language_id,text,created_at,updated_at) VALUES (:textid, :user, :group, :language, :text, NOW(), NOW())");
     $translateTexts->bindParam(":textid", $textsID);
     $translateTexts->bindParam(":user",$user['user']['id']);
     (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
