@@ -27,6 +27,7 @@ ErrorDocument 404 /index.php?page=404
     RewriteRule ^/?v1/images/new$ index.php?page=newImage [L,QSA]
     RewriteRule ^/?v1/URIs/addURId$ index.php?page=addURId [L,QSA]
     RewriteRule ^/?v1/align$ index.php?page=updateAlign [L,QSA]
+    RewriteRule ^/?v1/scholie/new$ index.php?page=newScholie [L,QSA]
 
 
     rewriteRule ^/?$ app/app.html [L]

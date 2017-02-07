@@ -126,6 +126,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif($_GET['page'] == "newImage"){
       include('post/images/new.php');
     }
+    //add new scholie
+    elseif($_GET['page'] == "newScholie"){
+      include('post/scholie/new.php');
+    }
 
     //add new keyword
 
