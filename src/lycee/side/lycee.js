@@ -249,6 +249,10 @@ $(document).ready(function(){
         $entity.children("ul.images").append('<li class="img"><a href="'+data.entities[i].images[j].URL+'" target="_blank"><img src="'+data.entities[i].images[j].URL+'"></a</li>');
       }
 
+      $entity.append('<h2>Scholie(s)</h2>');
+      $entity.append('<ul class="scholies">');
+      $entity.children("ul.scholies").append('<li class="newStuff" id="newScholie"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Scholie</li>');
+
       $target.append($entity);
       hideCTA();
       $cta.append('<p>Back to URI input</p>');
@@ -257,6 +261,10 @@ $(document).ready(function(){
       $("#newTranslation").on("click",function(){
         cleanDisplay();
         addNewTranslation(thisData.entities[0].id_entity);
+      });
+      $("#newScholie").on("click",function(){
+        cleanDisplay();
+        addNewScholie(thisData.entities[0].id_entity);
       });
       $("#newImage").on("click",function(){
         cleanDisplay();
@@ -516,6 +524,46 @@ $(document).ready(function(){
     })
     .fail(function(data){
       displayError('Unable to add new translation');
+      loadEntity($("#entityId").val());
+    })
+    .always(function(data){
+      hideLoading();
+    });
+  }
+
+  function addNewScholie(id_entity){
+    resetSide("newTranslation");
+    $form = $("<form>");
+    $form.append('<h2>Add a new Scholie</h2>');
+    $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
+    $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
+    $form.append('<textarea id="textTranslation" name="translation" placeholder="type in your translation" class="block full"></textarea>');
+    $form.append('<input type="button" class="block right" value="submit">');
+    $form.children("input[type=button]").off("click").on("click",sendNewScholie);
+
+    $aside.append($form);
+    displayLoading('loading languages');
+    $.get(apiURL+"/v1/languages")
+    .done(selectLanguages)
+    .fail(function(){
+      displayError('Unable to get languages');
+    })
+    .always(function(){
+      hideLoading();
+    });
+    $ctaSide.append('<p id="goToEntity">Cancel</p>');
+    $ctaSide.off("click").on("click",hideAside);
+  }
+  function sendNewScholie(){
+    displayLoading('sending');
+    $.post(apiURL+"/v1/scholie/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textTranslation").val(),entity:$("#entityId").val()})
+    .done(function(data){
+      displaySuccess('New scholie added');
+      loadEntity($("#entityId").val());
+      hideAside();
+    })
+    .fail(function(data){
+      displayError('Unable to add new scholie');
       loadEntity($("#entityId").val());
     })
     .always(function(data){
