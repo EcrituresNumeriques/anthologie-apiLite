@@ -130,6 +130,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif($_GET['page'] == "newScholie"){
       include('post/scholie/new.php');
     }
+    //add new text
+    elseif($_GET['page'] == "newText"){
+      include('post/text/new.php');
+    }
 
     //add new keyword
 
