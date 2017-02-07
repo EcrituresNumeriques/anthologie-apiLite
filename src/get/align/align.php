@@ -22,6 +22,7 @@ $getAlign->execute() or die('unable to get alignements');
 
 if($getAlign->rowCount > 0){
   $data['align'] = $getAlign->fetch(PDO::FETCH_ASSOC);
+  $data['align']['json'] = json_decode($data['align']['json']);
 }
 else{
   $getTranslations = $db->prepare("SELECT * FROM `entities_translations` where id = :id OR id = :id2");
