@@ -366,7 +366,7 @@ $(document).ready(function(){
       $('.hardhighlighted').removeClass('hardhighlighted');
     });
     var thisPair = pair
-    $sendAlign.off("click").on("click",function(){sendAlign(thisData,thisPair});
+    $sendAlign.off("click").on("click",function(){sendAlign(thisData,thisPair);});
     $alignThose.append($validateAlign).append($cancelAlign).append($sendAlign);
     $form.append($alignThose);
   }
