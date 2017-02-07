@@ -278,7 +278,6 @@ $(document).ready(function(){
             idAlign.push($(this).data("id"));
           });
           $.get(apiURL+"/v1/translation/"+idAlign[0]+"/"+idAlign[1]).done(alignTranslations);
-          console.log(idAlign);
         });
       });
       $cta.off("click").on("click",function(){
@@ -316,9 +315,9 @@ $(document).ready(function(){
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
             currentWord = Number(word)+Number(k);
-            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").on("hover",function(){
-              clickHighlight(thisData,$(this));
-            });
+            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight").hover(function(){
+              hoverHighlight(thisData,$(this));
+            },function(){cleanHoverHightlight();});
           }
           else{
             $word = " "+data[i][j][k].p+" ";
@@ -333,7 +332,7 @@ $(document).ready(function(){
     }
   }
 
-  function clickHighlight(data,$el){
+  function hoverHighlight(data,$el){
     console.log(data);
     console.log(data[$el.data("text")][$el.data("vers")][$el.data("word")].h);
     var highlight = data[$el.data("text")][$el.data("vers")][$el.data("word")].h;
