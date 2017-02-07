@@ -13,7 +13,7 @@ if(is_numeric($_POST['entity']) && is_numeric($_POST['language']) && !empty($_PO
     //assoc this Texts with entity
     $assocTexts = $db->prepare("INSERT INTO entities_texts_assoc (entities_id,texts_id) VALUES (:entity,:texts)");
     $assocTexts->bindParam(":entity",$_POST['entity']);
-    $assocTexts->bindParam(":texts", $TextsID);
+    $assocTexts->bindParam(":texts", $textsID);
     $assocTexts->execute() or die('Unable to assoc texts');
 
     //translate this Texts
