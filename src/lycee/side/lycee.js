@@ -253,7 +253,7 @@ $(document).ready(function(){
       $entity.append('<ul class="scholies">');
       $entity.children("ul.scholies").append('<li class="newStuff" id="newScholie"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new Scholie</li>');
       for (var j = 0; j < data.entities[i].scholies.length; j++) {
-        $entity.children("ul.scholies").append('<li class="lang">['+data.entities[i].scholies[j].translation[0].family+' / '+data.entities[i].scholies[j].translation[0].lang+']</li><li class="text" data-id="'+data.entities[i].scholies[j].id+'">'+nl2br(data.entities[i].scholies[j].translation[0].text_translated)+'</li>');
+        $entity.children("ul.scholies").append('<li class="langScholie">['+data.entities[i].scholies[j].translation[0].family+' / '+data.entities[i].scholies[j].translation[0].lang+']</li><li class="textScholie" data-id="'+data.entities[i].scholies[j].id+'">'+nl2br(data.entities[i].scholies[j].translation[0].text_translated)+'</li>');
       }
 
       $target.append($entity);
