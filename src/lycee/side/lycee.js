@@ -316,11 +316,12 @@ $(document).ready(function(){
         for (var k = 0; k < data[i][j].length; k++) {
           if(typeof(data[i][j][k].t) !== "undefined" && data[i][j][k].t != "")  {
             currentWord = Number(word)+Number(k)+1;
-            $word = $('<span id="'+i+'-'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight")
+            $word = $('<span id="'+i+'-'+currentWord+'" data-pos="'+currentWord+'" data-text="'+i+'" data-vers="'+j+'" data-word="'+k+'">'+data[i][j][k].t+'</span>').addClass("highlight")
             .hover(function(){hoverHighlight(thisData,$(this));},function(){cleanHoverHightlight();})
             .on("click",function(){
               tmp = clickHighlight(thisData,$(this),alignementClick);
               alignementClick = tmp.alignementClick;
+              thisData = tmp.data;
             });
           }
           else{
@@ -340,10 +341,22 @@ $(document).ready(function(){
     if(alignementClick.length === 2){
       //check if element parent is the firstClicked
       if($el.parent(".alignement").is(alignementClick[0]) && !$el.hasClass('hardhighlighted')){
+
+        //update JSON
+
+        //generate h
+        var h = [[],[]];
+        $('.hardhighlighted').each(function(){
+          h[$(this).data("text")].push($(this).data("pos"));
+        });
+        //assign h to all hardhighlighted
+        $('.hardhighlighted').each(function(){
+          data[$(this).data("text")][$(this).data("vers")][$(this).data("word")].h = h;
+        });
+
         //clean all hardhighlighted
         alignementClick = [];
         $('.hardhighlighted').removeClass('hardhighlighted');
-        //update JSON
         console.log("BOOM, fire the json");
       }
     }
@@ -359,7 +372,7 @@ $(document).ready(function(){
       console.log("newClick");
       alignementClick.push($el.parent(".alignement"));
     }
-    var returnArray = {alignementClick:alignementClick};
+    var returnArray = {alignementClick:alignementClick,data:data};
     $el.toggleClass('hardhighlighted');
     return returnArray;
   }
