@@ -371,6 +371,12 @@ $(document).ready(function(){
           console.log("secondClick");
           alignementClick.push($el.parent(".alignement"));
       }
+      //else hardhighlighted have been removed
+      else if($el.parent(".alignement").is(alignementClick[0]) && $el.hasClass('hardhighlighted') && alignementClick[0].children(".hardhighlighted").length === 1){
+        alignementClick = [];
+        $('.hardhighlighted').removeClass('hardhighlighted');
+        console.log("abord everything");
+      }
     }
     //set alignement firstClick
     else{
