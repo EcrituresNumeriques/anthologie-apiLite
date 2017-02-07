@@ -17,7 +17,7 @@ if(is_numeric($_POST['entity']) && is_numeric($_POST['language']) && !empty($_PO
     $assocScholie->execute() or die('Unable to assoc scholie');
 
     //translate this scholie
-    $translateScholie = $db->prepare("INSERT INTO scholies_translation (scholie_id,user_id,group_id,language_id,text_translated,created_at,updated_at) VALUES (:scholie, :user, :group, :language, :text, NOW(), NOW())");
+    $translateScholie = $db->prepare("INSERT INTO scholies_translations (scholie_id,user_id,group_id,language_id,text_translated,created_at,updated_at) VALUES (:scholie, :user, :group, :language, :text, NOW(), NOW())");
     $translateScholie->bindParam(":scholie", $scholieID);
     $translateScholie->bindParam(":user",$user['user']['id']);
     (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
