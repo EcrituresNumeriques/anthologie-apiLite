@@ -70,6 +70,7 @@ unset($authors);
 
 //filter scholies
 $rawScholies = $getScholies->fetchAll(PDO::FETCH_ASSOC);
+if(count($rawScholies)>0){
 foreach ($rawScholies as $translation) {
   $scholies[$translation['scholies_id']]['id'] = $translation['scholies_id'];
   $scholies[$translation['scholies_id']]['translation'][] = array(
@@ -83,9 +84,16 @@ foreach ($scholies as $key => $value) {
   array_push($unorderedScholies,$value);
 }
 unset($scholies);
+}
+else{
+  $unorderedScholies = [];
+}
+
+
 
 //filter textss
 $rawTexts = $getTexts->fetchAll(PDO::FETCH_ASSOC);
+if(count($rawTexts) > 0){
 foreach ($rawTexts as $translationT) {
   $texts[$translationT['texts_id']]['id'] = $translationT['texts_id'];
   $texts[$translationT['texts_id']]['translation'][] = array(
@@ -99,6 +107,10 @@ foreach ($texts as $key => $value) {
   array_push($unorderedTexts,$value);
 }
 unset($texts);
+}
+else{
+  $unorderedTexts = [];
+}
 
 
 //put in $data : Vue
