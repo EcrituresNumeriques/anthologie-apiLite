@@ -15,7 +15,7 @@ if($_GET['id'] > $_GET['id2']){
 }
 
 
-$getAlign = $db->prepare("SELECT pair,json FROM entities_translations_align WHERE pair = :pair");
+$getAlign = $db->prepare("SELECT pair,json,1 as test FROM entities_translations_align WHERE pair = :pair");
 $pair = $_GET['id'].";".$_GET['id2'];
 $getAlign->bindParam(":pair",$pair);
 $getAlign->execute() or die('unable to get alignements');
