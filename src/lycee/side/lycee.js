@@ -323,6 +323,9 @@ $(document).ready(function(){
               alignementClick = tmp.alignementClick;
               thisData = tmp.data;
             });
+            if(data[i][j][k].h[0].length > 0 && data[i][j][k].h[1].length > 0){
+              $word.addClass("washighlighted");
+            }
           }
           else{
             $word = " "+data[i][j][k].p+" ";
@@ -349,6 +352,9 @@ $(document).ready(function(){
         $('.hardhighlighted').each(function(){
           h[$(this).data("text")].push($(this).data("pos"));
         });
+        if(h[0].length>0 && h[1].length > 0){
+          $('.hardhighlighted').addClass("washighlighted");
+        }
         //assign h to all hardhighlighted
         $('.hardhighlighted').each(function(){
           data[$(this).data("text")][$(this).data("vers")][$(this).data("word")].h = h;
@@ -357,13 +363,12 @@ $(document).ready(function(){
         //clean all hardhighlighted
         alignementClick = [];
         $('.hardhighlighted').removeClass('hardhighlighted');
-        console.log("BOOM, fire the json");
+        console.log("validate, fire the json");
       }
       //else hardhighlighted have been removed
       else if($el.parent(".alignement").is(alignementClick[0]) && $el.hasClass('hardhighlighted') && alignementClick[0].children(".hardhighlighted").length === 1){
         alignementClick = [];
         $('.hardhighlighted').removeClass('hardhighlighted');
-        console.log("abord everything");
         abord = true;
       }
     }
@@ -378,18 +383,15 @@ $(document).ready(function(){
         alignementClick = [];
         $('.hardhighlighted').removeClass('hardhighlighted');
         abord = true;
-        console.log("abord everything");
       }
     }
     //set alignement firstClick
     else{
-      console.log("newClick");
+      console.log("firstClick");
       alignementClick.push($el.parent(".alignement"));
     }
     var returnArray = {alignementClick:alignementClick,data:data};
-    console.log(abord);
     if(!abord){
-      console.log("noToggle");
       $el.toggleClass('hardhighlighted');
     }
     return returnArray;
