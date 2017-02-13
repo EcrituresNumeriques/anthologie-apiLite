@@ -299,7 +299,7 @@ $(document).ready(function(){
           $(".alignThose").parent(".text").each(function(){
             idAlign.push($(this).data("id"));
           });
-          $.get(apiURL+"/v1/align/"+idAlign[0]+"/"+idAlign[1]).done(alignTranslations);
+          $.get(apiURL+"/v1/align/"+idAlign[0]+"/"+idAlign[1],{time:token.time,user:token.user,token:token.token}).done(alignTranslations);
         });
       });
       $cta.off("click").on("click",function(){

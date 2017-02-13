@@ -1,5 +1,8 @@
 <?php
-
+$user = checkCredential($_GET['token'],$_GET['user'],$_GET['time'],$db);
+if(empty($user)){
+  errorJSON("Token invalide",400);
+}
 if(empty($_GET['id'])){
   errorJSON('First ID not specified',500);
 }
@@ -15,9 +18,10 @@ if($_GET['id'] > $_GET['id2']){
 }
 
 
-$getAlign = $db->prepare("SELECT pair,json,1 as test FROM entities_translations_align WHERE pair = :pair");
+$getAlign = $db->prepare("SELECT pair,json FROM entities_translations_align WHERE pair = :pair AND user_id = :user");
 $pair = $_GET['id'].";".$_GET['id2'];
 $getAlign->bindParam(":pair",$pair);
+$getAlign->bindParam(":user",$user['user']['id']);
 $getAlign->execute() or die('unable to get alignements');
 
 if($getAlign->rowCount() > 0){
