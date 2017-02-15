@@ -28,9 +28,14 @@ try{
   $getScholies->bindParam(":id",$_GET['entity']);
   $getScholies->execute();
 
+  $getReference = $db->prepare("SELECT r.destination as id, e.title as title FROM entities_references r JOIN entities e ON r.destination = e.id WHERE r.source = :id");
+  $getReference->bindParam(":id",$_GET['entity']);
+  $getReference->execute();
+
   $getTexts = $db->prepare("SELECT * FROM entities_texts_assoc esa JOIN texts_translations st ON esa.texts_id = st.text_id JOIN languages l ON st.language_id = l.id WHERE esa.entities_id = :id ORDER BY texts_id ASC");
   $getTexts->bindParam(":id",$_GET['entity']);
   $getTexts->execute();
+
 
 }
 catch(Exception $e){
@@ -119,6 +124,7 @@ $data['entities'][0]['authors'] = $unorderedAuthors;
 $data['entities'][0]['translation'] = $getTitleTranslation->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['URI'] = $getURI->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['images'] = $getImages->fetchAll(PDO::FETCH_ASSOC);
+$data['entities'][0]['refs'] = $getReference->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['scholies'] = $unorderedScholies;
 $data['entities'][0]['texts'] = $unorderedTexts;
 ?>
