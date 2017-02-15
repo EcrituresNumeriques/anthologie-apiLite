@@ -622,7 +622,7 @@ $(document).ready(function(){
   }
   function selectEntities(data){
     for(i=0;i<data.entities.length;i++){
-      $("#selectDestination").append('<option values="'+data.entities[i].id+'">'+data.entities[i].title+'</option>')
+      $("#selectDestination").append('<option value="'+data.entities[i].id_entity+'">'+data.entities[i].title+'</option>')
     }
   }
   function sendNewRef(){
