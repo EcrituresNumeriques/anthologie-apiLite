@@ -134,7 +134,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif($_GET['page'] == "newText"){
       include('post/text/new.php');
     }
-    }
     //add new reference
     elseif($_GET['page'] == "newRef"){
       include('post/reference/new.php');
