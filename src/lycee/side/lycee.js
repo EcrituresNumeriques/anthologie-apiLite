@@ -287,10 +287,10 @@ $(document).ready(function(){
         cleanDisplay();
         addNewText(thisData.entities[0].id_entity);
       });
-      $("#newRef").on("click",function()){
+      $("#newRef").on("click",function(){
         cleanDisplay();
         addNewRef(thisData.entities[0].id_entity);
-      }
+      });
 
       $("#newImage").on("click",function(){
         cleanDisplay();
