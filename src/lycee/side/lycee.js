@@ -260,7 +260,7 @@ $(document).ready(function(){
       $entity.append('<ul class="itexts">');
       $entity.children("ul.itexts").append('<li class="newStuff" id="newRef"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new internal link</li>');
       for (var j = 0; j < data.entities[i].refs.length; j++) {
-        $entity.children("ul.itexts").append('<li class="textText" data-id="'+data.entities[i].refs[j].id+'">'+nl2br(data.entities[i].refs[j].title)+'</li>');
+        $entity.children("ul.itexts").append('<li class="textText" data-id="'+data.entities[i].refs[j].id+'">'+nl2br(data.entities[i].refs[j].title)+' <i class="fa fa-arrow-circle-right goToEntity" aria-hidden="true"  data-id="'+data.entities[i].refs[j].id+'"></i></li>');
       }
 
       $entity.append('<h2>External text(s)</h2>');
@@ -291,7 +291,10 @@ $(document).ready(function(){
         cleanDisplay();
         addNewRef(thisData.entities[0].id_entity);
       });
-
+      $(".goToEntity").on("click",function(){
+        cleanDisplay();
+        loadEntity($(this).data("id"));
+      });
       $("#newImage").on("click",function(){
         cleanDisplay();
         addNewImage(thisData.entities[0].id_entity);
