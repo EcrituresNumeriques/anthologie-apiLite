@@ -258,7 +258,7 @@ $(document).ready(function(){
 
       $entity.append('<h2>Internal link(s)</h2>');
       $entity.append('<ul class="itexts">');
-      $entity.children("ul.itexts").append('<li class="newStuff" id="newText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new internal link</li>');
+      $entity.children("ul.itexts").append('<li class="newStuff" id="newRef"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new internal link</li>');
       for (var j = 0; j < data.entities[i].refs.length; j++) {
         $entity.children("ul.itexts").append('<li class="textText" data-id="'+data.entities[i].refs[j].id+'">'+nl2br(data.entities[i].refs[j].title)+'</li>');
       }
@@ -287,6 +287,11 @@ $(document).ready(function(){
         cleanDisplay();
         addNewText(thisData.entities[0].id_entity);
       });
+      $("#newRef").on("click",function()){
+        cleanDisplay();
+        addNewRef(thisData.entities[0].id_entity);
+      }
+
       $("#newImage").on("click",function(){
         cleanDisplay();
         addNewImage(thisData.entities[0].id_entity);
@@ -593,6 +598,35 @@ $(document).ready(function(){
       hideLoading();
     });
   }
+  function addNewRef(id_entity){
+    resetSide("newTranslation");
+    $form = $("<form>");
+    $form.append('<h2>Add a new internal link</h2>');
+    $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
+    $form.append('<select id="selectDestination" name="selectDestination" placeholder="Destination"></select>');
+    $form.append('<input type="button" class="block right" value="submit">');
+    $form.children("input[type=button]").off("click").on("click",sendNewRef);
+
+    $aside.append($form);
+    displayLoading('loading entities');
+    $.get(apiURL+"/v1/entities/all")
+    .done(selectEntities)
+    .fail(function(){
+      displayError('Unable to get entities');
+    })
+    .always(function(){
+      hideLoading();
+    });
+    $ctaSide.append('<p id="goToEntity">Cancel</p>');
+    $ctaSide.off("click").on("click",hideAside);
+  }
+  function selectEntities(data){
+    for(i=0;i<data.entities.length;i++){
+      $("#selectDestination").append('<option values="'+data.entities[i].id+'">'+data.entities[i].title+'</option>')
+    }
+  }
+
+
   function addNewText(id_entity){
     resetSide("newTranslation");
     $form = $("<form>");
