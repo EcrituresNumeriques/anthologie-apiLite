@@ -625,6 +625,24 @@ $(document).ready(function(){
       $("#selectDestination").append('<option values="'+data.entities[i].id+'">'+data.entities[i].title+'</option>')
     }
   }
+  function sendNewRef(){
+    cleanDisplay();
+    displayLoading('sending');
+    $.post(apiURL+"/v1/reference/new",{time:token.time,user:token.user,token:token.token,destination:$("#selectDestination").val(),entity:$("#entityId").val()})
+    .done(function(data){
+      displaySuccess('New internal reference added');
+      loadEntity($("#entityId").val());
+      hideAside();
+    })
+    .fail(function(data){
+      displayError('Unable to add new internal reference');
+      loadEntity($("#entityId").val());
+    })
+    .always(function(data){
+      hideLoading();
+    });
+  }
+
 
 
   function addNewText(id_entity){
