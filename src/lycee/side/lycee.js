@@ -609,7 +609,7 @@ $(document).ready(function(){
 
     $aside.append($form);
     displayLoading('loading entities');
-    $.get(apiURL+"/v1/entities/all")
+    $.get(apiURL+"/v1/entities")
     .done(selectEntities)
     .fail(function(){
       displayError('Unable to get entities');
