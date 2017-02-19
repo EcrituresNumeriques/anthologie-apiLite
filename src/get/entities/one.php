@@ -129,7 +129,7 @@ foreach ($keywordsInter as $keyword) {
   $keyword['lang'] = explode(" #/# ",$keyword['lang']);
   $keyword['family'] = explode(" #/# ",$keyword['family']);
   $translation = array();
-  for ($i=0; $i < $keyword['title']; $i++) {
+  for ($i=0; $i < count($keyword['title']); $i++) {
     $translation[] = array(
       "title"=>$keyword['title'][$i],
       "description"=>$keyword['description'][$i],
