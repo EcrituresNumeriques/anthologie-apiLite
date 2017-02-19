@@ -36,6 +36,9 @@ try{
   $getTexts->bindParam(":id",$_GET['entity']);
   $getTexts->execute();
 
+  $getKeywords = $db->prepare('SELECT eka.keywords_id,GROUP_CONCAT(kt.title  SEPARATOR  " #/# ") as title,GROUP_CONCAT(CONCAT('[',l.name,'] ',kt.title) SEPARATOR " / ") as fullString, GROUP_CONCAT(kt.description SEPARATOR " #/# ") as description,GROUP_CONCAT(l.name SEPARATOR " #/# ") as lang,GROUP_CONCAT(l.family SEPARATOR " #/# ") as family FROM entities_keywords_assoc eka JOIN keywords k ON eka.keywords_id = k.id JOIN keywords_translations kt ON k.id = kt.keyword_id JOIN languages l ON kt.language_id = l.id WHERE eka.entities_id GROUP BY k.id');
+  $getKeywords->bindParam(":id",$_GET['entity']);
+  $getKeywords->execute();
 
 }
 catch(Exception $e){
@@ -116,6 +119,30 @@ unset($texts);
 else{
   $unorderedTexts = [];
 }
+//format keywords
+$keywordsInter = $getKeywords->fetchAll(PDO::FETCH_ASSOC);
+$keywords = array();
+foreach ($keywordsInter as $keyword) {
+  //explode all strings
+  $keyword['title'] = explode(" #/# ",$keyword['title']);
+  $keyword['description'] = explode(" #/# ",$keyword['description']);
+  $keyword['lang'] = explode(" #/# ",$keyword['lang']);
+  $keyword['family'] = explode(" #/# ",$keyword['family']);
+  $translation = array();
+  for ($i=0; $i < $keyword['title']; $i++) {
+    $translation[] = array(
+      "title"=>$keyword['title'][$i],
+      "description"=>$keyword['description'][$i],
+      "lang"=>$keyword['lang'][$i],
+      "family"=>$keyword['family'][$i]
+    );
+  }
+  $keywords[] = array(
+    "id"=>$keyword['keywords_id'],
+    "fullstring"=>$keyword['fullstring'],
+    "translations"=>$translation
+  );
+}
 
 
 //put in $data : Vue
@@ -127,4 +154,5 @@ $data['entities'][0]['images'] = $getImages->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['refs'] = $getReference->fetchAll(PDO::FETCH_ASSOC);
 $data['entities'][0]['scholies'] = $unorderedScholies;
 $data['entities'][0]['texts'] = $unorderedTexts;
+$data['entities'][0]['keywords'] = $keywords;
 ?>
