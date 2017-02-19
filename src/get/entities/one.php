@@ -36,7 +36,7 @@ try{
   $getTexts->bindParam(":id",$_GET['entity']);
   $getTexts->execute();
 
-  $getKeywords = $db->prepare('SELECT eka.keywords_id,GROUP_CONCAT(kt.title  SEPARATOR  " #/# ") as title,GROUP_CONCAT(CONCAT('[',l.name,'] ',kt.title) SEPARATOR " / ") as fullString, GROUP_CONCAT(kt.description SEPARATOR " #/# ") as description,GROUP_CONCAT(l.name SEPARATOR " #/# ") as lang,GROUP_CONCAT(l.family SEPARATOR " #/# ") as family FROM entities_keywords_assoc eka JOIN keywords k ON eka.keywords_id = k.id JOIN keywords_translations kt ON k.id = kt.keyword_id JOIN languages l ON kt.language_id = l.id WHERE eka.entities_id GROUP BY k.id');
+  $getKeywords = $db->prepare("SELECT eka.keywords_id,GROUP_CONCAT(kt.title  SEPARATOR  ' #/# ') as title,GROUP_CONCAT(CONCAT('[',l.name,'] ',kt.title) SEPARATOR ' / ') as fullString, GROUP_CONCAT(kt.description SEPARATOR ' #/# ') as description,GROUP_CONCAT(l.name SEPARATOR ' #/# ') as lang,GROUP_CONCAT(l.family SEPARATOR ' #/# ') as family FROM entities_keywords_assoc eka JOIN keywords k ON eka.keywords_id = k.id JOIN keywords_translations kt ON k.id = kt.keyword_id JOIN languages l ON kt.language_id = l.id WHERE eka.entities_id = :id GROUP BY k.id");
   $getKeywords->bindParam(":id",$_GET['entity']);
   $getKeywords->execute();
 
