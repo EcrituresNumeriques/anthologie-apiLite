@@ -139,7 +139,7 @@ foreach ($keywordsInter as $keyword) {
   }
   $keywords[] = array(
     "id"=>$keyword['keywords_id'],
-    "fullstring"=>$keyword['fullstring'],
+    "fullString"=>$keyword['fullString'],
     "translations"=>$translation
   );
 }
