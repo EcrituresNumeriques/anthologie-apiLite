@@ -256,6 +256,12 @@ $(document).ready(function(){
         $entity.children("ul.scholies").append('<li class="langScholie">['+data.entities[i].scholies[j].translation[0].family+' / '+data.entities[i].scholies[j].translation[0].lang+']</li><li class="textScholie" data-id="'+data.entities[i].scholies[j].id+'">'+nl2br(data.entities[i].scholies[j].translation[0].text_translated)+'</li>');
       }
 
+      $entity.append('<h2>Keyword(s)</h2>');
+      $entity.append('<ul class="keywords">');
+      //$entity.children("ul.keywords").append('<li class="newStuff" id="newKeyword"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new keyword</li>');
+      for (var j = 0; j < data.entities[i].refs.length; j++) {
+        $entity.children("ul.keywords").append('<li class="textText" data-id="'+data.entities[i].keywords[j].id+'">'+data.entities[i].keywords[j].fullString)+'</li>');
+      }
       $entity.append('<h2>Internal link(s)</h2>');
       $entity.append('<ul class="itexts">');
       $entity.children("ul.itexts").append('<li class="newStuff" id="newRef"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new internal link</li>');
