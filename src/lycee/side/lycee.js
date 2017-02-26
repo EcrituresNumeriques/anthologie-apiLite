@@ -615,7 +615,7 @@ $(document).ready(function(){
       }
     }
     $("#selectLanguages").on("change",function(){
-      $(".datalistTarget").attr("list","lang"+$(this).val);
+      $(".datalistTarget").attr("list","lang"+$(this).val());
     });
   }
 
