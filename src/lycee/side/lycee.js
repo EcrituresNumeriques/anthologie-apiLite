@@ -577,7 +577,7 @@ $(document).ready(function(){
     $form.append('<h2>Add a new keywords</h2>');
     $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
     $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
-    $form.append('<input id="textKeyword" name="translation" placeholder="type in your translation" class="block full"></textarea>');
+    $form.append('<input id="textKeyword" class="datalistTarget" name="translation" placeholder="type in your translation" class="block full"></textarea>');
     $form.append('<input type="button" class="block right" value="submit">');
     $form.append('<div id="datalists"></div>');
     $form.children("input[type=button]").off("click").on("click",sendNewKeyword);
@@ -614,6 +614,9 @@ $(document).ready(function(){
         $("#lang"+data.keywords[i].translations[j].language_id).append('<option value="'+data.keywords[i].translations[j].title+'">'+data.keywords[i].translations[j].description+'</option>');
       }
     }
+    $("#selectLanguages").on("change",function(){
+      $(".datalistTarget").attr("list","lang"+$(this).val);
+    });
   }
 
   function sendNewKeyword(){
