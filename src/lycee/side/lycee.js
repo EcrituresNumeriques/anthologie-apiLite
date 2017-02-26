@@ -580,7 +580,6 @@ $(document).ready(function(){
     $form.append('<input id="textKeyword" class="datalistTarget" name="translation" placeholder="type in your translation" class="block full"></textarea>');
     $form.append('<input type="button" class="block right" value="submit">');
     $form.append('<div id="datalists"></div>');
-    $form.children("input[type=button]").off("click").on("click",sendNewKeyword);
 
     $aside.append($form);
     displayLoading('loading languages');
@@ -602,7 +601,7 @@ $(document).ready(function(){
     });
     $ctaSide.append('<p id="goToEntity">Cancel</p>');
     $ctaSide.off("click").on("click",hideAside);
-    $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
+    $form.children("input[type=button]").off("click").on("click",sendNewKeyword);
   }
 
   function datalistKeywords(data){
