@@ -2,7 +2,7 @@
 
 //select info in database : Model
 try{
-$getKeywordsFamilies = $db->prepare("SELECT id,name FROM keywords_families kf");
+$getKeywordsFamilies = $db->prepare("SELECT id,name FROM keywords_families kf ORDER BY name ASC");
 $getKeywordsFamilies->execute();
 }
 catch(Exception $e){
