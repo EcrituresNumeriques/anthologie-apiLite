@@ -62,6 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if($_GET['page'] == "URIs" || $_GET['page'] == "export"){
     include('get/URIs/all.php');
   }
+  //list all keywords
+  if($_GET['page'] == "getKeywords" || $_GET['page'] == "export"){
+    include('get/keywords/all.php');
+  }
   //get translation to align
   if($_GET['page'] == "alignTranslations"){
     include("get/align/align.php");

@@ -258,6 +258,7 @@ $(document).ready(function(){
 
       $entity.append('<h2>Keyword(s)</h2>');
       $entity.append('<ul class="keywords">');
+      $entity.children("ul.keywords").append('<li class="newStuff" id="newKeyword"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new keyword</li>');
       //$entity.children("ul.keywords").append('<li class="newStuff" id="newKeyword"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new keyword</li>');
       for (var j = 0; j < data.entities[i].refs.length; j++) {
         $entity.children("ul.keywords").append('<li class="textText" data-id="'+data.entities[i].keywords[j].id+'">'+data.entities[i].keywords[j].fullString+'</li>');
@@ -304,6 +305,10 @@ $(document).ready(function(){
       $("#newImage").on("click",function(){
         cleanDisplay();
         addNewImage(thisData.entities[0].id_entity);
+      });
+      $("#newKeyword").on("click",function(){
+        cleanDisplay();
+        addNewKeywords(thisData.entities[0].id_entity);
       });
       $(".lang").on("click",function(){
         $(this).next(".text").slideToggle().toggleClass("opened");
@@ -560,6 +565,68 @@ $(document).ready(function(){
     })
     .fail(function(data){
       displayError('Unable to add new translation');
+      loadEntity($("#entityId").val());
+    })
+    .always(function(data){
+      hideLoading();
+    });
+  }
+  function addNewKeywords(id_entity){
+    resetSide("newTranslation");
+    $form = $("<form>");
+    $form.append('<h2>Add a new keywords</h2>');
+    $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
+    $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
+    $form.append('<input id="textKeyword" name="translation" placeholder="type in your translation" class="block full"></textarea>');
+    $form.append('<input type="button" class="block right" value="submit">');
+    $form.append('<div id="datalists"></div>');
+    $form.children("input[type=button]").off("click").on("click",sendNewKeyword);
+
+    $aside.append($form);
+    displayLoading('loading languages');
+    $.get(apiURL+"/v1/languages")
+    .done(selectLanguages)
+    .fail(function(){
+      displayError('Unable to get languages');
+    })
+    .always(function(){
+      hideLoading();
+    });
+    $.get(apiURL+"/v1/keywords")
+    .done(datalistKeywords)
+    .fail(function(){
+      displayError('Unable to get keywords');
+    })
+    .always(function(){
+      hideLoading();
+    });
+    $ctaSide.append('<p id="goToEntity">Cancel</p>');
+    $ctaSide.off("click").on("click",hideAside);
+    $form.children("input[type=button]").off("click").on("click",sendNewTranslation);
+  }
+
+  function datalistKeywords(data){
+    for (var i = 0; i < data.keywords.length; i++) {
+      for (var j = 0; j < data.keywords[i].translations.length; j++) {
+        if($("#"+data.keywords[i].translations[j].family+"-"+data.keywords[i].translations[j].lang).length === 0){
+          $("#datalists").append('<datalist id="'+data.keywords[i].translations[j].family+'-'+data.keywords[i].translations[j].lang+'"></datalist>');
+        }
+        $("#"+data.keywords[i].translations[j].family+"-"+data.keywords[i].translations[j].lang).append('<option value="'+data.keywords[i].translation[j].title+'">'+data.keywords[i].translation[j].description+'</option>');
+      }
+    }
+  }
+
+  function sendNewKeyword(){
+    cleanDisplay();
+    displayLoading('sending');
+    $.post(apiURL+"/v1/keywords/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textKeyword").val(),entity:$("#entityId").val()})
+    .done(function(data){
+      displaySuccess('New Keyword added');
+      loadEntity($("#entityId").val());
+      hideAside();
+    })
+    .fail(function(data){
+      displayError('Unable to add new Keyword');
       loadEntity($("#entityId").val());
     })
     .always(function(data){
