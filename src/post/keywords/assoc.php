@@ -18,11 +18,25 @@ if($getKeyword->rowCount() > 0){
   $keyword = $getKeyword->fetch(PDO::FETCH_ASSOC);
   $keyword = $keyword['keyword_id'];
 }
+else{
+  if(empty($_POST['description'])){
+    errorJSON("no description",400);
+  }
+  if(empty($_POST['family'])){
+    errorJSON("no family",400);
+  }
 
 //if no keyword found, create one
-$insertNewkeyword = $db->prepare("");
+$insertNewkeyword = $db->prepare("INSERT INTO keywords (keyword_family,user_id,group_id,created_at,updated_at) VALUES (:family,:user,:group,NOW(),NOW())");
+$insertNewkeyword->bindParam(":family",$_POST['family']);
+$insertNewkeyword->bindParam(":user",$user['user']['id']);
+(!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
+$insertNewkeyword->bindParam(":group",$user['user']['groups'][0]);
 $insertNewKeyword->execute();
 
+//add new translation
+
+}
 
 //Assoc to entity
 
