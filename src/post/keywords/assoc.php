@@ -33,7 +33,7 @@ $insertNewkeyword->bindParam(":user",$user['user']['id']);
 (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
 $insertNewkeyword->bindParam(":group",$user['user']['groups'][0]);
 $insertNewKeyword->execute();
-
+$keyword = $db->lastInsertId();
 //add new translation
 
 }
