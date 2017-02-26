@@ -2,7 +2,7 @@
 
 //select info in database : Model
 try{
-$getKeywords = $db->prepare("SELECT k.id, kf.name as category, kt.title, kt.description, l.name, l.family FROM `keywords` k
+$getKeywords = $db->prepare("SELECT k.id, kf.name as category, kt.title, kt.description, kt.language_id, l.name, l.family FROM `keywords` k
     JOIN keywords_families kf ON k.keyword_family = kf.id
     JOIN keywords_translations kt ON k.id = kt.keyword_id
     JOIN languages l ON kt.language_id = l.id ORDER BY k.id
@@ -23,6 +23,7 @@ foreach ($rawKeywords as $keyword) {
     "description"=>$keyword['description'],
     "lang"=>$keyword['name'],
     "family"=>$keyword['family'],
+    "language_id"=>$keyword['language_id'],
   );
 }
 

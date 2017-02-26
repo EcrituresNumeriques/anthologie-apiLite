@@ -608,10 +608,10 @@ $(document).ready(function(){
   function datalistKeywords(data){
     for (var i = 0; i < data.keywords.length; i++) {
       for (var j = 0; j < data.keywords[i].translations.length; j++) {
-        if($("#"+data.keywords[i].translations[j].family+"-"+data.keywords[i].translations[j].lang).length === 0){
-          $("#datalists").append('<datalist id="'+data.keywords[i].translations[j].family+'-'+data.keywords[i].translations[j].lang+'"></datalist>');
+        if($("#lang"+data.keywords[i].translations[j].language_id).length === 0){
+          $("#datalists").append('<datalist id="lang'+data.keywords[i].translations[j].language_id+'"></datalist>');
         }
-        $("#"+data.keywords[i].translations[j].family+"-"+data.keywords[i].translations[j].lang).append('<option value="'+data.keywords[i].translations[j].title+'">'+data.keywords[i].translations[j].description+'</option>');
+        $("#lang"+data.keywords[i].translations[j].language_id).append('<option value="'+data.keywords[i].translations[j].title+'">'+data.keywords[i].translations[j].description+'</option>');
       }
     }
   }
