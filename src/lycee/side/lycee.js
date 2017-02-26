@@ -577,7 +577,8 @@ $(document).ready(function(){
     $form.append('<h2>Add a new keywords</h2>');
     $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
     $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
-    $form.append('<input id="textKeyword" class="datalistTarget" name="translation" placeholder="type in your translation" class="block full"></textarea>');
+    $form.append('<input id="textKeyword" class="datalistTarget" name="translation" placeholder="Keyword" class="block full">');
+    $form.append('<input id="descriptKeyword" name="description" placeholder="Description of the keyword (optionnal)" class="block full">');
     $form.append('<input type="button" class="block right" value="submit">');
     $form.append('<div id="datalists"></div>');
 
@@ -621,7 +622,7 @@ $(document).ready(function(){
   function sendNewKeyword(){
     cleanDisplay();
     displayLoading('sending');
-    $.post(apiURL+"/v1/keywords/new",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textKeyword").val(),entity:$("#entityId").val()})
+    $.post(apiURL+"/v1/keywords/assoc",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textKeyword").val(),entity:$("#entityId").val(),description:$("#descriptKeyword").val()})
     .done(function(data){
       displaySuccess('New Keyword added');
       loadEntity($("#entityId").val());

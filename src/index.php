@@ -142,6 +142,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif($_GET['page'] == "newRef"){
       include('post/reference/new.php');
     }
+    //add new reference
+    elseif($_GET['page'] == "assocKeyword"){
+      include('post/keywords/assoc.php');
+    }
 
     //add new keyword
 
