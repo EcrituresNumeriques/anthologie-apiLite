@@ -578,7 +578,8 @@ $(document).ready(function(){
     $form.append('<input type="hidden" id="entityId" value="'+id_entity+'">');
     $form.append('<select id="selectLanguages" name="language" placeholder="language"></select>');
     $form.append('<input id="textKeyword" class="datalistTarget" name="translation" placeholder="Keyword" class="block full">');
-    $form.append('<input id="descriptKeyword" name="description" placeholder="Description of the keyword (optionnal)" class="block full">');
+    $form.append('<select id="selectFamilies" name="families" placeholder="Families (If new keyword)"></select>');
+    $form.append('<input id="descriptKeyword" name="description" placeholder="Description of the keyword (If new keyword)" class="block full">');
     $form.append('<input type="button" class="block right" value="submit">');
     $form.append('<div id="datalists"></div>');
 
@@ -611,7 +612,7 @@ $(document).ready(function(){
         if($("#lang"+data.keywords[i].translations[j].language_id).length === 0){
           $("#datalists").append('<datalist id="lang'+data.keywords[i].translations[j].language_id+'"></datalist>');
         }
-        $("#lang"+data.keywords[i].translations[j].language_id).append('<option value="'+data.keywords[i].translations[j].title+'">'+data.keywords[i].translations[j].description+'</option>');
+        $("#lang"+data.keywords[i].translations[j].language_id).append('<option value="'+data.keywords[i].translations[j].title+'">'data.keywords[i].category+" : "+data.keywords[i].translations[j].description+'</option>');
       }
     }
     $("#selectLanguages").on("change",function(){
@@ -622,7 +623,7 @@ $(document).ready(function(){
   function sendNewKeyword(){
     cleanDisplay();
     displayLoading('sending');
-    $.post(apiURL+"/v1/keywords/assoc",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textKeyword").val(),entity:$("#entityId").val(),description:$("#descriptKeyword").val()})
+    $.post(apiURL+"/v1/keywords/assoc",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textKeyword").val(),entity:$("#entityId").val(),description:$("#descriptKeyword").val(),family:$("#selectFamilie").val()})
     .done(function(data){
       displaySuccess('New Keyword added');
       loadEntity($("#entityId").val());
