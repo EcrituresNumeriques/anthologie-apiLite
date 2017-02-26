@@ -15,7 +15,7 @@ catch(Exception $e){
 //treat information : Controler
 $rawKeywords = $getKeywords->fetchAll(PDO::FETCH_ASSOC);
 $keywords = array();
-foreach ($rowKeyword as $keyword) {
+foreach ($rawKeywords as $keyword) {
   $keywords[$keyword['id']]['id'] = $keyword['id'];
   $keywords[$keyword['id']]['category'] = $keyword['category'];
   $keywords[$keyword['id']]['translations'][] = array(
