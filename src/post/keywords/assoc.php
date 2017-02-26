@@ -10,7 +10,14 @@ if(empty($_POST['entity'])){
 }
 try{
 //Find keyword
-
+$getKeyword = $db->prepare("SELECT keyword_id FROM keywords_translations kt WHERE language_id = :lang AND title = :text");
+$getKeyword->bindParam(":lang",$_POST['language']);
+$getKeyword->bindParam(":text",$_POST['text']);
+$getKeyword->execute();
+if($getKeyword->rowCount() > 0){
+  $keyword = $getKeyword->fetch(PDO::FETCH_ASSOC);
+  $keyword = $keyword['keyword_id'];
+}
 
 //if no keyword found, create one
 $insertNewkeyword = $db->prepare("");
