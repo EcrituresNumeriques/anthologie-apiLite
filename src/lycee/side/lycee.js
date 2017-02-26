@@ -611,7 +611,7 @@ $(document).ready(function(){
         if($("#"+data.keywords[i].translations[j].family+"-"+data.keywords[i].translations[j].lang).length === 0){
           $("#datalists").append('<datalist id="'+data.keywords[i].translations[j].family+'-'+data.keywords[i].translations[j].lang+'"></datalist>');
         }
-        $("#"+data.keywords[i].translations[j].family+"-"+data.keywords[i].translations[j].lang).append('<option value="'+data.keywords[i].translation[j].title+'">'+data.keywords[i].translation[j].description+'</option>');
+        $("#"+data.keywords[i].translations[j].family+"-"+data.keywords[i].translations[j].lang).append('<option value="'+data.keywords[i].translations[j].title+'">'+data.keywords[i].translations[j].description+'</option>');
       }
     }
   }
