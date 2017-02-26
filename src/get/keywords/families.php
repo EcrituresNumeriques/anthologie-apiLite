@@ -11,5 +11,5 @@ catch(Exception $e){
 //treat information : Controler
 
 //put in $data : Vue
-$data['keywordsFamilies'] = $getKeywordsFamilies->fetchAll();
+$data['keywordsFamilies'] = $getKeywordsFamilies->fetchAll(PDO::FETCH_ASSOC);
 ?>
