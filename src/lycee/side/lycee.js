@@ -612,7 +612,7 @@ $(document).ready(function(){
         if($("#lang"+data.keywords[i].translations[j].language_id).length === 0){
           $("#datalists").append('<datalist id="lang'+data.keywords[i].translations[j].language_id+'"></datalist>');
         }
-        $("#lang"+data.keywords[i].translations[j].language_id).append('<option value="'+data.keywords[i].translations[j].title+'">'+sdata.keywords[i].category+' : '+data.keywords[i].translations[j].description+'</option>');
+        $("#lang"+data.keywords[i].translations[j].language_id).append('<option value="'+data.keywords[i].translations[j].title+'">'+data.keywords[i].category+' : '+data.keywords[i].translations[j].description+'</option>');
       }
     }
     $("#selectLanguages").on("change",function(){
