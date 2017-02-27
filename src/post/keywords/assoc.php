@@ -36,8 +36,9 @@ $insertNewkeyword->bindParam(":group",$user['user']['groups'][0]);
 $insertNewkeyword->execute();
 $keyword = $db->lastInsertId();
 $data['newKeyword'] = $keyword;
+
 //add new translation
-$insertTranslation = $db->prepare("INSERT INTO keywords_translations kt (keyword_id,user_id,group_id,language_id,title,description,created_at,updated_at) VALUES (:keyword,:user,:group,:lang,:text,:description,NOW(),NOW())");
+$insertTranslation = $db->prepare("INSERT INTO keywords_translations (keyword_id,user_id,group_id,language_id,title,description,created_at,updated_at) VALUES (:keyword,:user,:group,:lang,:text,:description,NOW(),NOW())");
 $insertTranslation->bindParam(":keyword",$keyword);
 $insertTranslation->bindParam(":user",$user['user']['id']);
 (!empty($user['user']['groups'][0])?:$user['user']['groups'][0] = NULL);
