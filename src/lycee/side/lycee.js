@@ -260,7 +260,7 @@ $(document).ready(function(){
       $entity.append('<ul class="keywords">');
       $entity.children("ul.keywords").append('<li class="newStuff" id="newKeyword"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new keyword</li>');
       //$entity.children("ul.keywords").append('<li class="newStuff" id="newKeyword"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new keyword</li>');
-      for (var j = 0; j < data.entities[i].refs.length; j++) {
+      for (var j = 0; j < data.entities[i].keywords.length; j++) {
         $entity.children("ul.keywords").append('<li class="textText" data-id="'+data.entities[i].keywords[j].id+'">'+data.entities[i].keywords[j].fullString+'</li>');
       }
       $entity.append('<h2>Internal link(s)</h2>');
