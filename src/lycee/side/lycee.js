@@ -601,9 +601,24 @@ $(document).ready(function(){
     .always(function(){
       hideLoading();
     });
+    $.get(apiURL+"/v1/keywords/families")
+    .done(familiesKeywords)
+    .fail(function(){
+      displayError('Unable to get keyword families');
+    })
+    .always(function(){
+      hideLoading();
+    });
+
     $ctaSide.append('<p id="goToEntity">Cancel</p>');
     $ctaSide.off("click").on("click",hideAside);
     $form.children("input[type=button]").off("click").on("click",sendNewKeyword);
+  }
+
+  function familiesKeywords(data){
+    for (var i = 0; i < data.keywordsFamilies.length; i++) {
+      $("#selectFamilies").append('<option values="'+data.keywordsFamilies[i].id+'">'+data.keywordsFamilies[i].name+'</option>');
+    }
   }
 
   function datalistKeywords(data){
