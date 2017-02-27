@@ -50,7 +50,7 @@ $insertTranslation->execute();
 }
 
 //Assoc to entity
-$assocKeyword = $db->prepare("INSERT INTO entities_keywords_assoc (entities_id,keywords_id) VALUES (:entity,:keyword) ON DUPLICATE KEY UPDATE keyword_id = keywords_id");
+$assocKeyword = $db->prepare("INSERT INTO entities_keywords_assoc (entities_id,keywords_id) VALUES (:entity,:keyword) ON DUPLICATE KEY UPDATE keywords_id = keywords_id");
 $assocKeyword->bindParam(":entity",$_POST['entity']);
 $assocKeyword->bindParam(":keyword",$keyword);
 $assocKeyword->execute();
