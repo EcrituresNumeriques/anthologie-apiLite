@@ -617,7 +617,7 @@ $(document).ready(function(){
 
   function familiesKeywords(data){
     for (var i = 0; i < data.keywordsFamilies.length; i++) {
-      $("#selectFamilies").append('<option values="'+data.keywordsFamilies[i].id+'">'+data.keywordsFamilies[i].name+'</option>');
+      $("#selectFamilies").append('<option value="'+data.keywordsFamilies[i].id+'">'+data.keywordsFamilies[i].name+'</option>');
     }
   }
 
