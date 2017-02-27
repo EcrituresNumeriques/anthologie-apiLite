@@ -638,7 +638,7 @@ $(document).ready(function(){
   function sendNewKeyword(){
     cleanDisplay();
     displayLoading('sending');
-    $.post(apiURL+"/v1/keywords/assoc",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textKeyword").val(),entity:$("#entityId").val(),description:$("#descriptKeyword").val(),family:$("#selectFamilie").val()})
+    $.post(apiURL+"/v1/keywords/assoc",{time:token.time,user:token.user,token:token.token,language:$("#selectLanguages").val(),text:$("#textKeyword").val(),entity:$("#entityId").val(),description:$("#descriptKeyword").val(),family:$("#selectFamilies").val()})
     .done(function(data){
       displaySuccess('New Keyword added');
       loadEntity($("#entityId").val());
