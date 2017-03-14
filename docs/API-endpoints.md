@@ -8,8 +8,17 @@
 
 Most GET requests don't need the user to provide an identification token
 
-
-
+### /v1/entities
+### /v1/entities/([0-9]+)
+### /v1/entities/URIs/
+### /v1/authors
+### /v1/URIs
+### /v1/languages
+### /v1/languages/([0-9]+)
+### /v1/languages/families
+### /v1/languages/families/([a-zA-Zα-ωΑ-Ω]+)
+### /v1/align/([0-9]+)/([0-9]+)
+### /v1/export
 
 ## POST
 
@@ -48,3 +57,12 @@ Most POST requests require the user to provide an identification token, the two 
   
 You can then login using the information you provided
   
+### /v1/entities/new/
+### /v1/translations/new
+### /v1/languages/new
+### /v1/images/new
+### /v1/URIs/addURId
+### /v1/align
+### /v1/scholie/new
+### /v1/text/new
+### /v1/reference/new
