@@ -2,6 +2,17 @@
 
 - user : 
 
+# Objects :
+
+- entities object :
+  - book_id: array of books where this entity appears. ex: [1,5,6] (refers to Palatine anthology, Best of litterature and compilation of greek poetry)
+  - date: estimated date of creation of the entity. ex -400
+  - date_range: possible variation of the estimated date. ex: 50 (means this entity has been written between date-50 and date+50)
+  - era_id: classification in specific era. ex: 1 (refers to: delos league)
+  - genre_id: Genre of the entity. ex: 1 (refers to : Poetry)
+  - id_entity: identifier of the entity. ex: 33
+  - title: Title of the entity. ex: "Greek Anthology 5.6"
+
 # API endpoints
 
 ## GET
@@ -9,7 +20,14 @@
 Most GET requests don't need the user to provide an identification token
 
 ### /v1/entities
+- response :
+  -entities : array of entities object
+    
+
 ### /v1/entities/([0-9]+)
+- response :
+  -entities : array of entities object (only the id specified in the ([0-9]+)
+  
 ### /v1/entities/URIs/
 ### /v1/authors
 ### /v1/URIs
