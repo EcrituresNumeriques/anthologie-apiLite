@@ -13,51 +13,25 @@
   - id_entity: identifier of the entity. ex: 33
   - title: Title of the entity. ex: "Greek Anthology 5.6"
 
-- entities extended object : (extends entities object)
-  - URI : 
-[{name: "Perseus citation URI",…}]
-  - authors
-:
-[{id: "9", born: null, died: null, born_range: null, died_range: null, defaultName: "callimachus",…}]
-  - book_id
-:
-null
-  - date
-:
-null
-  - date_range
-:
-null
-  - era_id
-:
-null
-  - genre_id
-:
-null
-  - id_entity
-:
-"33"
-  - images
-:
-[]
-  - keywords
-:
-[{id: "1", fullString: "[italiano moderno] test / [français moderne] test2",…},…]
-  - refs
-:
-[{id: "33", title: "Greek Anthology 5.6"}]
-  - scholies
-:
-[]
-  - texts
-:
-[]
-  - title
-:
-"Greek Anthology 5.6"
-  - translation
-:
-[{id: "1",…}, {id: "2",…}]
+- extended entities object : (extends entities object)
+  - URI : Array of URI object.
+  - authors: Array of Authors object.
+  - book_id : Array of book IDs where this entity appears in.
+  - images : Array of Images associated with this entity
+  - keywords : Array of Keyword object
+  - refs : Array of Reference object
+  - scholies: Array of Scolies object
+  - texts: Array of text object
+  - translation: Array of Translation object
+
+- URI object:
+- Authors object:
+- Keyword object:
+- Reference object:
+- Scholies object:
+- Text object:
+- Translation object:
+
 
 # API endpoints
 
@@ -72,7 +46,7 @@ Most GET requests don't need the user to provide an identification token
 
 ### /v1/entities/([0-9]+)
 - response :
-  -entities : array of entities object (only the id specified in the ([0-9]+)
+  -entities : array of extended entities object (only the id specified in the ([0-9]+)
   
 ### /v1/entities/URIs/
 ### /v1/authors
