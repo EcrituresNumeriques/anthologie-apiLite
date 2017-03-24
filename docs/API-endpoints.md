@@ -6,12 +6,12 @@ Most GET requests don't need the user to provide an identification token
 
 ### /v1/entities
 - response :
-  -entities : array of [entities object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#entities-object-)
+  - entities : array of [entities object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#entities-object-)
     
 
 ### /v1/entities/([0-9]+)
 - response :
-  -entities : array of [extended entities object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#extended-entities-object--extends-entities-object)
+  - entities : array of [extended entities object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#extended-entities-object--extends-entities-object)
   
 ### /v1/entities/URIs/
 ### /v1/authors
@@ -22,6 +22,8 @@ Most GET requests don't need the user to provide an identification token
 ### /v1/languages/families/([a-zA-Zα-ωΑ-Ω]+)
 ### /v1/align/([0-9]+)/([0-9]+)
 ### /v1/export
+- response :
+  - entities : array of [entities object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#entities-object-)
 
 ## POST
 
