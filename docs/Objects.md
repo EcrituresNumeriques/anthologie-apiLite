@@ -20,6 +20,19 @@
   - texts: Array of text object
   - translation: Array of Translation object
 
+## URI link object:
+  - URN : URN of the ressource (usually URI with the domain name removed) (ex. urn:cts:greekLit:tlg7000.tlg001.perseus-grc1:5.6 )
+  - created_at : date of the creation of the ressource (ex. "2017-02-07 12:04:08")
+  - deleted_at : date of removal of the ressource (ex. null)
+  - entity_id : Entity id linked to the URI (ex. 33)
+  - group_id : Group id that has right to manage this URI link (ex. null)
+  - id : id of the URI link (ex. 1)
+  - updated_at : last modification of the link (ex. 2017-02-07 12:04:08)
+  - urid_category_id : (ex. null)
+  - urid_source_id : id of the source of the URI (ex. 1 [for perseus])
+  - user_id: user id that created the URI link (ex. 2)
+  - value : actual URI (ex. http://data.perseus.org/citations/urn:cts:greekLit:tlg7000.tlg001.perseus-grc1:5.6)
+
 ## URI object:
 ## Authors object:
 ## Keyword object:
