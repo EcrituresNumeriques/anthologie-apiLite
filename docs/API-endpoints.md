@@ -14,6 +14,13 @@ Most GET requests don't need the user to provide an identification token
   - entities : array of [extended entities object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#extended-entities-object--extends-entities-object)
   
 ### /v1/entities/URIs/
+This endpoint serve the purpose of matching a specific URI with an entity already in the database
+- params :
+ - uri : URI to the ressource (ex. http://data.perseus.org/citations/urn:cts:greekLit:tlg7000.tlg001.perseus-grc1:5.6 )
+- response :
+ - entities : array of [URI Link object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#uri-link-object). Usually one URI link object, or none if no link found
+ - query : URI used by the server to query the database (replay of the uri param)
+
 ### /v1/authors
 ### /v1/URIs
 ### /v1/languages
