@@ -14,7 +14,7 @@ Most GET requests don't need the user to provide an identification token
   - entities : array of [extended entities object](https://github.com/EcrituresNumeriques/anthologie-apiLite/blob/master/docs/Objects.md#extended-entities-object--extends-entities-object)
   
 ### /v1/entities/URIs
-(This endpoint will soon move to /v1/URILinks to be more consistent with the REST philosphy)
+(This endpoint will soon move to /v1/URILinks/([a-zA-Z0-9_-]+) to be more consistent with the REST philosphy, the [a-zA-Z0-9_-]+ group represents the base64Url of the URI to be queried)
 
 This endpoint serve the purpose of matching a specific URI with an entity already in the database
 - params :
